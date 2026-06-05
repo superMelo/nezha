@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS agent_memory (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    agent_name VARCHAR(128) NOT NULL,
+    content CLOB NOT NULL,
+    category VARCHAR(128),
+    importance INT DEFAULT 5,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS pipeline_config (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128) NOT NULL UNIQUE,
+    type VARCHAR(50) NOT NULL,
+    description VARCHAR(500),
+    config_json CLOB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS scheduled_task (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    agent_name VARCHAR(128) NOT NULL,
+    task_name VARCHAR(255) NOT NULL,
+    cron_expression VARCHAR(128) NOT NULL,
+    task_prompt CLOB,
+    enabled BOOLEAN DEFAULT TRUE,
+    last_run_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

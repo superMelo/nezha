@@ -1,0 +1,38 @@
+CREATE TABLE IF NOT EXISTS chat_session (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    agent_name VARCHAR(128) NOT NULL,
+    model_name VARCHAR(128),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS chat_message (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    session_id BIGINT NOT NULL,
+    role VARCHAR(64) NOT NULL,
+    content CLOB,
+    agent_name VARCHAR(128),
+    elapsed_ms BIGINT,
+    tool_calls VARCHAR(1024),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (session_id) REFERENCES chat_session(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS agent_config (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128) NOT NULL UNIQUE,
+    system_prompt CLOB,
+    model_name VARCHAR(128),
+    memory_size INT DEFAULT 50,
+    is_custom BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS app_setting (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    setting_key VARCHAR(128) NOT NULL UNIQUE,
+    setting_value VARCHAR(4096),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

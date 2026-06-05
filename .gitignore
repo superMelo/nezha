@@ -1,0 +1,14 @@
+﻿target/
+*.jar
+data/
+*.db
+.mv.db
+.trace.db
+*.class
+*.log
+.idea/
+*.iml
+.vscode/
+.DS_Store
+fix_*.py
+fix_*.js

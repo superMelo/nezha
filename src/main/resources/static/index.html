@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nezha v0.4.0</title>
+<style>
+:root{--bg:#0a0a14;--sidebar:#111122;--border:#1e1e35;--text:#d4d4e8;--dim:#666;--accent:#ff3366;--accent2:#cc2255;--hover:#181830;--input:#0c0c18;--card:#14142a;--green:#00cc88;--blue:#3399ff;--orange:#ff9922;--purple:#aa55ff}
+[data-theme=light]{--bg:#f0f0f5;--sidebar:#fff;--border:#ddd;--text:#222;--dim:#999;--accent:#ff3366;--accent2:#cc2255;--hover:#eee;--input:#fff;--card:#fff;--green:#00aa77;--blue:#2277dd;--orange:#ee8811;--purple:#9944dd}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+/* Header */
+.header{height:44px;background:var(--sidebar);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0;z-index:10}
+.header .logo{display:flex;align-items:center;gap:6px}
+.header .logo-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
+.header h1{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.header .ver{font-size:9px;background:var(--accent);color:#fff;padding:1px 6px;border-radius:6px;font-weight:600}
+.header .spacer{flex:1}
+/* Header buttons */
+.hbtn{padding:4px 10px;border:1px solid var(--border);border-radius:7px;background:0 0;color:var(--dim);cursor:pointer;font-size:11px;transition:.15s}
+.hbtn:hover{background:var(--hover);color:var(--text)}
+/* Main layout */
+.body{display:flex;flex:1;min-height:0}
+/* Sidebar - sessions */
+.sidebar{width:220px;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-head{padding:10px 12px 8px;display:flex;gap:6px}
+.sidebar-head button{flex:1;padding:7px 0;border:1px solid var(--border);border-radius:8px;background:0 0;color:var(--text);cursor:pointer;font-size:11.5px;font-weight:500;transition:.15s}
+.sidebar-head button:hover{background:var(--hover);border-color:var(--accent)}
+.sidebar-head button.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.sidebar-head button.pri:hover{opacity:.85}
+.tab-bar{display:flex;padding:0 12px 6px;gap:4px}
+.tab-btn{flex:1;padding:5px 0;text-align:center;font-size:11px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;transition:.15s;font-weight:500}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.list{flex:1;overflow-y:auto;padding:4px 8px}
+.item{padding:9px 11px;border-radius:8px;cursor:pointer;font-size:12.5px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;transition:.12s;line-height:1.3}
+.item:hover{background:var(--hover)}
+.item.active{background:var(--accent);color:#fff}
+.item .item-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
+.item .item-sub{font-size:10px;opacity:.45;margin-top:1px}
+.item.active .item-sub{opacity:.6}
+.item .x{display:none;margin-left:6px;cursor:pointer;font-size:14px;opacity:.5;width:16px;text-align:center}
+.item:hover .x{display:block}
+.item.active .x{color:#fff;opacity:.7}
+/* Chat area */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
+.chat{flex:1;overflow-y:auto;padding:20px 24px}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--dim)}
+.empty .logo-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;font-weight:800;margin-bottom:4px}
+.empty .logo-text{font-size:22px;font-weight:700;color:var(--text)}
+.empty .hint{font-size:13px}
+/* Messages */
+.msg{margin-bottom:16px;max-width:72%;animation:msgIn .2s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.user{margin-left:auto}
+.msg.assistant{margin-right:auto}
+.msg .bubble{padding:11px 15px;border-radius:14px;font-size:13.5px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word}
+.msg.user .bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.msg.assistant .bubble{background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px}
+.msg .avatar{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0;vertical-align:top}
+.msg.assistant{display:flex;align-items:flex-start;gap:0}
+.msg .meta{font-size:9px;opacity:.3;margin-top:3px;padding:0 3px}
+.msg.user .meta{text-align:right}
+.typing-indicator{color:var(--dim);font-size:13px;padding:4px 15px;font-style:italic;opacity:.6}
+/* Input area */
+.input-area{padding:12px 20px 14px;border-top:1px solid var(--border);background:var(--sidebar);display:flex;gap:8px;align-items:flex-end}
+.input-area textarea{flex:1;background:var(--input);border:1px solid var(--border);border-radius:12px;padding:10px 14px;color:var(--text);font-size:13.5px;resize:none;font-family:inherit;min-height:40px;max-height:120px;outline:0;transition:border-color .15s}
+.input-area textarea:focus{border-color:var(--accent)}
+.input-area textarea::placeholder{color:var(--dim)}
+.input-area button{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:0 20px;cursor:pointer;font-size:12.5px;font-weight:600;height:40px;transition:.15s;white-space:nowrap}
+.input-area button:hover{background:var(--accent2)}
+.input-area button:disabled{opacity:.35;cursor:not-allowed}
+/* Mode indicator */
+.mode-tag{position:absolute;top:48px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-bottom-left-radius:8px;border-bottom-right-radius:8px;padding:3px 14px;font-size:10.5px;color:var(--dim);z-index:5;pointer-events:none}
+.mode-tag .mode-name{color:var(--accent);font-weight:600}
+/* Modals */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:100;animation:fadeIn .15s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;width:460px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal h2{font-size:16px;margin-bottom:18px;color:var(--text);font-weight:700}
+.modal label{display:block;font-size:11px;color:var(--dim);margin:12px 0 4px;font-weight:500;text-transform:uppercase;letter-spacing:.4px}
+.modal input,.modal textarea,.modal select{width:100%;padding:9px 12px;background:var(--input);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit;outline:0;transition:border-color .15s}
+.modal input:focus,.modal textarea:focus,.modal select:focus{border-color:var(--accent)}
+.modal textarea{min-height:80px;resize:vertical}
+.modal .btns{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
+.modal .btns button{padding:9px 18px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;border:1px solid var(--border);transition:.15s}
+.modal .btns .pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.modal .btns .pri:hover{opacity:.85}
+.modal .btns .sec{background:0 0;color:var(--text)}
+.modal .btns .sec:hover{background:var(--hover)}
+/* List items in modals */
+.mem-item{padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:4px}
+.mem-item .time{font-size:10px;opacity:.4}
+.mem-item .text{font-size:12.5px;margin-top:3px;line-height:1.4}
+.task-item{padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.task-item .name{font-weight:600;font-size:12.5px}
+.task-item .meta{font-size:10px;opacity:.5;margin-top:2px}
+.task-item .toggle{padding:4px 10px;border-radius:6px;border:1px solid var(--border);cursor:pointer;font-size:10px;font-weight:600;transition:.15s}
+.task-item .toggle:hover{border-color:var(--accent);color:var(--accent)}
+/* Pipeline type badges */
+.type-badge{font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;letter-spacing:.3px}
+.type-badge.seq{background:rgba(51,153,255,.15);color:var(--blue)}
+.type-badge.loop{background:rgba(255,153,34,.15);color:var(--orange)}
+.type-badge.bcast{background:rgba(170,85,255,.15);color:var(--purple)}
+.type-badge.ifelse{background:rgba(0,204,136,.15);color:var(--green)}
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--dim)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo"><div class="logo-icon">N</div><h1>Nezha</h1><span class="ver">v0.4.0</span></div>
+  <div class="spacer"></div>
+  <button class="hbtn" onclick="showSettings()">Settings</button>
+  <button class="hbtn" onclick="showMemory()">Memory</button>
+  <button class="hbtn" onclick="showTasks()">Tasks</button>
+  <button class="hbtn" onclick="toggleTheme()">Theme</button>
+  <button class="hbtn" onclick="toggleLang()">EN/ZH</button>
+</div>
+
+<div class="body">
+  <div class="sidebar">
+    <div class="sidebar-head">
+      <button class="pri" onclick="newSession()">+ New Chat</button>
+      <button onclick="showAddModal('agent')">+ Agent</button>
+      <button onclick="showAddModal('pipe')">+ Pipe</button>
+    </div>
+    <div class="tab-bar">
+      <div class="tab-btn active" id="tab-agents" onclick="switchTab('agents')">Agents</div>
+      <div class="tab-btn" id="tab-sessions" onclick="switchTab('sessions')">Chats</div>
+      <div class="tab-btn" id="tab-pipes" onclick="switchTab('pipes')">Pipes</div>
+    </div>
+    <div class="list" id="listArea"></div>
+  </div>
+
+  <div class="main">
+    <div id="modeTag" class="mode-tag" style="display:none">Mode: <span class="mode-name" id="modeName"></span></div>
+    <div class="chat" id="chatArea">
+      <div class="empty"><div class="logo-icon">N</div><div class="logo-text">Nezha</div><div class="hint">Select an agent or pipeline to start chatting</div></div>
+    </div>
+    <div class="input-area">
+      <textarea id="msgInput" rows="1" placeholder="Type a message... (Enter to send)"></textarea>
+      <button id="sendBtn" onclick="send()">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal"></div>
+<script>
+var curAgent=null,curPipe=null,curSess=null,curTab='agents',lang=localStorage.getItem('nz-lang')||'zh';
+var I={
+zh:{newChat:'\u65b0\u5bf9\u8bdd',sessions:'\u4f1a\u8bdd',noChats:'\u6682\u65e0\u4f1a\u8bdd',addAgent:'\u667a\u80fd\u4f53',addPipe:'\u7f16\u6392',agents:'\u667a\u80fd\u4f53',pipes:'\u7f16\u6392',settings:'\u8bbe\u7f6e',memory:'\u8bb0\u5fc6',tasks:'\u4efb\u52a1',typeMsg:'\u8f93\u5165\u6d88\u606f...',send:'\u53d1\u9001',cancel:'\u53d6\u6d88',save:'\u4fdd\u5b58',create:'\u521b\u5efa',close:'\u5173\u95ed',name:'\u540d\u79f0',sysPrompt:'\u7cfb\u7edf\u63d0\u793a\u8bcd',model:'\u6a21\u578b',addTask:'\u6dfb\u52a0\u4efb\u52a1',taskName:'\u4efb\u52a1\u540d\u79f0',message:'\u6d88\u606f',cron:'Cron',noSelect:'\u8bf7\u5148\u9009\u62e9\u667a\u80fd\u4f53\u6216\u7f16\u6392',apiKey:'API Key',memoryTitle:'\u8bb0\u5fc6\u7ba1\u7406',taskTitle:'\u5b9a\u65f6\u4efb\u52a1',settingsTitle:'\u8bbe\u7f6e',agentTitle:'\u521b\u5efa\u667a\u80fd\u4f53',pipeTitle:'\u521b\u5efa\u7f16\u6392',desc:'\u63cf\u8ff0',type:'\u7c7b\u578b',seq:'\u4e32\u884c',loop:'\u5faa\u73af',broadcast:'\u5e7f\u64ad',ifelse:'\u6761\u4ef6',agentsCfg:'Agent\u5217\u8868\uff08\u9017\u53f7\u5206\u9694\uff09',modeAgent:'\u5355\u4f4dAgent',modePipe:'\u7f16\u6392\u6a21\u5f0f'},
+en:{newChat:'New Chat',sessions:'Chats',noChats:'No conversations yet',addAgent:'Agent',addPipe:'Pipe',agents:'Agents',pipes:'Pipelines',settings:'Settings',memory:'Memory',tasks:'Tasks',typeMsg:'Type a message...',send:'Send',cancel:'Cancel',save:'Save',create:'Create',close:'Close',name:'Name',sysPrompt:'System Prompt',model:'Model',addTask:'Add Task',taskName:'Task Name',message:'Message',cron:'Cron Expression',noSelect:'Select an agent or pipeline first',apiKey:'API Key',memoryTitle:'Memory Manager',taskTitle:'Scheduled Tasks',settingsTitle:'Settings',agentTitle:'Create Agent',pipeTitle:'Create Pipeline',desc:'Description',type:'Type',seq:'Sequential',loop:'Loop',broadcast:'Broadcast',ifelse:'If/Else',agentsCfg:'Agents (comma separated)',modeAgent:'Single Agent',modePipe:'Pipeline Mode'}
+};
+function T(k){return I[lang][k]||k}
+function toggleLang(){lang=lang==='zh'?'en':'zh';localStorage.setItem('nz-lang',lang);renderUI()}
+function toggleTheme(){var l=document.documentElement.getAttribute('data-theme')==='light'?'':'light';document.documentElement.setAttribute('data-theme',l);localStorage.setItem('nz-theme',l)}
+if(localStorage.getItem('nz-theme')==='light')document.documentElement.setAttribute('data-theme','light');
+
+function api(m,u,b){var o={method:m,headers:{'Content-Type':'application/json'}};if(b)o.body=JSON.stringify(b);return fetch(u,o).then(function(r){return r.json()})}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function typeClass(t){return{'sequential':'seq','loop':'loop','broadcast':'bcast','ifelse':'ifelse'}[t]||'seq'}
+
+/* Tab switching */
+function switchTab(tab){
+  curTab=tab;
+  document.getElementById('tab-agents').className='tab-btn'+(tab==='agents'?' active':'');
+  document.getElementById('tab-sessions').className='tab-btn'+(tab==='sessions'?' active':'');
+  document.getElementById('tab-pipes').className='tab-btn'+(tab==='pipes'?' active':'');
+  if(tab==='agents')loadAgents();
+  else if(tab==='pipes')loadPipes();
+  else if(tab==='sessions')loadSessions();
+}
+
+/* Sessions */
+function newSession(){
+  api('POST','/api/sessions',{agentName:(curPipe||curAgent)||'Assistant'}).then(function(d){curSess=d.id;loadSessions();loadMsgs()});
+}
+function loadSessions(){
+  api('GET','/api/sessions').then(function(d){
+    var list=d.sessions||[];
+    if(curTab!=='sessions'){
+      // Show sessions in other tabs too (simplified)
+      return;
+    }
+    var el=document.getElementById('listArea');el.innerHTML='';
+    if(list.length===0){
+      el.innerHTML='<div style="padding:12px;color:var(--dim);font-size:12px;text-align:center">No conversations yet</div>';
+      return;
+    }
+    list.forEach(function(s){
+      var div=document.createElement('div');div.className='item'+(curSess===s.id?' active':'');
+      var title=s.title||'New Chat';
+      var sub=(s.agentName||'')+' | '+new Date(s.updatedAt).toLocaleString();
+      div.innerHTML='<div><div class="item-title">'+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')">&times;</span>';
+      div.onclick=function(){
+        curSess=s.id;
+        if(s.agentName){curAgent=s.agentName;curPipe=null;}
+        updateMode();loadSessions();loadMsgs();
+      };
+      el.appendChild(div);
+    });
+  });
+}
+function delSess(id){
+  api('DELETE','/api/sessions/'+id);
+  if(curSess===id){curSess=null;showEmpty()}
+  loadSessions();
+}
+function showEmpty(){
+  var hint = curPipe ? T('modePipe') + ': ' + curPipe : (curAgent ? T('modeAgent') + ': ' + curAgent : T('noSelect'));
+  document.getElementById('chatArea').innerHTML='<div class="empty"><div class="logo-icon">N</div><div class="logo-text">Nezha</div><div class="hint">'+hint+'</div></div>';
+  document.getElementById('modeTag').style.display='none';
+}
+
+/* Render sidebar list */
+function renderList(items){
+  var el=document.getElementById('listArea');el.innerHTML='';
+  items.forEach(function(it){
+    var div=document.createElement('div');div.className='item'+(it._active?' active':'');
+    var badge=it.typeBadge?'<span class="type-badge '+it.typeCls+'">'+esc(it.typeBadge)+'</span>':'';
+    var sub=it.sub?'<div class="item-sub">'+esc(it.sub)+'</div>':'';
+    div.innerHTML='<div><div class="item-title">'+badge+esc(it.title)+'</div>'+sub+'</div>'+(it.del?('<span class="x" onclick="event.stopPropagation();'+it.del+'">&times;</span>'):'');
+    div.onclick=it.onclick;el.appendChild(div);
+  });
+}
+
+/* Agents */
+function loadAgents(){
+  // Fetch agents AND sessions to find last conversation for each agent
+  api('GET','/api/agents').then(function(ad){
+    api('GET','/api/sessions').then(function(sd){
+      var sessions=sd.sessions||[];
+      var list=(ad.agents||[]).map(function(a){
+        // Find most recent session for this agent
+        var lastSess=null;
+        for(var i=0;i<sessions.length;i++){if(sessions[i].agentName===a.name){lastSess=sessions[i];break;}}
+        return{
+          title:a.name,
+          sub:(lastSess?'Last: '+new Date(lastSess.updatedAt).toLocaleString():'Memory: '+(a.memorySize||50)),
+          _active:curAgent===a.name&&!curPipe,
+          type:'agent',
+          onclick:function(){
+            curAgent=a.name;curPipe=null;updateMode();
+            // Find and load most recent session for this agent
+            var found=null;
+            for(var i=0;i<sessions.length;i++){if(sessions[i].agentName===curAgent){found=sessions[i];break;}}
+            if(found){curSess=found.id;loadMsgs();}else{curSess=null;showEmpty();}
+            loadAgents();
+          }
+        };
+      });
+      renderList(list);
+    });
+  });
+}
+
+/* Pipelines */
+function loadPipes(){
+  api('GET','/api/pipelines').then(function(d){
+    var list=(d.pipelines||[]).map(function(p){
+      return{
+        title:p.name,sub:p.description||'',typeBadge:p.type,typeCls:typeClass(p.type),
+        _active:curPipe===p.name,
+        type:'pipe',
+        onclick:function(){curPipe=p.name;curAgent=null;curSess=null;updateMode();showEmpty();loadPipes()},
+        del:"delPipe("+p.id+")"
+      };
+    });
+    renderList(list);
+  });
+}
+function delPipe(id){api('DELETE','/api/pipelines/'+id).then(loadPipes)}
+
+/* Mode indicator */
+function updateMode(){
+  var tag=document.getElementById('modeTag'),nameEl=document.getElementById('modeName');
+  if(curPipe){tag.style.display='';nameEl.textContent=curPipe+' ('+T('modePipe')+')'}
+  else if(curAgent){tag.style.display='';nameEl.textContent=curAgent+' ('+T('modeAgent')+')'}
+  else{tag.style.display='none'}
+}
+
+/* Messages */
+function loadMsgs(){
+  if(!curSess)return;
+  api('GET','/api/sessions/'+curSess+'/messages').then(function(d){
+    var msgs=d.messages||[],area=document.getElementById('chatArea');area.innerHTML='';
+    msgs.forEach(function(m){
+      var role=m.role||'user';
+      var div=document.createElement('div');div.className='msg '+role;
+      // Avatar for assistant/agent messages
+      if(role==='assistant'&&m.agentName){
+        var ava=document.createElement('div');ava.className='avatar';ava.style.background=agentColor(m.agentName);ava.textContent=(m.agentName||'A').charAt(0);
+        div.appendChild(ava);
+      }
+      var b=document.createElement('div');b.className='bubble';b.textContent=m.content||'';div.appendChild(b);
+      // Meta: agent name + elapsed time
+      if(m.elapsedMs||m.agentName){
+        var mt=document.createElement('div');mt.className='meta';
+        mt.textContent=(m.agentName||'')+(m.elapsedMs?(' · '+m.elapsedMs+'ms'):'');
+        div.appendChild(mt);
+      }
+      area.appendChild(div);
+    });
+    area.scrollTop=area.scrollHeight;
+  });
+}
+
+/* Consistent color per agent name */
+function agentColor(name){
+  var colors=['#ff3366','#3399ff','#00cc88','#ff9922','#aa55ff','#ff6688','#44aaff','#22ddaa','#ffbb44','#cc77ff'];
+  var hash=0;for(var i=0;i<name.length;i++)hash=((hash<<5)-hash)+name.charCodeAt(i);
+  return colors[Math.abs(hash)%colors.length];
+}
+
+/* Send */
+function send(){
+  var msg=document.getElementById('msgInput').value.trim();
+  if(!msg)return;if(!curAgent&&!curPipe){alert(T('noSelect'));return}
+  document.getElementById('msgInput').disabled=true;
+  document.getElementById('sendBtn').disabled=true;
+  function doSend(){
+    var area=document.getElementById('chatArea');
+    var ub=document.createElement('div');ub.className='msg user';
+    ub.innerHTML='<div class="bubble">'+esc(msg)+'</div>';area.appendChild(ub);area.scrollTop=area.scrollHeight;
+    var body={message:msg};
+    if(curPipe){body.pipelineName=curPipe;body.agentName=curPipe}else{body.agentName=curAgent;body.sessionId=curSess}
+    api('POST','/api/chat',body).then(function(d){
+      document.getElementById('msgInput').value='';
+      document.getElementById('msgInput').disabled=false;
+      document.getElementById('sendBtn').disabled=false;
+      document.getElementById('msgInput').focus();
+      if(d.sessionId)curSess=d.sessionId;
+      if(d.error)alert(d.error);
+      loadMsgs();
+    }).catch(function(e){
+      document.getElementById('msgInput').disabled=false;
+      document.getElementById('sendBtn').disabled=false;
+      alert('Error: '+e.message);
+    });
+  }
+  if(!curSess){
+    api('POST','/api/sessions',{agentName:(curPipe||curAgent)||'Assistant'}).then(function(d){
+      curSess=d.id;
+      doSend();
+    });
+  } else { doSend(); }
+}
+
+/* Settings */
+function showSettings(){
+  api('GET','/api/settings').then(function(s){
+    var k=s.apiKeys||{};
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('settingsTitle')+'</h2>';
+    ['deepseek','openai','claude','qwen'].forEach(function(m){
+      h+='<label>'+m.charAt(0).toUpperCase()+m.slice(1)+' '+T('apiKey')+'</label><input id="sk-'+m+'" value="'+esc(k[m]||'')+'">';
+    });
+    h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="saveSettings()">'+T('save')+'</button></div></div></div>';
+    document.getElementById('modal').innerHTML=h;
+  });
+}
+function saveSettings(){
+  api('POST','/api/settings',{apiKeys:{deepseek:$V('sk-ds'),openai:$V('sk-oa'),claude:$V('sk-cl'),qwen:$V('sk-qw')}}).then(closeModal);
+}
+
+/* Memory */
+function showMemory(){
+  if(!curAgent){alert(T('noSelect'));return}
+  api('GET','/api/memory/'+curAgent).then(function(d){
+    var mems=d.memories||[];
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('memoryTitle')+': '+esc(curAgent)+'</h2><div style="max-height:300px;overflow-y:auto">';
+    mems.forEach(function(m){h+='<div class="mem-item"><div class="time">'+(m.createdAt||'')+'</div><div class="text">'+esc(m.content)+'</div></div>'});
+    h+='</div><div class="btns"><button class="sec" onclick="closeModal()">'+T('close')+'</button></div></div></div>';
+    document.getElementById('modal').innerHTML=h;
+  });
+}
+
+/* Tasks */
+function showTasks(){
+  api('GET','/api/tasks').then(function(d){
+    var tasks=d.tasks||[];
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('taskTitle')+'</h2><div style="max-height:280px;overflow-y:auto">';
+    tasks.forEach(function(tk){
+      h+='<div class="task-item"><div><div class="name">'+esc(tk.taskName||'')+'</div><div class="meta">'+esc(tk.agentName||'')+' | '+esc(tk.cronExpression||'')+'</div></div><button class="toggle" onclick="toggleTask('+tk.id+','+!tk.enabled+')">'+(tk.enabled?'ON':'OFF')+'</button></div>';
+    });
+    h+='</div><div style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px">';
+    h+='<label>'+T('taskName')+'</label><input id="tk-n">';
+    h+='<label>'+T('message')+'</label><textarea id="tk-m" rows="2"></textarea>';
+    h+='<label>'+T('cron')+'</label><input id="tk-c">';
+    h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('close')+'</button><button class="pri" onclick="addTask()">'+T('addTask')+'</button></div></div></div></div>';
+    document.getElementById('modal').innerHTML=h;
+  });
+}
+function addTask(){var n=$V('tk-n'),m=$V('tk-m'),c=$V('tk-c');if(!n||!m)return;api('POST','/api/tasks',{agentName:curAgent||'Assistant',taskName:n,cronExpression:c,taskPrompt:m}).then(showTasks)}
+function toggleTask(id,en){api('POST','/api/tasks/'+id+'/toggle',{}).then(showTasks)}
+
+/* Add Agent modal */
+function showAddModal(type){
+  if(type==='agent'){
+    api('GET','/api/models').then(function(d){
+      var opts=(d.models||[]).map(function(m){return '<option value="'+m.name+'">'+m.name+'</option>'}).join('');
+      var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('agentTitle')+'</h2>';
+      h+='<label>'+T('name')+'</label><input id="ag-n">';
+      h+='<label>'+T('sysPrompt')+'</label><textarea id="ag-p"></textarea>';
+      h+='<label>'+T('model')+'</label><select id="ag-m">'+opts+'</select>';
+      h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createAgent()">'+T('create')+'</button></div></div></div>';
+      document.getElementById('modal').innerHTML=h;
+    });
+  } else {
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('pipeTitle')+'</h2>';
+    h+='<label>'+T('name')+'</label><input id="pp-n">';
+    h+='<label>'+T('type')+'</label><select id="pp-t"><option value="sequential">'+T('seq')+'</option><option value="loop">'+T('loop')+'</option><option value="broadcast">'+T('broadcast')+'</option><option value="ifelse">'+T('ifelse')+'</option></select>';
+    h+='<label>'+T('desc')+'</label><input id="pp-d">';
+    h+='<label>'+T('agentsCfg')+'</label><input id="pp-a" placeholder="Assistant,Coder,Reviewer">';
+    h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createPipe()">'+T('create')+'</button></div></div></div>';
+    document.getElementById('modal').innerHTML=h;
+  }
+}
+function createAgent(){api('POST','/api/agents/custom',{name:$V('ag-n'),systemPrompt:$V('ag-p'),modelName:$V('ag-m')}).then(function(){closeModal();loadAgents()})}
+function createPipe(){
+  var name=$V('pp-n'),type=$V('pp-t'),desc=$V('pp-d'),agentsStr=$V('pp-a');
+  var agents=agentsStr.split(',').map(function(s){return s.trim()}).filter(Boolean);
+  api('POST','/api/pipelines',{name:name,type:type,description:desc,configJson:JSON.stringify({agents:agents})}).then(function(){closeModal();loadPipes()});
+}
+
+/* Utils */
+function closeModal(){document.getElementById('modal').innerHTML=''}
+function $V(id){return document.getElementById(id).value}
+function $(id){return document.getElementById(id)}
+function saveSettings(){
+  api('POST','/api/settings',{apiKeys:{deepseek:$V('sk-ds'),openai:$V('sk-oa'),claude:$V('sk-cl'),qwen:$V('sk-qw')}}).then(closeModal);
+}
+function renderUI(){
+  document.getElementById('msgInput').placeholder=T('typeMsg');
+  document.getElementById('sendBtn').textContent=T('send');
+  var btns=document.querySelectorAll('.sidebar-head button');
+  if(btns[0])btns[0].textContent='+ '+T('newChat');
+  if(btns[1])btns[1].textContent='+ '+T('addAgent');
+  if(btns[2])btns[2].textContent='+ '+T('addPipe');
+  document.getElementById('tab-agents').textContent=T('agents');
+  document.getElementById('tab-sessions').textContent=T('sessions');
+  document.getElementById('tab-pipes').textContent=T('pipes');
+}
+document.getElementById('msgInput').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+loadSessions();loadAgents();renderUI();
+</script>
+</body>
+</html>

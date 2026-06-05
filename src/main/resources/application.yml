@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./nezha-db;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql, classpath:schema-memory.sql
+
+nezha:
+  models:
+    - name: deepseek
+      provider: deepseek
+      apiKey: sk-494237213c4b4181b0d1e3b25254126e
+      baseUrl: https://api.deepseek.com/v1
+      model: deepseek-chat
+      maxTokens: 4096
+      temperature: 0.7
+    - name: openai
+      provider: openai
+      apiKey: ${OPENAI_API_KEY:}
+      baseUrl: https://api.openai.com/v1
+      model: gpt-3.5-turbo
+      maxTokens: 4096
+      temperature: 0.7
+    - name: claude
+      provider: claude
+      apiKey: ${CLAUDE_API_KEY:}
+      baseUrl: https://api.anthropic.com/v1
+      model: claude-3-sonnet-20240229
+      maxTokens: 4096
+      temperature: 0.7
+    - name: qwen
+      provider: qwen
+      apiKey: ${QWEN_API_KEY:}
+      baseUrl: https://dashscope.aliyuncs.com/compatible-mode/v1
+      model: qwen-turbo
+      maxTokens: 4096
+      temperature: 0.7
