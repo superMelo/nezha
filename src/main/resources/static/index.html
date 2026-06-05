@@ -205,6 +205,7 @@ function loadSessions(){
   });
 }
 function delSess(id){
+  if(!confirm('Delete this conversation?'))return;
   api('DELETE','/api/sessions/'+id);
   if(curSess===id){curSess=null;showEmpty()}
   loadSessions();
@@ -242,6 +243,7 @@ function loadAgents(){
           sub:(lastSess?'Last: '+new Date(lastSess.updatedAt).toLocaleString():'Memory: '+(a.memorySize||50)),
           _active:curAgent===a.name&&!curPipe,
           type:'agent',
+          del: a.isCustom ? "delAgent('"+esc(a.name)+"')" : null,
           onclick:function(){
             curAgent=a.name;curPipe=null;updateMode();
             // Find and load most recent session for this agent
@@ -272,7 +274,17 @@ function loadPipes(){
     renderList(list);
   });
 }
-function delPipe(id){api('DELETE','/api/pipelines/'+id).then(loadPipes)}
+function delPipe(id){
+  if(!confirm('Delete this pipeline?'))return;
+  api('DELETE','/api/pipelines/'+id).then(loadPipes);
+}
+function delAgent(name){
+  if(!confirm('Delete agent "'+name+'"?'))return;
+  api('DELETE','/api/agents/'+name).then(function(d){
+    if(d.success){loadAgents();if(curAgent===name){curAgent=null;curSess=null;showEmpty()}}
+    else alert(d.error||'Failed')
+  });
+}
 
 /* Mode indicator */
 function updateMode(){
@@ -362,7 +374,7 @@ function showSettings(){
   });
 }
 function saveSettings(){
-  api('POST','/api/settings',{apiKeys:{deepseek:$V('sk-ds'),openai:$V('sk-oa'),claude:$V('sk-cl'),qwen:$V('sk-qw')}}).then(closeModal);
+  api('POST','/api/settings',{apiKeys:{deepseek:$V('sk-deepseek'),openai:$V('sk-openai'),claude:$V('sk-claude'),qwen:$V('sk-qwen')}}).then(closeModal);
 }
 
 /* Memory */
@@ -429,9 +441,6 @@ function createPipe(){
 function closeModal(){document.getElementById('modal').innerHTML=''}
 function $V(id){return document.getElementById(id).value}
 function $(id){return document.getElementById(id)}
-function saveSettings(){
-  api('POST','/api/settings',{apiKeys:{deepseek:$V('sk-ds'),openai:$V('sk-oa'),claude:$V('sk-cl'),qwen:$V('sk-qw')}}).then(closeModal);
-}
 function renderUI(){
   document.getElementById('msgInput').placeholder=T('typeMsg');
   document.getElementById('sendBtn').textContent=T('send');

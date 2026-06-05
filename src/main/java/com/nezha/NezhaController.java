@@ -70,6 +70,17 @@ public class NezhaController {
         return result;
     }
 
+    @DeleteMapping("/api/agents/{name}")
+    public Map<String, Object> deleteAgent(@PathVariable String name) {
+        boolean deleted = agentService.deleteAgent(name);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", deleted);
+        if (!deleted) {
+            result.put("error", "Cannot delete built-in agent");
+        }
+        return result;
+    }
+
     // ==================== Model Endpoints ====================
 
     @GetMapping("/api/models")

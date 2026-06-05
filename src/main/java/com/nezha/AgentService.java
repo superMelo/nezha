@@ -152,6 +152,18 @@ public class AgentService {
         return null;
     }
 
+    public boolean deleteAgent(String name) {
+        // Don't delete built-in agents
+        if ("Assistant".equals(name) || "Coder".equals(name) || "Reviewer".equals(name)) {
+            return false;
+        }
+        // Remove from custom agents list
+        customAgents.removeIf(a -> a.getName().equals(name));
+        // Remove from database
+        jdbc.update("DELETE FROM agent_config WHERE name = ? AND is_custom = TRUE", name);
+        return true;
+    }
+
     public String getAgentModelName(String name) {
         List<Map<String, Object>> rows = jdbc.queryForList(
                 "SELECT model_name FROM agent_config WHERE name = ?", name);
