@@ -126,11 +126,6 @@ public class PipelineService {
         Pipeline pipeline = buildPipeline(pipelineName, type, agentNames);
         List<Msg> results = pipeline.execute(message, ctx);
 
-        // Save all pipeline messages to the session
-        for (Msg msg : results) {
-            chatService.saveMessage(sessionId, msg);
-        }
-
         return results;
     }
 
