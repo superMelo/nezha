@@ -131,6 +131,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 @keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
 .toast.success{border-color:var(--green);background:rgba(0,204,136,.08)}
 .toast.error{border-color:var(--accent);background:var(--accent-glow)}
+/* Confirm dialog */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:150;animation:fadeIn .2s var(--transition)}
+.confirm-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;width:380px;box-shadow:0 16px 48px rgba(0,0,0,.4);animation:scaleIn .2s var(--transition);text-align:center}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+.confirm-box .icon{font-size:44px;margin-bottom:14px;display:block;line-height:1}
+.confirm-box .title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
+.confirm-box .msg{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:22px}
+.confirm-box .btns{display:flex;gap:10px;justify-content:center}
+.confirm-box .btns button{padding:9px 28px;border-radius:var(--radius);cursor:pointer;font-size:13px;font-weight:600;transition:var(--transition);border:1px solid var(--border)}
+.confirm-box .btns .cancel-btn{background:var(--bg1);color:var(--text)}
+.confirm-box .btns .cancel-btn:hover{background:var(--hover);border-color:var(--border2)}
+.confirm-box .btns .del-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 2px 12px var(--accent-glow)}
+.confirm-box .btns .del-btn:hover{transform:translateY(-1px);box-shadow:0 4px 18px var(--accent-glow)}
 </style>
 </head>
 <body>
@@ -230,10 +243,11 @@ function loadSessions(){
   });
 }
 function delSess(id){
-  if(!confirm('Delete this conversation?'))return;
-  api('DELETE','/api/sessions/'+id);
-  if(curSess===id){curSess=null;showEmpty()}
-  loadSessions();toast('Conversation deleted','success');
+  askConfirm('Delete this conversation?','This action cannot be undone.',function(){
+    api('DELETE','/api/sessions/'+id);
+    if(curSess===id){curSess=null;showEmpty()}
+    loadSessions();toast('Conversation deleted','success');
+  });
 }
 function showEmpty(){
   var hint = curPipe ? T('modePipe') + ': ' + curPipe : (curAgent ? T('modeAgent') + ': ' + curAgent : T('noSelect'));
@@ -300,14 +314,17 @@ function loadPipes(){
   });
 }
 function delPipe(id){
-  if(!confirm('Delete this pipeline?'))return;
-  api('DELETE','/api/pipelines/'+id).then(loadPipes);
+  askConfirm('Delete this pipeline?','The configuration will be permanently removed.',function(){
+    api('DELETE','/api/pipelines/'+id).then(loadPipes);
+    toast('Pipeline deleted','success');
+  });
 }
 function delAgent(name){
-  if(!confirm('Delete agent "'+name+'"?'))return;
-  api('DELETE','/api/agents/'+name).then(function(d){
-    if(d.success){loadAgents();if(curAgent===name){curAgent=null;curSess=null;showEmpty()}}
-    else alert(d.error||'Failed')
+  askConfirm('Delete agent?','"'+name+'" will be permanently removed.',function(){
+    api('DELETE','/api/agents/'+name).then(function(d){
+      if(d.success){loadAgents();if(curAgent===name){curAgent=null;curSess=null;showEmpty()};toast('Agent deleted','success')}
+      else toast(d.error||'Failed','error')
+    });
   });
 }
 
@@ -491,6 +508,20 @@ function toast(msg,type){
   document.getElementById('toasts').appendChild(el);
   setTimeout(function(){el.style.opacity='0';el.style.transition='opacity .3s';setTimeout(function(){el.remove()},300)},2500);
 }
+var _confirmCb=null;
+function askConfirm(title,msg,cb){
+  _confirmCb=cb;
+  var h='<div class="confirm-overlay" onclick="if(event.target===this)closeConfirm()"><div class="confirm-box">';
+  h+='<span class="icon">⚠️</span>';
+  h+='<div class="title">'+esc(title)+'</div>';
+  h+='<div class="msg">'+esc(msg)+'</div>';
+  h+='<div class="btns"><button class="cancel-btn" onclick="closeConfirm()">'+T('cancel')+'</button>';
+  h+='<button class="del-btn" onclick="doConfirm()">Delete</button></div>';
+  h+='</div></div>';
+  document.getElementById('modal').innerHTML=h;
+}
+function doConfirm(){if(_confirmCb){_confirmCb();_confirmCb=null}closeModal()}
+function closeConfirm(){_confirmCb=null;closeModal()}
 function renderUI(){
   document.getElementById('msgInput').placeholder=T('typeMsg');
   document.getElementById('sendBtn').textContent=T('send');
