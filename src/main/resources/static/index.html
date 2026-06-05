@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nezha v0.4.0</title>
 <style>
-:root{--bg:#0a0a14;--sidebar:#111122;--border:#1e1e35;--text:#d4d4e8;--dim:#666;--accent:#ff3366;--accent2:#cc2255;--hover:#181830;--input:#0c0c18;--card:#14142a;--green:#00cc88;--blue:#3399ff;--orange:#ff9922;--purple:#aa55ff}
-[data-theme=light]{--bg:#f0f0f5;--sidebar:#fff;--border:#ddd;--text:#222;--dim:#999;--accent:#ff3366;--accent2:#cc2255;--hover:#eee;--input:#fff;--card:#fff;--green:#00aa77;--blue:#2277dd;--orange:#ee8811;--purple:#9944dd}
+:root{--bg:#0a0a14;--bg0:#0d0d1a;--sidebar:#111122;--border:#1e1e35;--text:#d4d4e8;--dim:#666;--accent:#ff3366;--accent2:#cc2255;--hover:#181830;--input:#0c0c18;--card:#14142a;--green:#00cc88;--blue:#3399ff;--orange:#ff9922;--purple:#aa55ff}
+[data-theme=light]{--bg:#f0f0f5;--bg0:#eaeaef;--sidebar:#fff;--border:#ddd;--text:#222;--dim:#999;--accent:#ff3366;--accent2:#cc2255;--hover:#eee;--input:#fff;--card:#fff;--green:#00aa77;--blue:#2277dd;--orange:#ee8811;--purple:#9944dd}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column}
 /* Header */
@@ -87,6 +87,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .modal .btns .pri:hover{opacity:.85}
 .modal .btns .sec{background:0 0;color:var(--text)}
 .modal .btns .sec:hover{background:var(--hover)}
+.ag-list{max-height:180px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:6px}
+.ag-check{display:block;padding:5px 8px;cursor:pointer;border-radius:4px;font-size:13px;transition:.12s}
+.ag-check:hover{background:var(--bg0)}
+.ag-check input{margin-right:8px;accent-color:var(--accent)}
 /* List items in modals */
 .mem-item{padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:4px}
 .mem-item .time{font-size:10px;opacity:.4}
@@ -421,19 +425,26 @@ function showAddModal(type){
       document.getElementById('modal').innerHTML=h;
     });
   } else {
-    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('pipeTitle')+'</h2>';
-    h+='<label>'+T('name')+'</label><input id="pp-n">';
-    h+='<label>'+T('type')+'</label><select id="pp-t"><option value="sequential">'+T('seq')+'</option><option value="loop">'+T('loop')+'</option><option value="broadcast">'+T('broadcast')+'</option><option value="ifelse">'+T('ifelse')+'</option></select>';
-    h+='<label>'+T('desc')+'</label><input id="pp-d">';
-    h+='<label>'+T('agentsCfg')+'</label><input id="pp-a" placeholder="Assistant,Coder,Reviewer">';
-    h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createPipe()">'+T('create')+'</button></div></div></div>';
-    document.getElementById('modal').innerHTML=h;
+    api('GET','/api/agents').then(function(d){
+      var agents=(d.agents||[]).map(function(a){
+        return '<label class="ag-check"><input type="checkbox" value="'+esc(a.name)+'"> '+esc(a.name)+'</label>';
+      }).join('');
+      var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('pipeTitle')+'</h2>';
+      h+='<label>'+T('name')+'</label><input id="pp-n">';
+      h+='<label>'+T('type')+'</label><select id="pp-t"><option value="sequential">'+T('seq')+'</option><option value="loop">'+T('loop')+'</option><option value="broadcast">'+T('broadcast')+'</option><option value="ifelse">'+T('ifelse')+'</option></select>';
+      h+='<label>'+T('desc')+'</label><input id="pp-d">';
+      h+='<label>'+T('agentsCfg')+'</label><div id="pp-a" class="ag-list">'+agents+'</div>';
+      h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createPipe()">'+T('create')+'</button></div></div></div>';
+      document.getElementById('modal').innerHTML=h;
+    });
   }
 }
 function createAgent(){api('POST','/api/agents/custom',{name:$V('ag-n'),systemPrompt:$V('ag-p'),modelName:$V('ag-m')}).then(function(){closeModal();loadAgents()})}
 function createPipe(){
-  var name=$V('pp-n'),type=$V('pp-t'),desc=$V('pp-d'),agentsStr=$V('pp-a');
-  var agents=agentsStr.split(',').map(function(s){return s.trim()}).filter(Boolean);
+  var name=$V('pp-n'),type=$V('pp-t'),desc=$V('pp-d');
+  var checks=document.querySelectorAll('#pp-a input[type=checkbox]:checked');
+  var agents=Array.prototype.slice.call(checks).map(function(c){return c.value});
+  if(agents.length===0){alert('Select at least one agent');return}
   api('POST','/api/pipelines',{name:name,type:type,description:desc,configJson:JSON.stringify({agents:agents})}).then(function(){closeModal();loadPipes()});
 }
 
