@@ -18,12 +18,15 @@ public class AgentService {
     private final BaseAgent coderAgent;
     private final BaseAgent reviewerAgent;
 
+    private final ModelRouter modelRouter;
+
     private final List<BaseAgent> customAgents = new ArrayList<BaseAgent>();
 
-    public AgentService(JdbcTemplate jdbc, ModelFactory modelFactory, ToolRegistry toolRegistry) {
+    public AgentService(JdbcTemplate jdbc, ModelFactory modelFactory, ToolRegistry toolRegistry, ModelRouter modelRouter) {
         this.jdbc = jdbc;
         this.modelFactory = modelFactory;
         this.toolRegistry = toolRegistry;
+        this.modelRouter = modelRouter;
 
         // Initialize built-in agents
         this.assistantAgent = createAgent("Assistant",
@@ -47,7 +50,7 @@ public class AgentService {
 
     private BaseAgent createAgent(String name, String sysPrompt, String modelName,
                                    int memorySize, ModelFactory modelFactory, ToolRegistry toolRegistry) {
-        BaseAgent agent = new BaseAgent(modelFactory, toolRegistry);
+        BaseAgent agent = new BaseAgent(modelFactory, toolRegistry, modelRouter);
         agent.setName(name);
         agent.setSysPrompt(sysPrompt);
         agent.setModelName(modelName);
@@ -86,7 +89,7 @@ public class AgentService {
     }
 
     public BaseAgent createCustomAgent(String name, String sysPrompt, String modelName, int memorySize) {
-        BaseAgent agent = new BaseAgent(modelFactory, toolRegistry);
+        BaseAgent agent = new BaseAgent(modelFactory, toolRegistry, modelRouter);
         agent.setName(name);
         agent.setSysPrompt(sysPrompt);
         agent.setModelName(modelName);
@@ -130,7 +133,7 @@ public class AgentService {
             int memSize = row.get("MEMORY_SIZE") instanceof Number ? ((Number)row.get("MEMORY_SIZE")).intValue() : 50;
 
             // Create a real BaseAgent with proper ModelFactory and ToolRegistry
-            BaseAgent agent = new BaseAgent(modelFactory, toolRegistry);
+            BaseAgent agent = new BaseAgent(modelFactory, toolRegistry, modelRouter);
             agent.setName(name);
             agent.setSysPrompt(sysPrompt);
             agent.setModelName(modelName);

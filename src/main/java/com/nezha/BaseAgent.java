@@ -15,10 +15,12 @@ public class BaseAgent {
 
     private final ModelFactory modelFactory;
     private final ToolRegistry toolRegistry;
+    private final ModelRouter modelRouter;
 
-    public BaseAgent(ModelFactory modelFactory, ToolRegistry toolRegistry) {
+    public BaseAgent(ModelFactory modelFactory, ToolRegistry toolRegistry, ModelRouter modelRouter) {
         this.modelFactory = modelFactory;
         this.toolRegistry = toolRegistry;
+        this.modelRouter = modelRouter;
         this.memorySize = 50;
     }
 
@@ -55,8 +57,23 @@ public class BaseAgent {
     }
 
     public List<Msg> chat(List<Msg> history) {
+        // Auto-route: find the last user message and route to best model
+        String routedModel = this.modelName;
+        for (int i = history.size() - 1; i >= 0; i--) {
+            Msg m = history.get(i);
+            if ("user".equals(m.getRole()) && m.getContent() != null && !m.getContent().isEmpty()) {
+                routedModel = modelRouter.route(m.getContent());
+                break;
+            }
+        }
+        return chat(history, routedModel);
+    }
+
+    public List<Msg> chat(List<Msg> history, String overrideModel) {
         LLMModel model;
-        if (modelName != null && !modelName.isEmpty()) {
+        if (overrideModel != null && !overrideModel.isEmpty()) {
+            model = modelFactory.getModel(overrideModel);
+        } else if (modelName != null && !modelName.isEmpty()) {
             model = modelFactory.getModel(modelName);
         } else {
             model = modelFactory.getDefaultModel();

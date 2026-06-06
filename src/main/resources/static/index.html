@@ -244,9 +244,10 @@ function loadSessions(){
 }
 function delSess(id){
   askConfirm('Delete this conversation?','This action cannot be undone.',function(){
-    api('DELETE','/api/sessions/'+id);
-    if(curSess===id){curSess=null;showEmpty()}
-    loadSessions();toast('Conversation deleted','success');
+    api('DELETE','/api/sessions/'+id).then(function(){
+      if(curSess===id){curSess=null;curAgent=null;curPipe=null;showEmpty()}
+      loadSessions();toast('Conversation deleted','success');
+    });
   });
 }
 function showEmpty(){
@@ -315,15 +316,18 @@ function loadPipes(){
 }
 function delPipe(id){
   askConfirm('Delete this pipeline?','The configuration will be permanently removed.',function(){
-    api('DELETE','/api/pipelines/'+id).then(loadPipes);
-    toast('Pipeline deleted','success');
+    api('DELETE','/api/pipelines/'+id).then(function(){
+      if(curPipe){var name=curPipe;curPipe=null;curSess=null;showEmpty()}
+      loadPipes();toast('Pipeline deleted','success');
+    });
   });
 }
 function delAgent(name){
   askConfirm('Delete agent?','"'+name+'" will be permanently removed.',function(){
     api('DELETE','/api/agents/'+name).then(function(d){
-      if(d.success){loadAgents();if(curAgent===name){curAgent=null;curSess=null;showEmpty()};toast('Agent deleted','success')}
-      else toast(d.error||'Failed','error')
+      if(!d.success){toast(d.error||'Failed','error');return}
+      if(curAgent===name){curAgent=null;curSess=null;curPipe=null;showEmpty()}
+      loadAgents();loadSessions();toast('Agent deleted','success');
     });
   });
 }

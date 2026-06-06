@@ -1,6 +1,6 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-04
+**日期**：2026-06-06
 **来源**：GitHub Trending + 重点仓库
 
 ---
@@ -11,57 +11,93 @@
 
 | 项目 | ⭐ Stars | 今日增量 | 简介 | 可借鉴点 |
 |------|---------|---------|------|---------|
-| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 热门 | Trending | 自我改进AI Agent，内置学习循环。技能系统+跨平台消息网关+定时任务+子Agent并行 | 🔴 **技能系统**：Agent自动从复杂任务创建技能并自我改进；**跨平台网关**：Telegram/Discord/Slack/WhatsApp/Signal统一接入；**Cron调度**：内置定时任务；**子Agent并行**：隔离子Agent做并行工作流 |
-| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 25.2K | +600 | AI记忆引擎，自动学习对话提取事实，跨会话记忆，用户画像 | 🔴 **记忆系统**：自动提取对话事实、处理时序变化和矛盾、自动遗忘过期信息；**用户画像**：~50ms获取用户偏好+最近活动；**混合搜索**：RAG+Memory统一查询 |
-| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 182K+ | 热门 | Agent性能优化系统：技能、本能、记忆、安全、研究驱动开发。支持多Agent工具 | 🟡 **记忆持久化**：Hooks自动保存/加载跨会话上下文；**持续学习**：从会话自动提取模式为可复用技能；**子Agent编排**：上下文问题+迭代检索模式 |
-| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 10K | +3,530 | AI上下文压缩层，减少60-95% token | 🟡 **Token优化**：JSON/代码/文本自动压缩；**可逆压缩**：原文不删，LLM按需检索；**MCP Server**：可直接集成 |
-| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.7K | +13 | Agent智能模型路由，降低70%成本 | 🟢 **模型路由**：根据任务复杂度自动选择便宜/贵模型 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 热门 | Trending | 自我学习AI Agent。技能系统+跨平台消息网关+定时任务+子Agent并行+Token压缩+MCP集成 | ✅ 技能系统/定时调度/Token压缩/子Agent 已在Nezha v0.4.0实现 |
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 182K+ | Trending | v2.0.0-rc.1发布：Hermes Operator支持+跨Harness架构。技能/本能/记忆/安全系统 | 🟡 持续学习+Session状态管理可参考 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 14.5K | +2,473 | Token压缩60-95%。新增 `headroom learn`（挖掘失败session写回CLAUDE.md） | 🔴 可集成为Nezha压缩后端替代当前简单折叠 |
+| **[MemPalace/mempalace](https://github.com/MemPalace/mempalace)** | 新上榜 | Trending | 开源AI记忆系统。96.6% LongMemEval R@5，零API调用。本地优先，ChromaDB后端 | 🔴 基准验证的记忆方案，可作为Nezha Memory参考 |
 
 ### 🟢 其他值得关注
 
 | 项目 | 简介 | 关联度 |
 |------|------|--------|
-| **[Scrapling](https://github.com/D4Vinci/Scrapling)** | 自适应Web爬虫框架 | Agent网络搜索工具可参考 |
-| **[Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)** | 本地LLM语音交互+Live2D | Agent语音交互灵感 |
-| **[activepieces](https://github.com/activepieces/activepieces)** | AI工作流自动化+400 MCP服务器 | MCP集成参考 |
+| **[github/copilot-sdk](https://github.com/github/copilot-sdk)** | GitHub Copilot Agent多平台SDK（Java支持！） | Copilot集成 |
+| **[withastro/flue](https://github.com/withastro/flue)** | Sandbox Agent框架 | Agent沙箱 |
+| **[lfnovo/open-notebook](https://github.com/lfnovo/open-notebook)** | 开源Notebook LM替代品，26K stars | RAG灵感 |
 
 ---
 
-## 📋 对 AgentScope Java 的建议集成清单
+## ✅ Nezha v0.4.0 已完成功能（对标扫描清单）
 
-### 🔴 高优先级（立即有价值）
+| 功能 | 状态 | 实现细节 |
+|------|------|---------|
+| 长期记忆系统 | ✅ 已实现 | H2/MySQL持久化 + MemoryService + 搜索/增删/分类 |
+| 定时任务调度 | ✅ 已实现 | Cron调度 + TaskService + 每日9点扫描 + 启停开关 |
+| Token压缩 | ✅ 已实现 | CompressService：保留首尾消息，中间折叠为摘要 |
+| 子Agent并行 | ✅ 已实现 | BroadcastPipeline：多Agent并行回复 |
+| 编排模式 | ✅ 已实现 | Sequential/Broadcast/Loop/IfElse 四种编排 |
+| Web UI | ✅ 已实现 | 完整聊天UI + 主题切换 + 中英双语 |
 
-| 功能 | 参考项目 | 说明 | 复杂度 |
-|------|---------|------|--------|
-| **长期记忆系统** | supermemory | 从对话中自动提取事实存数据库，下次对话自动注入相关记忆。替代当前的Buffer记忆 | 中 |
-| **技能自学习** | hermes-agent | Agent执行复杂任务后自动生成可复用技能文件 | 高 |
-| **Token压缩** | headroom | 在发送给LLM前压缩上下文，减少API费用 | 中 |
+---
 
-### 🟡 中优先级（增强体验）
+## 📋 待完成集成清单（更新）
 
-| 功能 | 参考项目 | 说明 | 复杂度 |
-|------|---------|------|--------|
-| **定时任务调度** | hermes-agent | Web UI上设置Cron任务，Agent定期执行 | 低 |
-| **用户画像** | supermemory | 自动维护用户偏好/项目/活跃度档案 | 中 |
-| **模型路由** | manifest | 简单任务用便宜模型，复杂任务用贵模型 | 低 |
-
-### 🟢 低优先级（锦上添花）
+### 🔴 高优先级（基于今日发现）
 
 | 功能 | 参考项目 | 说明 | 复杂度 |
 |------|---------|------|--------|
-| **子Agent并行** | hermes-agent / ECC | 复杂任务拆分子任务并行执行 | 高 |
-| **消息网关** | hermes-agent | 接入微信/钉钉/Telegram | 高 |
-| **MCP Server** | headroom / activepieces | 暴露为MCP Server供其他工具调用 | 中 |
+| **压缩引擎升级** | headroom | 当前CompressService只做首尾保留，可集成headroom的智能压缩（JSON/AST/文本分类压缩） | 中 |
+| **记忆检索增强** | MemPalace | 当前Memory只有关键词搜索，可增加语义搜索+混合检索 | 高 |
+| **模型路由** | manifest | 简洁任务用小模型（降低成本），复杂任务用大模型 | 低 |
+
+### 🟡 中优先级
+
+| 功能 | 参考项目 | 说明 | 复杂度 |
+|------|---------|------|--------|
+| **技能自学习** | hermes-agent / ECC | Agent执行复杂任务后自动生成可复用技能文件 | 高 |
+| **用户画像** | supermemory | 自动维护用户偏好/活跃度档案 | 中 |
+| **headroom learn集成** | headroom | 挖掘失败对话自动改进Agent Prompt | 中 |
+
+### 🟢 低优先级
+
+| 功能 | 参考项目 | 说明 | 复杂度 |
+|------|---------|------|--------|
+| **消息网关** | hermes-agent | 接入Telegram/Discord等 | 高 |
+| **MCP Server** | headroom / ECC | 暴露为MCP Server | 中 |
+| **GitHub Copilot SDK** | github/copilot-sdk | Java SDK集成 | 低 |
 
 ---
 
 ## 💡 关键洞察
 
-1. **记忆是最热的方向**：supermemory今天+600星，hermes-agent也内置学习循环。我们当前的Buffer记忆很基础，急需升级。
-2. **技能系统正在标准化**：hermes-agent的技能系统+agentskills.io开放标准。我们的@Tool注解可以演进为技能文件。
-3. **Token压缩是刚需**：headroom今天+3530星。对于多Agent长对话场景，压缩可以显著降低成本。
-4. **跨平台消息网关**是差异化能力——hermes-agent支持5个IM平台+CLI，这是目前Java Agent框架普遍缺乏的。
+1. **Token压缩是今日最热**：headroom +2,473星/天，MemPalace/ECC也提供压缩方案。Nezha当前压缩太简单（仅首尾保留），升级空间大。
+2. **记忆系统基准化**：MemPalace 96.6% LongMemEval是硬指标。Nezha的记忆模块可以增加语义搜索和混合检索。
+3. **Nezha v0.4.0已覆盖大部分核心需求**：长期记忆、定时任务、Token压缩、子Agent并行均已实现。2026-06-04扫描清单中🔴项全部完成。
+4. **模型路由是低成本高回报项**：简单问题用便宜模型，复杂问题用大模型，参考manifest/headroom的做法，实现简单收益大。
 
 ---
 
-*下次扫描时间：待用户确认（建议每日9:00）*
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-04</summary>
+
+## 2026-06-04 扫描报告
+
+### 🔥 今日热门项目
+
+| 项目 | ⭐ Stars | 今日增量 | 简介 | 可借鉴点 |
+|------|---------|---------|------|---------|
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 热门 | Trending | 自我改进AI Agent，内置学习循环 | 🔴 技能系统/跨平台网关/Cron调度/子Agent并行 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 25.2K | +600 | AI记忆引擎，自动学习对话提取事实 | 🔴 记忆系统/用户画像/混合搜索 |
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 182K+ | 热门 | Agent性能优化系统 | 🟡 记忆持久化/持续学习/子Agent编排 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 10K | +3,530 | AI上下文压缩60-95% | 🟡 Token优化/可逆压缩/MCP Server |
+
+### 当时建议集成清单
+- 🔴 长期记忆系统 → ✅ **已实现**（MemoryService + H2）
+- 🔴 技能自学习 → ❌ 待实现
+- 🔴 Token压缩 → ✅ **已实现**（CompressService）
+- 🟡 定时任务调度 → ✅ **已实现**（TaskService + Cron）
+- 🟡 用户画像 → ❌ 待实现
+- 🟡 模型路由 → ❌ 待实现
+
+</details>
