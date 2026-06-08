@@ -1,24 +1,88 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-07
-**方式**：GitHub API（网页超时，API正常）
+**日期**：2026-06-08
+**方式**：GitHub API
 
 ---
 
-## 🔥 重点仓库状态（2026-06-07）
+## 🔥 重点仓库状态（2026-06-08）
 
 | 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
 |------|---------|--------|------|------|
-| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 209K | +27K | 活跃 | v2.0.0-rc.1持续更新 |
-| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 185K | 新入榜 | 活跃 | 昨日Traending，今日185K星 |
-| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | +570 | 活跃 | Agent AI编程框架 |
-| **[MemPalace/mempalace](https://github.com/MemPalace/mempalace)** | 54K | 新入榜 | 活跃 | 最佳基准AI记忆系统 |
-| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53K | +380 | 活跃 | 角色扮演多Agent编排 |
-| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26K | +647 | 活跃 | 极速AI记忆引擎 |
-| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 15.8K | +1,300 | 活跃 | Token压缩60-95% |
-| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.2K | +400 | 活跃 | Java LLM应用框架 |
-| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.8K | +105 | 活跃 | 智能模型路由 |
-| **OpenBMB/AgentScope** | — | — | ❌ 404 | 仓库已删除/更名 🚨 |
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 210K | +687 | 活跃 | v2.0-rc.1，push 06-07 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 186K | +179 | 活跃 | push 06-08，持续迭代 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | +14 | ⚠️ 停滞 | 最后push 04-15，近2月无更新 |
+| **[MemPalace/mempalace](https://github.com/MemPalace/mempalace)** | 54.6K | +1K | 活跃 | 记忆系统基准 |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53K | +55 | 活跃 | 多Agent编排 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26K | +168 | 活跃 | 记忆引擎 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 16.9K | +1.1K | 活跃 | Token压缩，本周+2.5K |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.2K | +4 | 活跃 | Java LLM框架 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.8K | +7 | 缓慢 | 模型路由，push 06-05 |
+
+### 本周新秀（6月创建，100+⭐）
+
+| 项目 | ⭐ | 说明 |
+|------|---|------|
+| cpaczek/skylight | 2.3K | 飞机投影到天花板，非Agent |
+| b-nnett/goose | 2.3K | Swift PoC，非Agent |
+| jd-opensource/JoyAI-Echo | 848 | 长@音视频生成，与Agent关联低 |
+| tastyeffectco/sandboxd | 496 | 自托管开发沙箱，可参考Agent隔离执行环境 |
+
+---
+
+## 📊 趋势分析
+
+1. **autogen 停滞**：最后push是04-15，近2个月无更新。microsoft可能已转向其他项目，需持续观察。
+
+2. **headroom 本周爆发**：从14.5K→16.9K（+2.5K/周），Token压缩需求强劲。是Nezha压缩引擎升级的最佳参考。
+
+3. **MemPalace 稳步增长**：54K→54.6K（+1K/周），记忆赛道持续验证。
+
+4. **LangChain4j 增长放缓**：+4/天，可能进入成熟期。作为Java生态参考仍有价值。
+
+5. **本周无新Agent框架进入Trending**，赛道格局稳定。
+
+---
+
+## 📋 Nezha v0.4.0 状态
+
+全部🔴项已完成。无紧急集成需求。
+
+| 功能 | 状态 |
+|------|------|
+| 长期记忆 | ✅ |
+| 定时任务 | ✅ |
+| Token压缩 | ✅（可升级） |
+| 子Agent并行 | ✅ |
+| 模型路由 | ✅ |
+| 编排模式 | ✅ |
+| Web UI | ✅ |
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-07</summary>
+
+## 2026-06-07 扫描报告
+
+| 项目 | ⭐ Stars | 日变化 | 状态 |
+|------|---------|--------|------|
+| ECC | 209K | +27K | 活跃 |
+| hermes-agent | 185K | 暴涨 | 活跃 |
+| autogen | 59K | +570 | 活跃 |
+| MemPalace | 54K | 新入榜 | 活跃 |
+| crewAI | 53K | +380 | 活跃 |
+| supermemory | 26K | +647 | 活跃 |
+| headroom | 15.8K | +1,300 | 活跃 |
+| LangChain4j | 12.2K | +400 | 活跃 |
+| manifest | 6.8K | +105 | 活跃 |
+| AgentScope | — | — | ❌ 404 |
+
+🚨 AgentScope 仓库已消失。hermes-agent 185K星。
+
+</details>
 
 ---
 
