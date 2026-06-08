@@ -235,7 +235,7 @@ function loadSessions(){
       var title=s.title||'New Chat';
       var sub=(s.pipelineName?'[Pipe] ':s.agentName||'')+' | '+new Date(s.updatedAt).toLocaleString();
       var pipeBadge=s.pipelineName?'<span class="type-badge bcast" style="font-size:9px">'+esc(s.pipelineName)+'</span>':'';
-      div.innerHTML='<div><div class="item-title">'+pipeBadge+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')'>&times;</span>';
+      div.innerHTML='<div><div class="item-title">'+pipeBadge+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')">&times;</span>';
       div.onclick=function(){
         curSess=s.id;
         if(s.pipelineName){curPipe=s.pipelineName;curAgent=null}else{curAgent=s.agentName;curPipe=null}
