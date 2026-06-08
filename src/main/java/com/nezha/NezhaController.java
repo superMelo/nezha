@@ -167,8 +167,9 @@ public class NezhaController {
     public Map<String, Object> createSession(@RequestBody Map<String, Object> body) {
         String title = (String) body.get("title");
         String agentName = (String) body.getOrDefault("agentName", "Assistant");
+        String pipelineName = (String) body.get("pipelineName");
         String modelName = (String) body.get("modelName");
-        return chatService.createSession(title, agentName, modelName);
+        return chatService.createSession(title, agentName, modelName, pipelineName);
     }
 
     @DeleteMapping("/api/sessions/{id}")
@@ -207,7 +208,8 @@ public class NezhaController {
         }
 
         if (sessionId == null) {
-            Map<String, Object> session = chatService.createSession(null, agentName, null);
+            String effectiveName = (pipelineName != null && !pipelineName.isEmpty()) ? pipelineName : agentName;
+            Map<String, Object> session = chatService.createSession(null, effectiveName, null, pipelineName);
             sessionId = (Long) session.get("id");
         }
 

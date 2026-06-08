@@ -21,7 +21,7 @@ public class ChatService {
         this.jdbc = jdbc;
     }
 
-    public Map<String, Object> createSession(final String title, final String agentName, final String modelName) {
+    public Map<String, Object> createSession(final String title, final String agentName, final String modelName, final String pipelineName) {
         String actualTitle = (title == null || title.trim().isEmpty()) ? "New Chat" : title;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -29,11 +29,12 @@ public class ChatService {
             @Override
             public PreparedStatement createPreparedStatement(java.sql.Connection con) throws java.sql.SQLException {
                 PreparedStatement ps = con.prepareStatement(
-                        "INSERT INTO chat_session (title, agent_name, model_name) VALUES (?, ?, ?)",
+                        "INSERT INTO chat_session (title, agent_name, pipeline_name, model_name) VALUES (?, ?, ?, ?)",
                         Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, actualTitle);
                 ps.setString(2, agentName);
-                ps.setString(3, modelName);
+                ps.setString(3, pipelineName);
+                ps.setString(4, modelName);
                 return ps;
             }
         }, keyHolder);
@@ -44,13 +45,14 @@ public class ChatService {
         session.put("id", id);
         session.put("title", actualTitle);
         session.put("agentName", agentName);
+        session.put("pipelineName", pipelineName);
         session.put("modelName", modelName);
         return session;
     }
 
     public List<Map<String, Object>> listSessions() {
         List<Map<String, Object>> rows = jdbc.queryForList(
-                "SELECT id, title, agent_name, model_name, created_at, updated_at "
+                "SELECT id, title, agent_name, pipeline_name, model_name, created_at, updated_at "
                         + "FROM chat_session ORDER BY updated_at DESC");
         List<Map<String, Object>> sessions = new ArrayList<Map<String, Object>>();
         for (Map<String, Object> row : rows) {
@@ -58,6 +60,7 @@ public class ChatService {
             session.put("id", row.get("ID"));
             session.put("title", row.get("TITLE"));
             session.put("agentName", row.get("AGENT_NAME"));
+            session.put("pipelineName", row.get("PIPELINE_NAME"));
             session.put("modelName", row.get("MODEL_NAME"));
             session.put("createdAt", row.get("CREATED_AT"));
             session.put("updatedAt", row.get("UPDATED_AT"));

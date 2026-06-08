@@ -214,7 +214,9 @@ function switchTab(tab){
 
 /* Sessions */
 function newSession(){
-  api('POST','/api/sessions',{agentName:(curPipe||curAgent)||'Assistant'}).then(function(d){curSess=d.id;loadSessions();loadMsgs()});
+  var body={agentName:(curPipe||curAgent)||'Assistant'};
+  if(curPipe)body.pipelineName=curPipe;
+  api('POST','/api/sessions',body).then(function(d){curSess=d.id;loadSessions();loadMsgs()});
 }
 function loadSessions(){
   api('GET','/api/sessions').then(function(d){
@@ -231,11 +233,12 @@ function loadSessions(){
     list.forEach(function(s){
       var div=document.createElement('div');div.className='item'+(curSess===s.id?' active':'');
       var title=s.title||'New Chat';
-      var sub=(s.agentName||'')+' | '+new Date(s.updatedAt).toLocaleString();
-      div.innerHTML='<div><div class="item-title">'+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')">&times;</span>';
+      var sub=(s.pipelineName?'[Pipe] ':s.agentName||'')+' | '+new Date(s.updatedAt).toLocaleString();
+      var pipeBadge=s.pipelineName?'<span class="type-badge bcast" style="font-size:9px">'+esc(s.pipelineName)+'</span>':'';
+      div.innerHTML='<div><div class="item-title">'+pipeBadge+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')'>&times;</span>';
       div.onclick=function(){
         curSess=s.id;
-        if(s.agentName){curAgent=s.agentName;curPipe=null;}
+        if(s.pipelineName){curPipe=s.pipelineName;curAgent=null}else{curAgent=s.agentName;curPipe=null}
         updateMode();loadSessions();loadMsgs();
       };
       el.appendChild(div);
@@ -413,7 +416,9 @@ function send(){
     });
   }
   if(!curSess){
-    api('POST','/api/sessions',{agentName:(curPipe||curAgent)||'Assistant'}).then(function(d){
+    var sb={agentName:(curPipe||curAgent)||'Assistant'};
+    if(curPipe)sb.pipelineName=curPipe;
+    api('POST','/api/sessions',sb).then(function(d){
       curSess=d.id;
       doSend();
     });
