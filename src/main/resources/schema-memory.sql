@@ -27,3 +27,22 @@ CREATE TABLE IF NOT EXISTS scheduled_task (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS session_artifact (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    session_id BIGINT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content CLOB,
+    artifact_type VARCHAR(64) DEFAULT 'summary',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (session_id) REFERENCES chat_session(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS persona_template (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128) NOT NULL UNIQUE,
+    display_name VARCHAR(128),
+    system_prompt CLOB,
+    is_builtin BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

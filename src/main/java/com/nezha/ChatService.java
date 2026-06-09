@@ -114,4 +114,23 @@ public class ChatService {
         jdbc.update("UPDATE chat_session SET title = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
                 title, sessionId);
     }
+
+    public int getMessageCount(Long sessionId) {
+        List<Map<String, Object>> rows = jdbc.queryForList(
+                "SELECT COUNT(*) AS cnt FROM chat_message WHERE session_id = ?", sessionId);
+        if (!rows.isEmpty()) {
+            return ((Number) rows.get(0).get("CNT")).intValue();
+        }
+        return 0;
+    }
+
+    public String getSessionAgentName(Long sessionId) {
+        List<Map<String, Object>> rows = jdbc.queryForList(
+                "SELECT agent_name FROM chat_session WHERE id = ?", sessionId);
+        if (!rows.isEmpty()) {
+            Object name = rows.get(0).get("AGENT_NAME");
+            return name != null ? name.toString() : "Assistant";
+        }
+        return "Assistant";
+    }
 }

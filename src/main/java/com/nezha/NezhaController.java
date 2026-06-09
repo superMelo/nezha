@@ -12,6 +12,8 @@ public class NezhaController {
     private final AgentService agentService;
     private final ChatService chatService;
     private final MemoryService memoryService;
+    private final ArtifactService artifactService;
+    private final PersonaService personaService;
     private final TaskService taskService;
     private final CompressService compressService;
     private final PipelineService pipelineService;
@@ -23,6 +25,8 @@ public class NezhaController {
                            AgentService agentService,
                            ChatService chatService,
                            MemoryService memoryService,
+                           ArtifactService artifactService,
+                           PersonaService personaService,
                            TaskService taskService,
                            CompressService compressService,
                            PipelineService pipelineService,
@@ -33,6 +37,8 @@ public class NezhaController {
         this.agentService = agentService;
         this.chatService = chatService;
         this.memoryService = memoryService;
+        this.artifactService = artifactService;
+        this.personaService = personaService;
         this.taskService = taskService;
         this.compressService = compressService;
         this.pipelineService = pipelineService;
@@ -256,10 +262,65 @@ public class NezhaController {
             chatService.saveMessage(sessionId, reply);
         }
 
+        // Auto-extract memory from assistant replies
+        autoExtractMemory(sessionId, agentName);
+
+        // Auto-generate summary artifact every 10 messages
+        long msgCount = chatService.getMessageCount(sessionId);
+        if (msgCount > 0 && msgCount % 10 == 0) {
+            artifactService.generateSessionSummary(sessionId, agentName);
+        }
+
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("sessionId", sessionId);
         result.put("replies", replies);
         return result;
+    }
+
+    private void autoExtractMemory(Long sessionId, String agentName) {
+        // Extract key facts from the last assistant reply
+        List<Msg> msgs = chatService.getMessages(sessionId);
+        if (msgs.size() < 2) return;
+
+        // Find the last assistant message
+        String lastAssistantMsg = null;
+        for (int i = msgs.size() - 1; i >= 0; i--) {
+            Msg m = msgs.get(i);
+            if ("assistant".equals(m.getRole())) {
+                lastAssistantMsg = m.getContent();
+                break;
+            }
+        }
+        if (lastAssistantMsg == null || lastAssistantMsg.length() < 20) return;
+
+        // Simple heuristic extraction: find sentences with key patterns
+        List<String> facts = extractFacts(lastAssistantMsg);
+        for (String fact : facts) {
+            // Avoid duplicates
+            List<Map<String, Object>> existing = memoryService.searchMemories(agentName, fact.substring(0, Math.min(30, fact.length())));
+            if (existing.isEmpty()) {
+                memoryService.addMemory(agentName, fact, "auto", 3);
+            }
+        }
+    }
+
+    private List<String> extractFacts(String text) {
+        List<String> facts = new ArrayList<String>();
+        String[] sentences = text.split("[。！？\\n]");
+        for (String sentence : sentences) {
+            sentence = sentence.trim();
+            // Extract sentences that look like factual statements
+            if (sentence.length() >= 15 && sentence.length() <= 200
+                    && (sentence.contains("\u662f") || sentence.contains("\u4e3a") || sentence.contains("\u6709")
+                    || sentence.contains("\u5728") || sentence.contains("\u88ab") || sentence.contains("is ")
+                    || sentence.contains(" are ") || sentence.contains(" has ") || sentence.contains(" the ")
+                    || sentence.contains("\u9700\u8981") || sentence.contains("\u5fc5\u987b") || sentence.contains("\u5e94\u8be5")
+                    || sentence.contains("\u5b8c\u6210") || sentence.contains("\u5b9e\u73b0"))) {
+                facts.add(sentence);
+                if (facts.size() >= 2) break; // Max 2 facts per turn
+            }
+        }
+        return facts;
     }
 
     // ==================== Memory Endpoints ====================
@@ -295,6 +356,79 @@ public class NezhaController {
         memoryService.deleteMemory(id);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
+        return result;
+    }
+
+    // ==================== Artifact Endpoints ====================
+
+    @GetMapping("/api/sessions/{id}/artifacts")
+    public Map<String, Object> listArtifacts(@PathVariable Long id) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("artifacts", artifactService.listArtifacts(id));
+        return result;
+    }
+
+    @PostMapping("/api/sessions/{id}/artifacts")
+    public Map<String, Object> generateArtifact(@PathVariable Long id) {
+        String agentName = chatService.getSessionAgentName(id);
+        Map<String, Object> artifact = artifactService.generateSessionSummary(id, agentName);
+        Map<String, Object> result = new HashMap<String, Object>();
+        if (artifact != null) {
+            result.put("artifact", artifact);
+            result.put("success", true);
+        } else {
+            result.put("success", false);
+            result.put("error", "Not enough messages to generate summary");
+        }
+        return result;
+    }
+
+    @DeleteMapping("/api/artifacts/{id}")
+    public Map<String, Object> deleteArtifact(@PathVariable Long id) {
+        artifactService.deleteArtifact(id);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", true);
+        return result;
+    }
+
+    // ==================== Persona Endpoints ====================
+
+    @GetMapping("/api/personas")
+    public Map<String, Object> listPersonas() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("personas", personaService.listPersonas());
+        return result;
+    }
+
+    @PostMapping("/api/personas")
+    public Map<String, Object> createPersona(@RequestBody Map<String, Object> body) {
+        String name = (String) body.get("name");
+        String displayName = (String) body.get("displayName");
+        String systemPrompt = (String) body.get("systemPrompt");
+        Long id = personaService.createPersona(name, displayName, systemPrompt);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("id", id);
+        result.put("success", true);
+        return result;
+    }
+
+    @PostMapping("/api/personas/apply")
+    public Map<String, Object> applyPersona(@RequestBody Map<String, Object> body) {
+        String agentName = (String) body.get("agentName");
+        String personaName = (String) body.get("personaName");
+        boolean ok = personaService.applyPersona(agentName, personaName);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", ok);
+        if (!ok) result.put("error", "Persona not found");
+        return result;
+    }
+
+    @DeleteMapping("/api/personas/{name}")
+    public Map<String, Object> deletePersona(@PathVariable String name) {
+        boolean deleted = personaService.deletePersona(name);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", deleted);
+        if (!deleted) result.put("error", "Cannot delete built-in persona");
         return result;
     }
 

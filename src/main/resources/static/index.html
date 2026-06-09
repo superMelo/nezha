@@ -144,6 +144,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .confirm-box .btns .cancel-btn:hover{background:var(--hover);border-color:var(--border2)}
 .confirm-box .btns .del-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);color:#fff;box-shadow:0 2px 12px var(--accent-glow)}
 .confirm-box .btns .del-btn:hover{transform:translateY(-1px);box-shadow:0 4px 18px var(--accent-glow)}
+
+.persona-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;transition:all .2s}
+.persona-card:hover{background:var(--hover);border-color:var(--accent);transform:translateY(-1px)}
+.persona-name{font-size:12px;font-weight:600;color:var(--text)}
+.persona-desc{font-size:10px;color:var(--dim);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.artifact-btn{display:inline-flex;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--text2);cursor:pointer;transition:all .2s;margin-top:6px}
+.artifact-btn:hover{background:var(--hover);border-color:var(--accent);color:var(--accent)}
+.artifact-tag{font-size:9px;background:var(--accent-glow);color:var(--accent);padding:1px 5px;border-radius:3px;margin-left:4px}
+
 </style>
 </head>
 <body>
@@ -166,7 +175,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
     <div class="tab-bar">
       <div class="tab-btn active" id="tab-agents" onclick="switchTab('agents')">Agents</div>
-      <div class="tab-btn" id="tab-sessions" onclick="switchTab('sessions')">Chats</div>
+      <div onclick="switchTab('persona')" style="cursor:pointer;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;opacity:.5;transition:all .2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.5'">🎭 Persona</div>
+<div class="tab-btn" id="tab-sessions" onclick="switchTab('sessions')">Chats</div>
       <div class="tab-btn" id="tab-pipes" onclick="switchTab('pipes')">Pipes</div>
     </div>
     <div class="list" id="listArea"></div>
@@ -239,7 +249,7 @@ function loadSessions(){
       div.onclick=function(){
         curSess=s.id;
         if(s.pipelineName){curPipe=s.pipelineName;curAgent=null}else{curAgent=s.agentName;curPipe=null}
-        updateMode();loadSessions();loadMsgs();
+        updateMode();loadSessions();loadMsgs();loadArtifacts();
       };
       el.appendChild(div);
     });
@@ -292,7 +302,7 @@ function loadAgents(){
             // Find and load most recent session for this agent
             var found=null;
             for(var i=0;i<sessions.length;i++){if(sessions[i].agentName===curAgent){found=sessions[i];break;}}
-            if(found){curSess=found.id;loadMsgs();}else{curSess=null;showEmpty();}
+            if(found){curSess=found.id;loadMsgs();loadArtifacts();}else{curSess=null;showEmpty();}
             loadAgents();
           }
         };
@@ -407,7 +417,7 @@ function send(){
       document.getElementById('msgInput').focus();
       if(d.sessionId)curSess=d.sessionId;
       if(d.error)alert(d.error);
-      loadMsgs();
+      loadMsgs();loadArtifacts();
     }).catch(function(e){
       var t=document.getElementById('typingNow');if(t)t.remove();
       document.getElementById('msgInput').disabled=false;
@@ -544,6 +554,50 @@ function renderUI(){
 }
 document.getElementById('msgInput').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
 loadSessions();loadAgents();renderUI();
+
+function loadPersonas(){
+  api('GET','/api/personas').then(function(d){
+    var list=d.personas||[];
+    var el=document.getElementById('listArea');el.innerHTML='';
+    if(!curAgent){el.innerHTML='<div style="padding:12px;color:var(--dim);font-size:12px;text-align:center">Select an agent first</div>';return}
+    el.innerHTML='<div style="padding:8px 12px;color:var(--dim);font-size:11px">Apply a persona to <b>'+esc(curAgent)+'</b></div>';
+    var grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:4px 12px';
+    list.forEach(function(p){
+      var card=document.createElement('div');card.className='persona-card';
+      card.innerHTML='<div class="persona-name">'+esc(p.displayName||p.name)+'</div><div class="persona-desc">'+esc((p.systemPrompt||'').substring(0,60))+'</div>';
+      card.onclick=function(){
+        api('POST','/api/personas/apply',{agentName:curAgent,personaName:p.name}).then(function(r){
+          if(r.success)toast('Persona applied to '+curAgent,'success');
+          else toast(r.error||'Failed','error');
+        });
+      };
+      grid.appendChild(card);
+    });
+    el.appendChild(grid);
+  });
+}
+function loadArtifacts(){
+  if(!curSess)return;
+  api('GET','/api/sessions/'+curSess+'/artifacts').then(function(d){
+    var list=d.artifacts||[];
+    var area=document.getElementById('artifactArea');
+    if(!area){area=document.createElement('div');area.id='artifactArea';area.style.cssText='padding:4px 16px';var chat=document.getElementById('chatArea');chat.parentNode.insertBefore(area,chat.nextSibling)}
+    area.innerHTML='';
+    if(list.length===0){area.style.display='none';return}
+    area.style.display='';
+    list.forEach(function(a){
+      var btn=document.createElement('button');btn.className='artifact-btn';
+      btn.innerHTML='&#128196; '+esc(a.title)+' <span class="artifact-tag">'+esc(a.artifactType)+'</span>';
+      btn.onclick=function(){var w=window.open('','_blank');w.document.write('<pre style="padding:20px;font-size:14px">'+esc(a.content)+'</pre>');w.document.title=a.title};
+      area.appendChild(btn);
+    });
+    var genBtn=document.createElement('button');genBtn.className='artifact-btn';genBtn.style.marginLeft='8px';
+    genBtn.innerHTML='&#9998; Generate Summary';
+    genBtn.onclick=function(){api('POST','/api/sessions/'+curSess+'/artifacts').then(function(r){if(r.success){toast('Summary generated','success');loadArtifacts()}else toast(r.error||'Failed','error')})};
+    area.appendChild(genBtn);
+  });
+}
+
 </script>
 </body>
 </html>
