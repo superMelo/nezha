@@ -59,8 +59,7 @@ public class AgentService {
     }
 
     private void initDefaultAgents() {
-        String sql = "MERGE INTO agent_config (name, system_prompt, model_name, memory_size, is_custom) "
-                + "KEY(name) VALUES(?, ?, ?, ?, FALSE)";
+        String sql = "INSERT INTO agent_config (name, system_prompt, model_name, memory_size, is_custom) VALUES(?, ?, ?, ?, FALSE) ON DUPLICATE KEY UPDATE system_prompt=VALUES(system_prompt), model_name=VALUES(model_name), memory_size=VALUES(memory_size)";
         jdbc.update(sql,
                 assistantAgent.getName(), assistantAgent.getSysPrompt(),
                 assistantAgent.getModelName(), assistantAgent.getMemorySize());
@@ -96,8 +95,7 @@ public class AgentService {
         agent.setMemorySize(memorySize);
 
         jdbc.update(
-                "MERGE INTO agent_config (name, system_prompt, model_name, memory_size, is_custom) "
-                        + "KEY(name) VALUES(?, ?, ?, ?, TRUE)",
+                "INSERT INTO agent_config (name, system_prompt, model_name, memory_size, is_custom) VALUES(?, ?, ?, ?, TRUE) ON DUPLICATE KEY UPDATE system_prompt=VALUES(system_prompt), model_name=VALUES(model_name), memory_size=VALUES(memory_size)",
                 name, sysPrompt, modelName, memorySize);
 
         customAgents.add(agent);

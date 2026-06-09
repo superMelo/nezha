@@ -52,8 +52,7 @@ public class PersonaService {
 
     private void initDefaults() {
         for (String[] p : BUILTINS) {
-            jdbc.update("MERGE INTO persona_template (name, display_name, system_prompt, is_builtin) "
-                            + "KEY(name) VALUES(?, ?, ?, TRUE)",
+            jdbc.update("INSERT INTO persona_template (name, display_name, system_prompt, is_builtin) VALUES(?, ?, ?, TRUE) ON DUPLICATE KEY UPDATE display_name=VALUES(display_name), system_prompt=VALUES(system_prompt)",
                     p[0], p[1], p[2]);
         }
     }

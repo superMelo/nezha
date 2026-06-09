@@ -34,8 +34,7 @@ public class PipelineService {
 
     private void initDefaultPipelines() {
         // Default: single agent pipeline
-        String sql = "MERGE INTO pipeline_config (name, type, description, config_json) "
-                + "KEY(name) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO pipeline_config (name, type, description, config_json) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE type=VALUES(type), description=VALUES(description), config_json=VALUES(config_json)";
         jdbc.update(sql, "single", "sequential",
                 "Single agent - direct conversation",
                 "{\"agents\":[\"Assistant\"]}");

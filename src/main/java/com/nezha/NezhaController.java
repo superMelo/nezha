@@ -148,7 +148,7 @@ public class NezhaController {
                     continue;
                 }
                 jdbc.update(
-                        "MERGE INTO app_setting (setting_key, setting_value) KEY(setting_key) VALUES(?, ?)",
+                        "INSERT INTO app_setting (setting_key, setting_value) VALUES(?, ?) ON DUPLICATE KEY UPDATE setting_value=VALUES(setting_value)",
                         "apiKey." + key, value);
 
                 NezhaProperties.ModelConfig config = properties.findModel(key);
