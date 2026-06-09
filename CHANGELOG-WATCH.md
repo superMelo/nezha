@@ -1,5 +1,56 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-06-09
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-06-09）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 211K | +14 | 活跃 | push 06-07 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 187K | +452 | 活跃 | push 06-09 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | 0 | ⚠️ 停滞 | 最后push 04-15（第3天无更新） |
+| **[MemPalace/mempalace](https://github.com/MemPalace/mempalace)** | 55K | +342 | 活跃 | 记忆系统 |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53K | +88 | 活跃 | push 06-09 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26.2K | +190 | 活跃 | |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 18.9K | **+1,952** | 🚀爆发 | 日增近2K，2天+3K |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.2K | +13 | 活跃 | push 06-08 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | +23 | 活跃 | push 06-08 |
+
+### 本周新秀
+
+| 项目 | ⭐ | 说明 |
+|------|---|------|
+| NoopApp/noop | 531 | 离线WHOOP伴侣（非Agent） |
+| JimLiu/baoyu-design | 520 | Claude Design本地Agent Skill（非框架） |
+| tastyeffectco/sandboxd | 514 | 自托管开发沙箱，可参考Agent隔离 |
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 单日+1,952星** 🚀，加速增长。从6月7日16.9K→6月9日18.9K（3天+4.4K），Token压缩需求持续爆发。
+2. **hermes-agent 回暖**：日增+452，恢复增长势头。
+3. **autogen 连续3天零更新**（04-15后），已实质停滞。
+4. **本周无Agent框架新星**进入Trending，赛道格局稳定。
+
+---
+
+## 📋 Nezha v0.4.0 状态
+
+全部核心功能已完成，无紧急集成需求。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-08</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-06-08
 **方式**：GitHub API
 
@@ -59,6 +110,8 @@
 | Web UI | ✅ |
 
 ---
+
+</details>
 
 ## 📜 历史扫描
 
