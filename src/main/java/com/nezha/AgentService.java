@@ -105,34 +105,47 @@ public class AgentService {
     }
 
     public BaseAgent getAgent(String name) {
-        // Check built-in agents first
-        if (assistantAgent.getName().equals(name)) {
+        // Always refresh system_prompt from DB
+        List<Map<String, Object>> rows = jdbc.queryForList(
+                "SELECT system_prompt, model_name, memory_size FROM agent_config WHERE name = ?", name);
+        String sysPrompt = "You are a helpful assistant.";
+        String modelName = "deepseek";
+        int memSize = 50;
+        if (!rows.isEmpty()) {
+            Map<String, Object> row = rows.get(0);
+            if (row.get("SYSTEM_PROMPT") != null) sysPrompt = row.get("SYSTEM_PROMPT").toString();
+            if (row.get("MODEL_NAME") != null) modelName = row.get("MODEL_NAME").toString();
+            if (row.get("MEMORY_SIZE") instanceof Number) memSize = ((Number)row.get("MEMORY_SIZE")).intValue();
+        }
+
+        // Check built-in agents
+        if ("Assistant".equals(name) && assistantAgent != null) {
+            assistantAgent.setSysPrompt(sysPrompt);
+            assistantAgent.setModelName(modelName);
             return assistantAgent;
         }
-        if (coderAgent.getName().equals(name)) {
+        if ("Coder".equals(name) && coderAgent != null) {
+            coderAgent.setSysPrompt(sysPrompt);
+            coderAgent.setModelName(modelName);
             return coderAgent;
         }
-        if (reviewerAgent.getName().equals(name)) {
+        if ("Reviewer".equals(name) && reviewerAgent != null) {
+            reviewerAgent.setSysPrompt(sysPrompt);
+            reviewerAgent.setModelName(modelName);
             return reviewerAgent;
         }
 
         // Check custom agents (in-memory)
         for (BaseAgent agent : customAgents) {
             if (agent.getName().equals(name)) {
+                agent.setSysPrompt(sysPrompt);
+                agent.setModelName(modelName);
                 return agent;
             }
         }
 
-        // Load from database and create instance on-the-fly
-        List<Map<String, Object>> rows = jdbc.queryForList(
-                "SELECT system_prompt, model_name, memory_size FROM agent_config WHERE name = ?", name);
+        // Create new instance from database
         if (!rows.isEmpty()) {
-            Map<String, Object> row = rows.get(0);
-            String sysPrompt = row.get("SYSTEM_PROMPT") != null ? row.get("SYSTEM_PROMPT").toString() : "You are a helpful assistant.";
-            String modelName = row.get("MODEL_NAME") != null ? row.get("MODEL_NAME").toString() : "deepseek";
-            int memSize = row.get("MEMORY_SIZE") instanceof Number ? ((Number)row.get("MEMORY_SIZE")).intValue() : 50;
-
-            // Create a real BaseAgent with proper ModelFactory and ToolRegistry
             BaseAgent agent = new BaseAgent(modelFactory, toolRegistry, modelRouter);
             agent.setName(name);
             agent.setSysPrompt(sysPrompt);
