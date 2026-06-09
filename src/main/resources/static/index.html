@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nezha v0.4.0</title>
+<title>Nezha v0.5.0</title>
 <style>
 :root{--bg:#090911;--bg0:#0e0e1c;--bg1:#131326;--sidebar:#0d0d1e;--border:#1a1a35;--border2:#222240;--text:#e0e0f0;--text2:#b0b0c8;--dim:#5a5a7a;--accent:#ff3366;--accent2:#e6224f;--accent-glow:rgba(255,51,102,.15);--hover:#181835;--input:#0c0c1e;--card:#111128;--card2:#151530;--green:#00cc88;--blue:#4488ff;--orange:#ff9922;--purple:#aa55ff;--radius:10px;--radius-lg:14px;--transition:.2s cubic-bezier(.4,0,.2,1)}
 [data-theme=light]{--bg:#f4f4f8;--bg0:#eeeef4;--bg1:#e6e6ee;--sidebar:#fafafd;--border:#e0e0ea;--border2:#d0d0dd;--text:#1a1a2e;--text2:#555;--dim:#999;--accent:#e6224f;--accent2:#cc1144;--accent-glow:rgba(230,34,79,.08);--hover:#f0f0f6;--input:#fff;--card:#fff;--card2:#f8f8fc;--green:#00aa77;--blue:#3366dd;--orange:#ee8811;--purple:#8844dd}
@@ -153,6 +153,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .artifact-btn:hover{background:var(--hover);border-color:var(--accent);color:var(--accent)}
 .artifact-tag{font-size:9px;background:var(--accent-glow);color:var(--accent);padding:1px 5px;border-radius:3px;margin-left:4px}
 
+
+.upload-btn{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:var(--radius-lg);background:var(--card);border:1px solid var(--border);color:var(--dim);cursor:pointer;font-size:16px;transition:var(--transition);flex-shrink:0}
+.upload-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--hover)}
+.file-strip{display:none;padding:6px 20px;border-top:1px solid var(--border);background:var(--sidebar);overflow-x:auto;white-space:nowrap}
+.file-strip.active{display:flex;gap:8px;align-items:center}
+.file-chip{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--text2);max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.file-chip .remove{cursor:pointer;color:var(--dim);font-size:13px;margin-left:2px;transition:color .15s}
+.file-chip .remove:hover{color:var(--accent)}
+.file-chip .fname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-chip img{width:18px;height:18px;border-radius:3px;object-fit:cover}
+.file-badge{font-size:9px;background:var(--accent-glow);color:var(--accent);padding:1px 4px;border-radius:3px;margin-left:4px}
+
 </style>
 </head>
 <body>
@@ -187,7 +199,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="chat" id="chatArea">
       <div class="empty"><div class="logo-icon">N</div><div class="logo-text">Nezha</div><div class="hint">Select an agent or pipeline to start chatting</div><div class="shortcuts"><kbd>Enter</kbd> Send &nbsp; <kbd>Shift+Enter</kbd> New line</div></div>
     </div>
+    <div class="file-strip" id="fileStrip"></div>
     <div class="input-area">
+      <label class="upload-btn" title="Upload file">&#128206;<input type="file" id="fileInput" style="display:none" multiple onchange="handleFiles(this.files)"></label>
       <textarea id="msgInput" rows="1" placeholder="Type a message... (Enter to send)"></textarea>
       <button id="sendBtn" onclick="send()">Send</button>
     </div>
@@ -409,21 +423,27 @@ function send(){
     area.appendChild(typing);area.scrollTop=area.scrollHeight;
     var body={message:msg};
     if(curPipe){body.pipelineName=curPipe;body.agentName=curPipe}else{body.agentName=curAgent;body.sessionId=curSess}
-    api('POST','/api/chat',body).then(function(d){
-      var t=document.getElementById('typingNow');if(t)t.remove();
-      document.getElementById('msgInput').value='';
-      document.getElementById('msgInput').disabled=false;
-      document.getElementById('sendBtn').disabled=false;
-      document.getElementById('msgInput').focus();
-      if(d.sessionId)curSess=d.sessionId;
-      if(d.error)alert(d.error);
-      loadMsgs();loadArtifacts();
-    }).catch(function(e){
-      var t=document.getElementById('typingNow');if(t)t.remove();
-      document.getElementById('msgInput').disabled=false;
-      document.getElementById('sendBtn').disabled=false;
-      toast('Error: '+e.message,'error');
-    });
+    function doPost(){
+      api('POST','/api/chat',body).then(function(d){
+        var t=document.getElementById('typingNow');if(t)t.remove();
+        document.getElementById('msgInput').value='';
+        document.getElementById('msgInput').disabled=false;
+        document.getElementById('sendBtn').disabled=false;
+        document.getElementById('msgInput').focus();
+        if(d.sessionId)curSess=d.sessionId;
+        if(d.error)alert(d.error);
+        pendingFiles=[];renderFileStrip();
+        loadMsgs();loadArtifacts();
+      }).catch(function(e){
+        var t=document.getElementById('typingNow');if(t)t.remove();
+        document.getElementById('msgInput').disabled=false;
+        document.getElementById('sendBtn').disabled=false;
+        toast('Error: '+e.message,'error');
+      });
+    }
+    if(pendingFiles.length>0){
+      sendFileContext().then(function(ctx){body.message=body.message+'\n\n'+ctx;doPost()});
+    }else{doPost()}
   }
   if(!curSess){
     var sb={agentName:(curPipe||curAgent)||'Assistant'};
@@ -595,6 +615,58 @@ function loadArtifacts(){
     genBtn.innerHTML='&#9998; Generate Summary';
     genBtn.onclick=function(){api('POST','/api/sessions/'+curSess+'/artifacts').then(function(r){if(r.success){toast('Summary generated','success');loadArtifacts()}else toast(r.error||'Failed','error')})};
     area.appendChild(genBtn);
+  });
+}
+
+
+var pendingFiles=[];
+function handleFiles(files){
+  if(!curSess){toast('Start a chat first','error');return}
+  for(var i=0;i<files.length;i++){
+    (function(f){
+      var fd=new FormData();fd.append('file',f);
+      var xhr=new XMLHttpRequest();
+      xhr.open('POST','/api/sessions/'+curSess+'/files');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          var d=JSON.parse(xhr.responseText);
+          if(d.success){pendingFiles.push({id:d.id,name:d.originalName,size:d.fileSize,type:d.contentType,hasText:d.hasTextContent});renderFileStrip();toast('Uploaded: '+d.originalName,'success')}
+          else toast(d.error||'Upload failed','error');
+        }else toast('Upload error','error');
+      };
+      xhr.onerror=function(){toast('Upload error','error')};
+      xhr.send(fd);
+    })(files[i]);
+  }
+  document.getElementById('fileInput').value='';
+}
+function renderFileStrip(){
+  var strip=document.getElementById('fileStrip');
+  if(pendingFiles.length===0){strip.className='file-strip';strip.innerHTML='';return}
+  strip.className='file-strip active';strip.innerHTML='';
+  pendingFiles.forEach(function(f,idx){
+    var chip=document.createElement('div');chip.className='file-chip';
+    var icon='';
+    if(f.type&&f.type.startsWith('image/'))icon='<img src="/api/files/'+f.id+'/download" onerror="this.style.display=\'none\'">';
+    chip.innerHTML=icon+'<span class="fname">'+esc(f.name)+'</span>'+(f.hasText?'<span class="file-badge">TXT</span>':'')+'<span class="remove" onclick="removePendingFile('+idx+')">&times;</span>';
+    strip.appendChild(chip);
+  });
+}
+function removePendingFile(idx){pendingFiles.splice(idx,1);renderFileStrip()}
+function sendFileContext(){
+  if(pendingFiles.length===0)return null;
+  var parts=['[Attached files:]'];
+  var proms=[];
+  pendingFiles.forEach(function(f){
+    if(f.hasText){proms.push(api('GET','/api/files/'+f.id+'/preview'))}
+  });
+  return Promise.all(proms).then(function(results){
+    results.forEach(function(r){
+      var name=r.originalName||'file';
+      var content=r.textContent||'';
+      parts.push('--- '+name+' ---\n'+content.substring(0,8000));
+    });
+    return parts.join('\n\n');
   });
 }
 

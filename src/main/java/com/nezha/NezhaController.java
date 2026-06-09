@@ -2,6 +2,7 @@ package com.nezha;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -14,6 +15,7 @@ public class NezhaController {
     private final MemoryService memoryService;
     private final ArtifactService artifactService;
     private final PersonaService personaService;
+    private final FileService fileService;
     private final TaskService taskService;
     private final CompressService compressService;
     private final PipelineService pipelineService;
@@ -27,6 +29,7 @@ public class NezhaController {
                            MemoryService memoryService,
                            ArtifactService artifactService,
                            PersonaService personaService,
+                           FileService fileService,
                            TaskService taskService,
                            CompressService compressService,
                            PipelineService pipelineService,
@@ -39,6 +42,7 @@ public class NezhaController {
         this.memoryService = memoryService;
         this.artifactService = artifactService;
         this.personaService = personaService;
+        this.fileService = fileService;
         this.taskService = taskService;
         this.compressService = compressService;
         this.pipelineService = pipelineService;
@@ -515,6 +519,72 @@ public class NezhaController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         result.put("removed", removed);
+        return result;
+    }
+
+    // ==================== File Upload Endpoints ====================
+
+    @GetMapping("/api/sessions/{id}/files")
+    public Map<String, Object> listFiles(@PathVariable Long id) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("files", fileService.listFiles(id));
+        return result;
+    }
+
+    @PostMapping("/api/sessions/{id}/files")
+    public Map<String, Object> uploadFile(@PathVariable Long id,
+                                         @RequestParam("file") MultipartFile file) {
+        Map<String, Object> uploaded = fileService.uploadFile(id, file);
+        if (uploaded == null) {
+            Map<String, Object> error = new HashMap<String, Object>();
+            error.put("success", false);
+            error.put("error", "File is empty");
+            return error;
+        }
+        return uploaded;
+    }
+
+    @GetMapping("/api/files/{id}/download")
+    public org.springframework.http.ResponseEntity<byte[]> downloadFile(@PathVariable Long id) {
+        String filePath = fileService.getFilePath(id);
+        Map<String, Object> meta = fileService.getFile(id);
+        if (filePath == null || meta == null) {
+            return org.springframework.http.ResponseEntity.notFound().build();
+        }
+        try {
+            java.io.File f = new java.io.File(filePath);
+            byte[] data = new byte[(int) f.length()];
+            java.io.FileInputStream fis = new java.io.FileInputStream(f);
+            fis.read(data);
+            fis.close();
+            String contentType = (String) meta.get("contentType");
+            if (contentType == null) contentType = "application/octet-stream";
+            return org.springframework.http.ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=\"" + meta.get("originalName") + "\"")
+                    .header("Content-Type", contentType)
+                    .body(data);
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/api/files/{id}/preview")
+    public Map<String, Object> previewFile(@PathVariable Long id) {
+        Map<String, Object> file = fileService.getFile(id);
+        if (file == null) {
+            Map<String, Object> error = new HashMap<String, Object>();
+            error.put("success", false);
+            error.put("error", "File not found");
+            return error;
+        }
+        return file;
+    }
+
+    @DeleteMapping("/api/files/{id}")
+    public Map<String, Object> deleteFile(@PathVariable Long id) {
+        fileService.deleteFile(id);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", true);
         return result;
     }
 

@@ -46,3 +46,15 @@ CREATE TABLE IF NOT EXISTS persona_template (
     is_builtin BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS session_file (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    session_id BIGINT NOT NULL,
+    original_name VARCHAR(512) NOT NULL,
+    stored_name VARCHAR(512) NOT NULL,
+    file_size BIGINT DEFAULT 0,
+    content_type VARCHAR(256),
+    text_content CLOB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (session_id) REFERENCES chat_session(id) ON DELETE CASCADE
+);
