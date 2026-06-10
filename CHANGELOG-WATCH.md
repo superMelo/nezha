@@ -1,9 +1,68 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-09
+**日期**：2026-06-10
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-10）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 211.9K | +0.9K | 活跃 | push 06-10 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 188.8K | +1.8K | 活跃 | push 06-10，持续爆发 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.8K | -0.2K | ❌ 停滞 | 最后push 04-15（连续25天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.2K | +0.2K | 活跃 | push 06-09 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26.3K | +0.1K | 活跃 | push 06-09 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 20.6K | **+1.7K** | 🚀爆发 | push 06-10，压缩算法修复 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.1K | 活跃 | **v1.16.1发布**（06-06） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-09 |
+
+### 重点动态
+
+1. **headroom 20K星突破** 🎉 — 日增+1.7K，关键commit：`fix: schema compaction must not drop property names that match DROP_KEYS`，压缩可靠性提升。新增 `savings history rollups per provider` 统计功能。
+2. **LangChain4j v1.16.1发布** — 06-06正式发布，距v1.15.1仅9天，迭代加速。值得关注是否有新的Agent模式。
+3. **hermes-agent 持续爆发** — 日增+1.8K，修复桌面端和终端bug。
+4. **autogen 连续25天零更新**，实质已死。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 突破20K星**，压缩可靠性修复（DROP_KEYS bug）说明该库在快速迭代中。Nezha的CompressService目前仅做首尾保留+中间折叠，可参考headroom的schema compaction思路升级。
+2. **LangChain4j v1.16.1快速迭代**（v1.15.1→1.16.0→1.16.1，9天2个版本），Java生态Agent框架持续活跃。
+3. **autogen 可正式标记为停止维护**，25天零更新。
+4. **本周无新Agent框架进入Trending**，赛道格局稳定。
+
+---
+
+## 📋 Nezha v0.5.1 状态
+
+已迁移到 MySQL 8.4 持久化（commit 3bb5750），新增文件上传功能。
+
+| 功能 | 状态 |
+|------|------|
+| 长期记忆 | ✅ MySQL持久化 + MemoryService |
+| 定时任务 | ✅ Cron调度 + TaskService |
+| Token压缩 | ✅ CompressService（首尾保留） |
+| 子Agent并行 | ✅ BroadcastPipeline |
+| 模型路由 | ✅ ModelRouter |
+| 编排模式 | ✅ Sequential/Broadcast/Loop/IfElse |
+| 文件上传 | ✅ FileService + 预览/下载 |
+| Persona模板 | ✅ 6个内置 + 自定义 |
+| Artifact日志 | ✅ 自动工作日志 |
+| MySQL持久化 | ✅ 迁移完成 |
+
+### 下次关注
+- headroom schema compaction 算法细节，是否可移植到Java
+- LangChain4j v1.16.x 新增的Agent模式
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-09</summary>
 
 ## 🔥 重点仓库状态（2026-06-09）
 
