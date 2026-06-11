@@ -10,10 +10,12 @@ public class LoopPipeline extends Pipeline {
 
     private String agentName;
     private int maxIterations;
+    private String exitCondition;    // "done" (default), "pass", or a keyword to match
 
     public LoopPipeline(String name, String description) {
         super(name, description);
         this.maxIterations = 20;
+        this.exitCondition = "done";
     }
 
     public String getAgentName() { return agentName; }
@@ -21,6 +23,9 @@ public class LoopPipeline extends Pipeline {
 
     public int getMaxIterations() { return maxIterations; }
     public void setMaxIterations(int maxIterations) { this.maxIterations = maxIterations; }
+
+    public String getExitCondition() { return exitCondition; }
+    public void setExitCondition(String exitCondition) { this.exitCondition = exitCondition; }
 
     @Override
     public List<Msg> execute(String message, PipelineContext context) {
@@ -51,11 +56,13 @@ public class LoopPipeline extends Pipeline {
             }
 
             // Check if the agent signals completion
-            // Convention: if reply starts with "[DONE]", the loop ends
+            // Convention: if reply contains exit marker, the loop ends
             if (!replies.isEmpty()) {
                 String lastContent = replies.get(replies.size() - 1).getContent();
-                if (lastContent != null && lastContent.startsWith("[DONE]")) {
-                    break;
+                if (lastContent != null) {
+                    if (meetsExitCondition(lastContent)) {
+                        break;
+                    }
                 }
             }
         }
@@ -69,5 +76,15 @@ public class LoopPipeline extends Pipeline {
             return (BaseAgent) agentObj;
         }
         return null;
+    }
+
+    private boolean meetsExitCondition(String content) {
+        if (exitCondition == null || "done".equals(exitCondition)) {
+            return content.startsWith("[DONE]") || content.contains("[DONE]");
+        }
+        // Custom exit condition: match keyword (case-insensitive)
+        String lowerContent = content.toLowerCase();
+        String lowerCond = exitCondition.toLowerCase();
+        return lowerContent.contains(lowerCond);
     }
 }

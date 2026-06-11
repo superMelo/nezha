@@ -20,7 +20,7 @@ public class AgentService {
 
     private final ModelRouter modelRouter;
 
-    private final List<BaseAgent> customAgents = new ArrayList<BaseAgent>();
+    private final List<BaseAgent> customAgents = new java.util.concurrent.CopyOnWriteArrayList<BaseAgent>();
 
     public AgentService(JdbcTemplate jdbc, ModelFactory modelFactory, ToolRegistry toolRegistry, ModelRouter modelRouter) {
         this.jdbc = jdbc;

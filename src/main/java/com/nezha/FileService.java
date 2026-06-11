@@ -100,7 +100,7 @@ public class FileService {
             }
         }, keyHolder);
 
-        Long id = ((Number) keyHolder.getKeys().get("ID")).longValue();
+        Long id = keyHolder.getKey().longValue();
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("id", id);

@@ -12,8 +12,22 @@ public class CompressService {
 
     private final JdbcTemplate jdbc;
 
-    public CompressService(JdbcTemplate jdbc) {
+    public CompressService(JdbcTemplate jdbc, ToolRegistry toolRegistry) {
         this.jdbc = jdbc;
+
+        // Register built-in compress tool handler
+        toolRegistry.registerTool(
+                new ToolRegistry.ToolDefinition("compress_context", "Compress conversation context to reduce token usage", "compress_context", "sessionId"),
+                args -> {
+                    try {
+                        Long sessionId = Long.parseLong(args.trim());
+                        int removed = compressSession(sessionId);
+                        return "Compressed " + removed + " messages from session " + sessionId;
+                    } catch (NumberFormatException e) {
+                        return "Error: invalid sessionId: " + args;
+                    }
+                }
+        );
     }
 
     /**

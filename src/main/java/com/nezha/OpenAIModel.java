@@ -33,6 +33,7 @@ public class OpenAIModel implements LLMModel {
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
+                .proxy(java.net.Proxy.NO_PROXY)
                 .build();
         this.mapper = new ObjectMapper();
     }
@@ -78,9 +79,33 @@ public class OpenAIModel implements LLMModel {
                 JsonNode choices = root.get("choices");
                 if (choices != null && choices.size() > 0) {
                     JsonNode message = choices.get(0).get("message");
-                    String content = message.get("content").asText();
+                    JsonNode contentNode = message.get("content");
+                    JsonNode toolCallsNode = message.get("tool_calls");
+
+                    StringBuilder sb = new StringBuilder();
+                    // Extract text content if present
+                    if (contentNode != null && !contentNode.isNull()) {
+                        sb.append(contentNode.asText());
+                    }
+
+                    // If the model requested tool calls, serialize them for visibility
+                    if (toolCallsNode != null && toolCallsNode.isArray() && toolCallsNode.size() > 0) {
+                        if (sb.length() > 0) sb.append("\n\n");
+                        sb.append("[TOOL_CALLS] ");
+                        for (JsonNode tc : toolCallsNode) {
+                            JsonNode func = tc.get("function");
+                            if (func != null) {
+                                String funcName = func.get("name") != null ? func.get("name").asText() : "unknown";
+                                String funcArgs = func.get("arguments") != null ? func.get("arguments").asText() : "{}";
+                                sb.append(funcName).append("(").append(funcArgs).append(") ");
+                            }
+                        }
+                    }
+
+                    String content = sb.length() > 0 ? sb.toString() : "(empty response)";
                     List<Msg> result = new ArrayList<Msg>();
                     Msg reply = new Msg("assistant", content);
+                    reply.setToolCalls(toolCallsNode != null ? toolCallsNode.toString() : null);
                     result.add(reply);
                     return result;
                 }

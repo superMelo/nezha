@@ -40,7 +40,7 @@ public class ArtifactService {
             }
         }, keyHolder);
 
-        Long id = ((Number) keyHolder.getKeys().get("ID")).longValue();
+        Long id = keyHolder.getKey().longValue();
 
         Map<String, Object> artifact = new HashMap<String, Object>();
         artifact.put("id", id);

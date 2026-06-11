@@ -80,7 +80,7 @@ public class PipelineService {
                 return ps;
             }
         }, keyHolder);
-        return ((Number)keyHolder.getKeys().get("ID")).longValue();
+        return keyHolder.getKey().longValue();
     }
 
     public void deletePipeline(Long id) {
@@ -145,6 +145,14 @@ public class PipelineService {
             LoopPipeline p = new LoopPipeline(name, "");
             if (!agentNames.isEmpty()) {
                 p.setAgentName(agentNames.get(0));
+            }
+            return p;
+        } else if ("ifelse".equals(type) || "if-else".equals(type)) {
+            IfElsePipeline p = new IfElsePipeline(name, "");
+            // Parse then/else agents from config: first agent is "then", second is "else"
+            if (agentNames.size() >= 1) {
+                // Store then-branch agent names in context
+                p.setConditionVariable("route.condition");
             }
             return p;
         } else {

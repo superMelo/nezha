@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS chat_message (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     session_id BIGINT NOT NULL,
     role VARCHAR(64) NOT NULL,
-    content CLOB,
+    content TEXT,
     agent_name VARCHAR(128),
     elapsed_ms BIGINT,
     tool_calls VARCHAR(1024),
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS chat_message (
 CREATE TABLE IF NOT EXISTS agent_config (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(128) NOT NULL UNIQUE,
-    system_prompt CLOB,
+    system_prompt TEXT,
     model_name VARCHAR(128),
     memory_size INT DEFAULT 50,
     is_custom BOOLEAN DEFAULT FALSE,

@@ -16,18 +16,6 @@ public class GlobalExceptionHandler {
         Map<String, Object> error = new HashMap<String, Object>();
         error.put("error", e.getClass().getSimpleName());
         error.put("message", e.getMessage());
-        error.put("stackTrace", getStackTraceString(e));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
-    }
-
-    private String getStackTraceString(Exception e) {
-        StringBuilder sb = new StringBuilder();
-        for (StackTraceElement element : e.getStackTrace()) {
-            sb.append(element.toString()).append("\n");
-            if (sb.length() > 2000) {
-                break;
-            }
-        }
-        return sb.toString();
     }
 }

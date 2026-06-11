@@ -231,20 +231,19 @@ public class NezhaController {
         if (pipelineName != null && !pipelineName.isEmpty()) {
             replies = pipelineService.executePipeline(pipelineName, sessionId, message);
         } else {
-            BaseAgent agent = agentService.getAgent(agentName);
-            String sysPrompt = agentService.getAgentSysPrompt(agentName);
-            String modelName = agentService.getAgentModelName(agentName);
             List<Msg> history = chatService.getMessages(sessionId);
 
-            if (agent != null) {
-                replies = agent.chat(history);
+            if (agentService.getAgent(agentName) != null) {
+                replies = agentService.getAgent(agentName).chat(history);
             } else {
                 LLMModel model;
+                String modelName = agentService.getAgentModelName(agentName);
                 if (modelName != null && !modelName.isEmpty()) {
                     model = modelFactory.getModel(modelName);
                 } else {
                     model = modelFactory.getDefaultModel();
                 }
+                String sysPrompt = agentService.getAgentSysPrompt(agentName);
                 long startTime = System.currentTimeMillis();
                 try {
                     replies = model.chat(sysPrompt, history);
@@ -266,8 +265,9 @@ public class NezhaController {
             chatService.saveMessage(sessionId, reply);
         }
 
-        // Auto-extract memory from assistant replies
-        autoExtractMemory(sessionId, agentName);
+        // Auto-extract memory: use pipeline name if applicable, else agent name
+        String memoryOwner = (pipelineName != null && !pipelineName.isEmpty()) ? pipelineName : agentName;
+        autoExtractMemory(sessionId, memoryOwner);
 
         // Auto-generate summary artifact every 10 messages
         long msgCount = chatService.getMessageCount(sessionId);

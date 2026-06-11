@@ -41,7 +41,7 @@ public class TaskService {
                 return ps;
             }
         }, keyHolder);
-        return ((Number)keyHolder.getKeys().get("ID")).longValue();
+        return keyHolder.getKey().longValue();
     }
 
     public void deleteTask(Long id) {

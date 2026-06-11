@@ -22,7 +22,7 @@ nezha:
   models:
     - name: deepseek
       provider: deepseek
-      apiKey: sk-494237213c4b4181b0d1e3b25254126e
+      apiKey: sk-a40c17b8b2ad4a8284dcb97aacbe36bb
       baseUrl: https://api.deepseek.com/v1
       model: deepseek-chat
       maxTokens: 4096

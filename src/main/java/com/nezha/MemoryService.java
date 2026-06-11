@@ -17,8 +17,36 @@ public class MemoryService {
 
     private final JdbcTemplate jdbc;
 
-    public MemoryService(JdbcTemplate jdbc) {
+    public MemoryService(JdbcTemplate jdbc, ToolRegistry toolRegistry) {
         this.jdbc = jdbc;
+
+        // Register built-in tool handlers
+        toolRegistry.registerTool(
+                new ToolRegistry.ToolDefinition("search_memory", "Search agent memory by keyword", "search_memory", "query"),
+                args -> {
+                    // args format: agentName, query
+                    String[] parts = args.split(",", 2);
+                    String agent = parts.length > 0 ? parts[0].trim() : "Assistant";
+                    String query = parts.length > 1 ? parts[1].trim() : args.trim();
+                    List<Map<String, Object>> results = searchMemories(agent, query);
+                    if (results.isEmpty()) return "No memories found for query: " + query;
+                    StringBuilder sb = new StringBuilder();
+                    for (Map<String, Object> r : results) {
+                        sb.append("- ").append(r.get("content")).append("\n");
+                    }
+                    return sb.toString();
+                }
+        );
+        toolRegistry.registerTool(
+                new ToolRegistry.ToolDefinition("save_memory", "Save important information to memory", "save_memory", "content, category"),
+                args -> {
+                    String[] parts = args.split(",", 2);
+                    String content = parts.length > 0 ? parts[0].trim() : args.trim();
+                    String category = parts.length > 1 ? parts[1].trim() : "auto";
+                    addMemory("Assistant", content, category, 5);
+                    return "Memory saved: " + content.substring(0, Math.min(50, content.length())) + "...";
+                }
+        );
     }
 
     public Long addMemory(final String agentName, final String content, final String category, final Integer importance) {
@@ -38,7 +66,7 @@ public class MemoryService {
                 return ps;
             }
         }, keyHolder);
-        return ((Number)keyHolder.getKeys().get("ID")).longValue();
+        return keyHolder.getKey().longValue();
     }
 
     public void deleteMemory(Long id) {

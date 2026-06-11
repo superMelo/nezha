@@ -17,6 +17,7 @@ public class ClaudeModel implements LLMModel {
     private static final String API_VERSION = "2023-06-01";
 
     private final String apiKey;
+    private final String baseUrl;
     private final String model;
     private final int maxTokens;
     private final double temperature;
@@ -25,6 +26,7 @@ public class ClaudeModel implements LLMModel {
 
     public ClaudeModel(String apiKey, String baseUrl, String model, int maxTokens, double temperature) {
         this.apiKey = apiKey;
+        this.baseUrl = baseUrl != null && !baseUrl.isEmpty() ? baseUrl : "https://api.anthropic.com";
         this.model = model;
         this.maxTokens = maxTokens;
         this.temperature = temperature;
@@ -32,6 +34,7 @@ public class ClaudeModel implements LLMModel {
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
+                .proxy(java.net.Proxy.NO_PROXY)
                 .build();
         this.mapper = new ObjectMapper();
     }
@@ -44,43 +47,28 @@ public class ClaudeModel implements LLMModel {
             body.put("max_tokens", this.maxTokens);
             body.put("temperature", this.temperature);
 
-            ArrayNode messages = body.putArray("messages");
-
-            if (sysPrompt != null && !sysPrompt.isEmpty()) {
-                ObjectNode sysMsg = messages.addObject();
-                sysMsg.put("role", "user");
-                sysMsg.put("content", sysPrompt);
-            }
-
-            for (Msg msg : history) {
-                if (sysPrompt != null && !sysPrompt.isEmpty() && msg.getRole().equals("system")) {
-                    continue;
-                }
-                ObjectNode m = messages.addObject();
-                m.put("role", msg.getRole());
-                m.put("content", msg.getContent());
-            }
-
-            // If system prompt was added as first user message and we have history,
-            // Claude needs a separate system field
-            // Reset and do it properly
-            body.remove("messages");
+            // Build messages array — filter out system-role messages from history
+            // (Claude Messages API requires system in top-level "system" field, not in messages)
             ArrayNode msgArray = body.putArray("messages");
+            for (Msg msg : history) {
+                if ("system".equals(msg.getRole())) {
+                    continue; // skip system messages — handled by top-level field
+                }
+                ObjectNode m = msgArray.addObject();
+                m.put("role", msg.getRole());
+                // Claude API requires content to be a non-empty string
+                String content = msg.getContent();
+                m.put("content", content != null ? content : "");
+            }
 
+            // Claude uses top-level "system" field, not a system message in the array
             if (sysPrompt != null && !sysPrompt.isEmpty()) {
                 body.put("system", sysPrompt);
             }
 
-            for (Msg msg : history) {
-                ObjectNode m = msgArray.addObject();
-                m.put("role", msg.getRole());
-                m.put("content", msg.getContent());
-            }
-
             String json = mapper.writeValueAsString(body);
 
-            String anthropicBaseUrl = "https://api.anthropic.com";
-            String url = anthropicBaseUrl + "/v1/messages";
+            String url = this.baseUrl + "/v1/messages";
 
             Request request = new Request.Builder()
                     .url(url)
@@ -101,8 +89,12 @@ public class ClaudeModel implements LLMModel {
                 StringBuilder sb = new StringBuilder();
                 if (content != null && content.isArray()) {
                     for (JsonNode block : content) {
-                        if ("text".equals(block.get("type").asText())) {
+                        String blockType = block.get("type").asText();
+                        if ("text".equals(blockType)) {
                             sb.append(block.get("text").asText());
+                        } else if ("tool_use".equals(blockType)) {
+                            // Serialize tool_use block as JSON so callers can parse it
+                            sb.append("[TOOL_USE:").append(mapper.writeValueAsString(block)).append("]");
                         }
                     }
                 }

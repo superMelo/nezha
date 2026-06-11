@@ -39,7 +39,7 @@ public class ChatService {
             }
         }, keyHolder);
 
-        Long id = ((Number)keyHolder.getKeys().get("ID")).longValue();
+        Long id = keyHolder.getKey().longValue();
 
         Map<String, Object> session = new HashMap<String, Object>();
         session.put("id", id);
