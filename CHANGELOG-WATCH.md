@@ -1,9 +1,67 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-10
+**日期**：2026-06-11
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-11）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 212.7K | +0.8K | 活跃 | push 06-10 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 190K | +1.2K | 活跃 | push 06-11，.env解析修复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.9K | 0 | ❌ 停滞 | 最后push 04-15（连续27天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.2K | +0.1K | 活跃 | push 06-11 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26.5K | +0.2K | 活跃 | push 06-11 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 21.8K | +1.2K | 🚀活跃 | push 06-10，**线程安全修复** |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.05K | 活跃 | **v1.16.2发布**（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-10 |
+
+### 重点动态
+
+1. **headroom 21.8K星** — 修复线程安全问题（thread-local tree-sitter parsers），说明开始支持高并发场景。
+2. **LangChain4j v1.16.2发布** — v1.16.1后仅4天，快速补丁节奏。
+3. **hermes-agent .env解析修复** — HERMES_HOME环境变量解析更健壮。
+4. **autogen 连续27天零更新**，正式停止维护。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 增长放缓至+1.2K/天** — 高速爆发期已过，进入稳定增长。并发安全修复是重要里程碑。
+2. **LangChain4j 持续快速迭代**（13天3个版本）— Java生态Agent框架最活跃。
+3. **autogen 27天零更新**可从观察名单移除。
+4. **本周无新Agent框架进入Trending**。
+
+---
+
+## 📋 Nezha v0.5.1 状态
+
+MySQL 8.4 持久化已完成，功能稳定。
+
+| 功能 | 状态 |
+|------|------|
+| 长期记忆 | ✅ MySQL持久化 |
+| 定时任务 | ✅ Cron调度 |
+| Token压缩 | ✅ CompressService |
+| 模型路由 | ✅ ModelRouter |
+| 编排模式 | ✅ 4种Pipeline |
+| 文件上传 | ✅ FileService |
+| Persona模板 | ✅ 6内置+自定义 |
+| Artifact日志 | ✅ 自动工作日志 |
+| MySQL持久化 | ✅ |
+
+### 下次关注
+- LangChain4j v1.16.x 新增Agent模式
+- headroom 并发安全修复参考
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-10</summary>
 
 ## 🔥 重点仓库状态（2026-06-10）
 
