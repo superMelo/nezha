@@ -176,29 +176,6 @@ public class BaseAgent {
             }
         }
 
-        // Format 2: Also scan the entire content for tool_name(args) patterns
-        // when the model uses them without the [TOOL_CALLS] marker
-        if (!found) {
-            java.util.regex.Pattern p = java.util.regex.Pattern.compile("(\\w+)\\(([^)]*)\\)");
-            java.util.regex.Matcher m = p.matcher(content);
-            while (m.find()) {
-                String toolName = m.group(1);
-                // Skip common non-tool function-looking patterns
-                if (toolName.equals("function") || toolName.equals("if") || toolName.equals("for")
-                        || toolName.equals("while") || toolName.equals("return") || toolName.equals("print")
-                        || toolName.equals("var") || toolName.equals("let") || toolName.equals("const")
-                        || toolName.length() < 4) continue;
-                if (toolRegistry.hasHandler(toolName)) {
-                    String args = m.group(2);
-                    String result = toolRegistry.executeTool(toolName, args);
-                    if (result != null) {
-                        results.append("[").append(toolName).append(" result]: ").append(result).append("\n");
-                        found = true;
-                    }
-                }
-            }
-        }
-
         return found ? results.toString() : null;
     }
 

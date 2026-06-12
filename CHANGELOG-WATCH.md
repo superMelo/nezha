@@ -1,9 +1,64 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-11
+**日期**：2026-06-12
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-12）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 213.5K | +0.8K | 活跃 | push 06-11 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 191K | +1K | 活跃 | push 06-12，**MCP能力门控修复** |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.9K | 0 | ❌ 停滞 | 最后push 04-15（连续28天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.3K | +0.1K | 活跃 | push 06-11 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 26.8K | +0.3K | 活跃 | push 06-11 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 23.2K | **+1.4K** | 🚀活跃 | push 06-12，代理客户端追踪修复 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.05K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-11 |
+
+### 重点动态
+
+1. **headroom 23.2K星** — 日增+1.4K持续强劲，`fix(wrap): track shared proxy clients with markers` 修复代理客户端追踪问题。
+2. **hermes-agent MCP能力门控修复** — `fix(mcp): capability-gate tools/list so prompt-only MCP servers can co-exist` — MCP服务器兼容性提升。
+3. **autogen 连续28天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 持续爆发**，23.2K（+1.4K/天），进入稳定高速增长期。
+2. **hermes-agent 稳定在+1K/天**，MCP兼容性问题修复说明生态扩展在推进。
+3. **ECC 213K+**稳步增长，Agent性能优化赛道持续领跑。
+4. **LangChain4j v1.16.2 稳定**，无新版本发布。
+
+
+---
+
+## 📋 Nezha v0.5.2 状态
+
+新增 BrowserToolService + SystemToolService（commit d157b8c），MySQL持久化稳定运行。
+
+| 功能 | 状态 |
+|------|------|
+| 长期记忆 | ✅ MySQL持久化 |
+| 定时任务 | ✅ Cron调度 |
+| Token压缩 | ✅ CompressService |
+| 模型路由 | ✅ ModelRouter |
+| 编排模式 | ✅ 4种Pipeline |
+| 文件上传 | ✅ FileService |
+| Persona模板 | ✅ 6内置+自定义 |
+| Artifact日志 | ✅ 自动工作日志 |
+| 浏览器工具 | ✅ BrowserToolService |
+| 系统工具 | ✅ SystemToolService |
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-11</summary>
 
 ## 🔥 重点仓库状态（2026-06-11）
 
