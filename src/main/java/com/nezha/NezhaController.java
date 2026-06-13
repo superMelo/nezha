@@ -86,7 +86,18 @@ public class NezhaController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", deleted);
         if (!deleted) {
-            result.put("error", "Cannot delete built-in agent");
+            result.put("error", "Cannot delete built-in agent or agent not found");
+        }
+        return result;
+    }
+
+    @DeleteMapping("/api/agents/id/{id}")
+    public Map<String, Object> deleteAgentById(@PathVariable Long id) {
+        boolean deleted = agentService.deleteAgentById(id);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", deleted);
+        if (!deleted) {
+            result.put("error", "Cannot delete built-in agent or agent not found");
         }
         return result;
     }

@@ -74,10 +74,11 @@ public class AgentService {
     public List<Map<String, Object>> listAgents() {
         List<Map<String, Object>> agents = new ArrayList<Map<String, Object>>();
         List<Map<String, Object>> rows = jdbc.queryForList(
-                "SELECT name, memory_size, model_name, is_custom FROM agent_config ORDER BY name");
+                "SELECT id, name, memory_size, model_name, is_custom FROM agent_config ORDER BY name");
 
         for (Map<String, Object> row : rows) {
             Map<String, Object> agent = new HashMap<String, Object>();
+            agent.put("id", row.get("ID"));
             agent.put("name", row.get("NAME"));
             agent.put("memorySize", row.get("MEMORY_SIZE"));
             agent.put("modelName", row.get("MODEL_NAME"));
@@ -88,15 +89,21 @@ public class AgentService {
     }
 
     public BaseAgent createCustomAgent(String name, String sysPrompt, String modelName, int memorySize) {
+        // Auto-inject agent identity: ensure agent knows its EXACT full name
+        String identityPrompt = "Your exact name is \"" + name + "\". "
+                + "You must always call yourself \"" + name + "\" — never shorten, abbreviate, or change it. "
+                + "The name \"" + name + "\" is your complete identity. ";
+        String fullPrompt = identityPrompt + (sysPrompt != null ? sysPrompt : "You are a helpful assistant.");
+
         BaseAgent agent = new BaseAgent(modelFactory, toolRegistry, modelRouter);
         agent.setName(name);
-        agent.setSysPrompt(sysPrompt);
+        agent.setSysPrompt(fullPrompt);
         agent.setModelName(modelName);
         agent.setMemorySize(memorySize);
 
         jdbc.update(
                 "INSERT INTO agent_config (name, system_prompt, model_name, memory_size, is_custom) VALUES(?, ?, ?, ?, TRUE) ON DUPLICATE KEY UPDATE system_prompt=VALUES(system_prompt), model_name=VALUES(model_name), memory_size=VALUES(memory_size)",
-                name, sysPrompt, modelName, memorySize);
+                name, fullPrompt, modelName, memorySize);
 
         customAgents.add(agent);
         return agent;
@@ -173,9 +180,27 @@ public class AgentService {
         }
         // Remove from custom agents list
         customAgents.removeIf(a -> a.getName().equals(name));
+        // Remove from database - check if a row was actually deleted
+        int rows = jdbc.update("DELETE FROM agent_config WHERE name = ? AND is_custom = TRUE", name);
+        return rows > 0;
+    }
+
+    public boolean deleteAgentById(Long id) {
+        // Don't delete built-in agents (id <= 3)
+        Map<String, Object> row = null;
+        List<Map<String, Object>> rows = jdbc.queryForList(
+                "SELECT name, is_custom FROM agent_config WHERE id = ?", id);
+        if (!rows.isEmpty()) row = rows.get(0);
+        if (row == null) return false;
+        String name = (String) row.get("NAME");
+        Boolean isCustom = (Boolean) row.get("IS_CUSTOM");
+        if (isCustom == null || !isCustom) return false;
+
+        // Remove from custom agents list
+        customAgents.removeIf(a -> a.getName().equals(name));
         // Remove from database
-        jdbc.update("DELETE FROM agent_config WHERE name = ? AND is_custom = TRUE", name);
-        return true;
+        int deleted = jdbc.update("DELETE FROM agent_config WHERE id = ? AND is_custom = TRUE", id);
+        return deleted > 0;
     }
 
     public String getAgentModelName(String name) {

@@ -106,8 +106,11 @@ public class PipelineService {
         String type = (String) row.get("TYPE");
         String configJson = (String) row.get("CONFIG_JSON");
 
+        // Parse full config from JSON
+        Map<String, Object> config = parseConfig(configJson);
+
         // Parse agent names from JSON
-        List<String> agentNames = parseAgentNames(configJson);
+        List<String> agentNames = configAgentNames(config);
 
         // Build context with REAL BaseAgent instances
         PipelineContext ctx = new PipelineContext(message, sessionId);
@@ -116,19 +119,38 @@ public class PipelineService {
             if (agent != null) {
                 ctx.setVariable("agent." + agentName, agent);
             } else {
-                // Store name as fallback so pipeline can show a useful error
                 ctx.setVariable("agent." + agentName, agentName);
             }
         }
 
+        // Load full session history for pipelines that need shared context (groupchat)
+        List<Msg> fullHistory = chatService.getMessages(sessionId);
+        ctx.setVariable("fullHistory", fullHistory);
+
+        // For ifelse: also resolve then/else branch agents
+        if ("ifelse".equals(type) || "if-else".equals(type)) {
+            List<String> thenAgents = configStringList(config, "thenAgents");
+            List<String> elseAgents = configStringList(config, "elseAgents");
+            for (String agentName : thenAgents) {
+                BaseAgent agent = agentService.getAgent(agentName);
+                if (agent != null) ctx.setVariable("agent." + agentName, agent);
+                else ctx.setVariable("agent." + agentName, agentName);
+            }
+            for (String agentName : elseAgents) {
+                BaseAgent agent = agentService.getAgent(agentName);
+                if (agent != null) ctx.setVariable("agent." + agentName, agent);
+                else ctx.setVariable("agent." + agentName, agentName);
+            }
+        }
+
         // Build and execute pipeline
-        Pipeline pipeline = buildPipeline(pipelineName, type, agentNames);
+        Pipeline pipeline = buildPipeline(pipelineName, type, agentNames, config);
         List<Msg> results = pipeline.execute(message, ctx);
 
         return results;
     }
 
-    private Pipeline buildPipeline(String name, String type, List<String> agentNames) {
+    private Pipeline buildPipeline(String name, String type, List<String> agentNames, Map<String, Object> config) {
         if ("sequential".equals(type)) {
             SequentialPipeline p = new SequentialPipeline(name, "");
             for (String agent : agentNames) {
@@ -141,18 +163,47 @@ public class PipelineService {
                 p.addAgent(agent);
             }
             return p;
+        } else if ("groupchat".equals(type) || "group".equals(type)) {
+            GroupChatPipeline p = new GroupChatPipeline(name, "");
+            for (String agent : agentNames) {
+                p.addAgent(agent);
+            }
+            return p;
         } else if ("loop".equals(type)) {
             LoopPipeline p = new LoopPipeline(name, "");
             if (!agentNames.isEmpty()) {
                 p.setAgentName(agentNames.get(0));
             }
+            // Read type-specific config
+            if (config.containsKey("maxIterations")) {
+                p.setMaxIterations(configInt(config, "maxIterations", 20));
+            }
+            if (config.containsKey("exitCondition")) {
+                p.setExitCondition(configString(config, "exitCondition", "done"));
+            }
             return p;
         } else if ("ifelse".equals(type) || "if-else".equals(type)) {
             IfElsePipeline p = new IfElsePipeline(name, "");
-            // Parse then/else agents from config: first agent is "then", second is "else"
-            if (agentNames.size() >= 1) {
-                // Store then-branch agent names in context
-                p.setConditionVariable("route.condition");
+            p.setConditionVariable(configString(config, "conditionVariable", "route.condition"));
+
+            // Build then-branch sub-pipeline
+            List<String> thenAgents = configStringList(config, "thenAgents");
+            if (!thenAgents.isEmpty()) {
+                SequentialPipeline thenPipe = new SequentialPipeline(name + "-then", "");
+                for (String agent : thenAgents) {
+                    thenPipe.addAgent(agent);
+                }
+                p.setThenPipeline(thenPipe);
+            }
+
+            // Build else-branch sub-pipeline
+            List<String> elseAgents = configStringList(config, "elseAgents");
+            if (!elseAgents.isEmpty()) {
+                SequentialPipeline elsePipe = new SequentialPipeline(name + "-else", "");
+                for (String agent : elseAgents) {
+                    elsePipe.addAgent(agent);
+                }
+                p.setElsePipeline(elsePipe);
             }
             return p;
         } else {
@@ -166,33 +217,66 @@ public class PipelineService {
     }
 
     /**
-     * Simple JSON parser for {"agents":["A","B"]} format.
+     * Parse config JSON into a Map, or return empty map on failure.
      */
     @SuppressWarnings("unchecked")
-    private List<String> parseAgentNames(String json) {
-        List<String> names = new ArrayList<String>();
+    private Map<String, Object> parseConfig(String json) {
         if (json == null || json.isEmpty()) {
-            return names;
+            return new java.util.HashMap<String, Object>();
         }
         try {
-            // Use Jackson if available, otherwise simple string parsing
             com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            Map<String, Object> map = mapper.readValue(json, Map.class);
-            Object agentsObj = map.get("agents");
-            if (agentsObj instanceof List) {
-                for (Object o : (List<?>) agentsObj) {
-                    names.add(o.toString());
-                }
-            }
+            return mapper.readValue(json, Map.class);
         } catch (Exception e) {
-            // Fallback: try simple regex extraction
-            java.util.regex.Pattern p = java.util.regex.Pattern.compile("\"([^\"]+)\"");
-            java.util.regex.Matcher m = p.matcher(json);
-            while (m.find()) {
-                names.add(m.group(1));
+            return new java.util.HashMap<String, Object>();
+        }
+    }
+
+    /** Extract agent names list from parsed config. */
+    @SuppressWarnings("unchecked")
+    private List<String> configAgentNames(Map<String, Object> config) {
+        List<String> names = new ArrayList<String>();
+        Object agentsObj = config.get("agents");
+        if (agentsObj instanceof List) {
+            for (Object o : (List<?>) agentsObj) {
+                names.add(o.toString());
             }
         }
         return names;
+    }
+
+    /** Read an integer from config with a default. */
+    private int configInt(Map<String, Object> config, String key, int defaultValue) {
+        Object val = config.get(key);
+        if (val instanceof Number) {
+            return ((Number) val).intValue();
+        }
+        if (val instanceof String) {
+            try { return Integer.parseInt((String) val); } catch (NumberFormatException e) { }
+        }
+        return defaultValue;
+    }
+
+    /** Read a string from config with a default. */
+    private String configString(Map<String, Object> config, String key, String defaultValue) {
+        Object val = config.get(key);
+        if (val instanceof String && !((String) val).isEmpty()) {
+            return (String) val;
+        }
+        return defaultValue;
+    }
+
+    /** Read a string list from config. */
+    @SuppressWarnings("unchecked")
+    private List<String> configStringList(Map<String, Object> config, String key) {
+        List<String> result = new ArrayList<String>();
+        Object val = config.get(key);
+        if (val instanceof List) {
+            for (Object o : (List<?>) val) {
+                result.add(o.toString());
+            }
+        }
+        return result;
     }
 }
 

@@ -52,8 +52,9 @@ public class ChatService {
 
     public List<Map<String, Object>> listSessions() {
         List<Map<String, Object>> rows = jdbc.queryForList(
-                "SELECT id, title, agent_name, pipeline_name, model_name, created_at, updated_at "
-                        + "FROM chat_session ORDER BY updated_at DESC");
+                "SELECT cs.id, cs.title, cs.agent_name, cs.pipeline_name, cs.model_name, cs.created_at, cs.updated_at, "
+                        + "(SELECT LEFT(cm.content, 80) FROM chat_message cm WHERE cm.session_id = cs.id AND cm.role = 'user' ORDER BY cm.id DESC LIMIT 1) AS last_message "
+                        + "FROM chat_session cs ORDER BY cs.updated_at DESC");
         List<Map<String, Object>> sessions = new ArrayList<Map<String, Object>>();
         for (Map<String, Object> row : rows) {
             Map<String, Object> session = new HashMap<String, Object>();
@@ -64,6 +65,7 @@ public class ChatService {
             session.put("modelName", row.get("MODEL_NAME"));
             session.put("createdAt", row.get("CREATED_AT"));
             session.put("updatedAt", row.get("UPDATED_AT"));
+            session.put("lastMessage", row.get("LAST_MESSAGE"));
             sessions.add(session);
         }
         return sessions;

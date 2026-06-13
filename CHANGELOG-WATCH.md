@@ -1,9 +1,63 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-12
+**日期**：2026-06-13
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-13）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 214.3K | +0.8K | 活跃 | push 06-11 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 192K | +1K | 活跃 | push 06-12，新增Kimi K2.7支持 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.9K | 0 | ❌ 停滞 | 最后push 04-15（连续29天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.4K | +0.1K | 活跃 | push 06-12 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)] | 26.9K | +0.1K | 活跃 | push 06-13 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 24.7K | **+1.5K** | 🚀活跃 | push 06-12，Bedrock + 冗余工具调用检测 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.1K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-12 |
+
+### 重点动态
+
+1. **headroom 24.7K星** — 日增+1.5K，`feat(parser): detect re-issued identical tool calls as reread waste` 新增冗余工具调用检测；`fix(proxy): add native Bedrock converse-stream route` 增加AWS Bedrock支持。
+2. **hermes-agent 新增Kimi K2.7支持** — 扩展模型兼容性。
+3. **autogen 连续29天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 加速突破24K**（+1.5K/天），Bedrock支持和冗余检测说明产品在快速成熟。
+2. **hermes-agent 持续+1K/天**，Kimi K2.7支持说明其模型适配范围在扩大。
+3. **LangChain4j 无新版本**，v1.16.2已稳定3天。
+4. **整体格局不变**，周末流量略有下降。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定运行，MySQL持久化。BrowserTool + SystemTool 已集成（commit d157b8c）。
+
+| 功能 | 状态 |
+|------|------|
+| 长期记忆 | ✅ MySQL |
+| 定时任务 | ✅ Cron |
+| Token压缩 | ✅ |
+| 模型路由 | ✅ |
+| 编排模式 | ✅ 4种 |
+| 文件上传 | ✅ |
+| Persona模板 | ✅ |
+| Artifact日志 | ✅ |
+| 浏览器工具 | ✅ |
+| 系统工具 | ✅ |
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-12</summary>
 
 ## 🔥 重点仓库状态（2026-06-12）
 

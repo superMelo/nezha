@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
@@ -197,6 +197,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .type-badge.loop{background:rgba(255,153,34,.15);color:var(--orange)}
 .type-badge.bcast{background:rgba(170,85,255,.15);color:var(--purple)}
 .type-badge.ifelse{background:rgba(0,204,136,.15);color:var(--green)}
+.type-badge.gc{background:rgba(255,51,102,.15);color:var(--accent)}
 
 /* Confirm dialog */
 .confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:150;animation:fadeIn .2s ease}
@@ -238,6 +239,76 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 @keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
 .toast.success{border-color:var(--green);background:rgba(0,204,136,.08)}
 .toast.error{border-color:var(--accent);background:var(--accent-glow)}
+
+/* === Pipeline type cards === */
+.pipe-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.pipe-type-card{padding:14px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;text-align:center;transition:all .2s;background:var(--bg0)}
+.pipe-type-card:hover{border-color:var(--border2);background:var(--hover);transform:translateY(-1px)}
+.pipe-type-card.selected{border-color:var(--accent);background:var(--accent-glow);box-shadow:0 0 0 1px var(--accent)}
+.pipe-type-card .pt-icon{font-size:26px;display:block;margin-bottom:6px}
+.pipe-type-card .pt-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+.pipe-type-card .pt-desc{font-size:10px;color:var(--dim);line-height:1.4}
+.pipe-type-card.seq-col{border-left:3px solid var(--blue)}
+.pipe-type-card.loop-col{border-left:3px solid var(--orange)}
+.pipe-type-card.bcast-col{border-left:3px solid var(--purple)}
+.pipe-type-card.ifelse-col{border-left:3px solid var(--green)}
+.pipe-type-card.gc-col{border-left:3px solid var(--accent)}
+
+/* === Pipeline flow preview === */
+.pipe-flow{margin:12px 0;padding:12px;border-radius:var(--radius);background:var(--bg0);border:1px dashed var(--border);display:flex;align-items:center;gap:0;flex-wrap:wrap;min-height:44px;justify-content:center}
+.pipe-flow .flow-node{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;background:var(--card);border:1px solid var(--border);color:var(--text)}
+.pipe-flow .flow-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pipe-flow .flow-arrow{color:var(--dim);font-size:16px;margin:0 2px;font-weight:300}
+.pipe-flow .flow-plus{color:var(--dim);font-size:13px;margin:0 3px;font-weight:300}
+.pipe-flow .flow-empty{color:var(--dim);font-size:11px}
+.pipe-flow .flow-loop-label{font-size:9px;color:var(--orange);font-weight:600;margin:0 2px}
+
+/* === Agent order list === */
+.agent-order-list{max-height:180px;overflow-y:auto;border:1px solid var(--border);border-radius:8px}
+.agent-order-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);background:var(--bg0);transition:background .15s;cursor:default}
+.agent-order-item:last-child{border-bottom:none}
+.agent-order-item:hover{background:var(--hover)}
+.agent-order-item .ao-handle{cursor:grab;color:var(--dim);font-size:13px;user-select:none;padding:0 2px;letter-spacing:1px}
+.agent-order-item .ao-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.agent-order-item .ao-name{flex:1;font-size:13px;font-weight:500;color:var(--text)}
+.agent-order-item .ao-idx{font-size:10px;color:var(--dim);margin-right:4px;min-width:16px}
+.agent-order-item .ao-btns{display:flex;gap:2px}
+.agent-order-item .ao-btn{padding:3px 7px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--dim);cursor:pointer;font-size:11px;transition:all .15s}
+.agent-order-item .ao-btn:hover{background:var(--hover);color:var(--text);border-color:var(--border2)}
+.agent-order-item .ao-btn.ao-rm:hover{color:var(--accent);border-color:var(--accent)}
+.agent-order-hint{font-size:10px;color:var(--dim);margin-top:4px}
+
+/* === Type-specific config panel === */
+.pipe-config-panel{margin:8px 0;padding:12px;border-radius:var(--radius);background:var(--bg0);border:1px solid var(--border);animation:cfgIn .2s ease}
+@keyframes cfgIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.pipe-config-panel label{font-size:10px;color:var(--dim);margin:6px 0 3px;display:block;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.pipe-config-panel label:first-child{margin-top:0}
+.pipe-config-panel input,.pipe-config-panel select{width:100%;padding:8px 10px;background:var(--input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:12px;font-family:inherit;outline:none;transition:var(--transition)}
+.pipe-config-panel input:focus,.pipe-config-panel select:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-glow)}
+.pipe-config-panel .hint{font-size:10px;color:var(--dim);margin-top:3px;line-height:1.4}
+.pipe-config-panel .config-row{display:flex;gap:8px}
+.pipe-config-panel .config-row>div{flex:1}
+
+/* Wider modal for pipeline creation */
+.modal-wide{width:560px}
+
+/* Agent checkbox grid */
+.ag-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;max-height:140px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:5px}
+.ag-grid .ag-check{padding:5px 8px;cursor:pointer;border-radius:4px;font-size:12px;transition:.12s;display:flex;align-items:center;gap:6px}
+.ag-grid .ag-check:hover{background:var(--bg0)}
+.ag-grid .ag-check input{margin:0;accent-color:var(--accent)}
+.ag-grid .ag-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* === Mention bar === */
+.mention-bar{display:none;padding:4px 18px;border-bottom:1px solid var(--border);background:var(--sidebar);gap:6px;align-items:center;flex-wrap:wrap}
+.mention-bar.active{display:flex}
+.mention-bar .mention-label{font-size:10px;color:var(--dim);margin-right:2px;white-space:nowrap}
+.mention-chip{padding:3px 9px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.mention-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px)}
+.mention-chip .mc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* @mention highlight in messages */
+.mention-highlight{color:var(--accent);font-weight:700;background:var(--accent-glow);padding:1px 4px;border-radius:3px}
 
 /* === Responsive === */
 @media(max-width:768px){
@@ -297,6 +368,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <span id="modelLabelText">· 模型:</span>
       <select id="modelSelect" onchange="switchModel(this.value)"></select>
     </div>
+    <div class="mention-bar" id="mentionBar"><span class="mention-label">@</span></div>
     <div class="chat" id="chatArea">
       <div class="empty">
         <div class="logo-icon">N</div>
@@ -349,7 +421,19 @@ zh:{
   on:'开',off:'关',every:'每',
   footSend:'发送',footNewline:'换行',modelLabel:'模型',
   emptyHintDefault:'选择一个智能体或编排开始对话',
-  hdrSettings:'设置',hdrMemory:'记忆',hdrTasks:'任务',hdrTheme:'主题'
+  hdrSettings:'设置',hdrMemory:'记忆',hdrTasks:'任务',hdrTheme:'主题',
+  pipeTypeSeqDesc:'按顺序串联多个智能体，前一个的输出成为后一个的输入',
+  pipeTypeLoopDesc:'重复调用同一智能体，直到满足退出条件或达到最大迭代次数',
+  pipeTypeBcastDesc:'将相同消息同时发送给所有智能体，收集全部回复',
+  pipeTypeIfelseDesc:'根据条件变量选择不同的执行分支',
+  groupchat:'群聊',pipeTypeGcDesc:'多智能体共享上下文，互相可见对方回复，像群聊一样协作讨论',
+  maxIterations:'最大迭代次数',exitCondition:'退出条件',
+  exitCondDone:'[DONE] 标记（默认）',exitCondPass:'[PASS] 标记',exitCondCustom:'自定义关键词...',
+  conditionVar:'条件变量',thenAgent:'Then 分支',elseAgent:'Else 分支',
+  flowPreview:'流程预览',agentsOrder:'智能体顺序（可排序）',
+  selectAgent:'选择智能体',noAgentsAvailable:'暂无可用智能体',
+  minOneAgent:'至少选择一个智能体',
+  atMention:'提及'
 },
 en:{
   newChat:'New Chat',chatTab:'Chats',agentsTab:'Agents',pipesTab:'Pipes',personaTab:'Persona',
@@ -374,7 +458,19 @@ en:{
   on:'ON',off:'OFF',every:'Every',
   footSend:'Send',footNewline:'New line',modelLabel:'Model',
   emptyHintDefault:'Select an agent or pipeline to start chatting',
-  hdrSettings:'Settings',hdrMemory:'Memory',hdrTasks:'Tasks',hdrTheme:'Theme'
+  hdrSettings:'Settings',hdrMemory:'Memory',hdrTasks:'Tasks',hdrTheme:'Theme',
+  pipeTypeSeqDesc:'Chain multiple agents in sequence, each output feeds the next input',
+  pipeTypeLoopDesc:'Repeatedly call an agent until exit condition is met or max iterations reached',
+  pipeTypeBcastDesc:'Send the same message to all agents and collect all replies',
+  pipeTypeIfelseDesc:'Route to different branches based on a condition variable',
+  groupchat:'Group Chat',pipeTypeGcDesc:'Multi-agent shared context — all agents see each other\'s replies, collaborating like a group chat',
+  maxIterations:'Max Iterations',exitCondition:'Exit Condition',
+  exitCondDone:'[DONE] marker (default)',exitCondPass:'[PASS] marker',exitCondCustom:'Custom keyword...',
+  conditionVar:'Condition Variable',thenAgent:'Then Branch',elseAgent:'Else Branch',
+  flowPreview:'Flow Preview',agentsOrder:'Agent Order (drag to reorder)',
+  selectAgent:'Select Agent',noAgentsAvailable:'No agents available',
+  minOneAgent:'Select at least one agent',
+  atMention:'Mention'
 }};
 function T(k){return I[lang][k]||k}
 
@@ -382,7 +478,7 @@ function T(k){return I[lang][k]||k}
 function api(m,u,b){var o={method:m,headers:{'Content-Type':'application/json'}};if(b)o.body=JSON.stringify(b);return fetch(u,o).then(function(r){return r.json()})}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function $V(id){var el=document.getElementById(id);return el?el.value:''}
-function typeClass(t){return{'sequential':'seq','loop':'loop','broadcast':'bcast','ifelse':'ifelse'}[t]||'seq'}
+function typeClass(t){return{'sequential':'seq','loop':'loop','broadcast':'bcast','ifelse':'ifelse','groupchat':'gc'}[t]||'seq'}
 function agentColor(name){
   var colors=['#ff3366','#3399ff','#00cc88','#ff9922','#aa55ff','#ff6688','#44aaff','#22ddaa','#ffbb44','#cc77ff'];
   var hash=0;for(var i=0;i<name.length;i++)hash=((hash<<5)-hash)+name.charCodeAt(i);
@@ -470,10 +566,14 @@ function loadSessions(){
     list.forEach(function(s){
       var div=document.createElement('div');
       div.className='item'+(curSess===s.id?' active':'');
+      var preview=s.lastMessage||'';
       var title=s.title||'New Chat';
+      // Use last user message as visible title if available, otherwise fallback to session title
+      var displayTitle=preview||title;
+      if(displayTitle.length>40)displayTitle=displayTitle.substring(0,40)+'...';
       var sub=(s.pipelineName?'🔀 ':s.agentName||'')+' · '+new Date(s.updatedAt).toLocaleString();
       var badge=s.pipelineName?'<span class="type-badge bcast">'+esc(s.pipelineName)+'</span>':'';
-      div.innerHTML='<div><div class="item-title">'+badge+esc(title)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')">×</span>';
+      div.innerHTML='<div><div class="item-title">'+badge+esc(displayTitle)+'</div><div class="item-sub">'+esc(sub)+'</div></div><span class="x" onclick="event.stopPropagation();delSess('+s.id+')">×</span>';
       div.onclick=function(){
         curSess=s.id;curAgent=s.pipelineName?null:s.agentName;curPipe=s.pipelineName||null;
         updateModelBar();loadSessions();loadMsgs();loadArtifacts();
@@ -503,7 +603,7 @@ function loadAgents(){
         return{
           title:a.name,sub:(last?'Last: '+new Date(last.updatedAt).toLocaleString():'Memory: '+(a.memorySize||50)),
           _active:curAgent===a.name&&!curPipe,
-          del: a.isCustom ? "delAgent('"+esc(a.name)+"')" : null,
+          del: a.isCustom ? "delAgent("+a.id+",'"+esc(a.name)+"')" : null,
           onclick:function(){
             curAgent=a.name;curPipe=null;updateModelBar();
             var found=null;
@@ -518,9 +618,9 @@ function loadAgents(){
     });
   });
 }
-function delAgent(name){
+function delAgent(id,name){
   askConfirm(T('deleteAgentConfirm'),'"'+name+'" '+T('deleteAgentWarn'),function(){
-    api('DELETE','/api/agents/'+name).then(function(d){
+    api('DELETE','/api/agents/id/'+id).then(function(d){
       if(!d.success){toast(d.error||'Failed','error');return}
       if(curAgent===name){curAgent=null;curSess=null;curPipe=null;updateModelBar();showEmpty()}
       loadAgents();loadSessions();toast(T('agentDeleted'),'success');
@@ -529,10 +629,13 @@ function delAgent(name){
 }
 
 // ============ PIPELINES ============
+var _pipeConfigs={};
 function loadPipes(){
   api('GET','/api/pipelines').then(function(d){
     var el=document.getElementById('listArea');
     if(curTab!=='pipes')return;
+    // Cache configs for @mention lookup
+    _pipeConfigs={};(d.pipelines||[]).forEach(function(p){_pipeConfigs[p.name]=p});
     var list=(d.pipelines||[]).map(function(p){
       return{
         title:p.name,sub:p.description||'',typeBadge:p.type,typeCls:typeClass(p.type),
@@ -606,10 +709,21 @@ function showEmpty(){
 
 function updateModelBar(){
   var bar=document.getElementById('modelBar'),ind=document.getElementById('modeIndicator'),sel=document.getElementById('modelSelect');
-  if(!curAgent&&!curPipe){bar.style.display='none';return}
+  var mbar=document.getElementById('mentionBar');
+  if(!curAgent&&!curPipe){bar.style.display='none';mbar.className='mention-bar';return}
   bar.style.display='flex';
   if(curPipe){ind.innerHTML='<span class="pipe-badge">🔀 '+esc(curPipe)+'</span>'}
   else{ind.innerHTML='<span style="color:var(--text);font-weight:600">🤖 '+esc(curAgent||'')+'</span>'}
+  // Show @mention bar for groupchat pipelines
+  if(curPipe&&_pipeConfigs[curPipe]&&_pipeConfigs[curPipe].type==='groupchat'){
+    var cfg=_pipeConfigs[curPipe];var agents=[];
+    try{var cj=JSON.parse(cfg.configJson||'{}');agents=cj.agents||[]}catch(e){}
+    if(agents.length>0){
+      var h='<span class="mention-label">@</span>';
+      agents.forEach(function(a){h+='<span class="mention-chip" onclick="insertMention(\''+esc(a)+'\')" title="'+T('atMention')+' '+esc(a)+'"><span class="mc-dot" style="background:'+agentColor(a)+'"></span>'+esc(a)+'</span>'});
+      mbar.innerHTML=h;mbar.className='mention-bar active';
+    }else{mbar.className='mention-bar'}
+  }else{mbar.className='mention-bar'}
   // Load models for dropdown
   api('GET','/api/models').then(function(d){
     var models=d.models||[];sel.innerHTML='';
@@ -621,6 +735,18 @@ function updateModelBar(){
   });
 }
 function switchModel(name){curModel=name;}
+function insertMention(name){
+  var inp=document.getElementById('msgInput');
+  var before=inp.value.substring(0,inp.selectionStart||0);
+  var after=inp.value.substring(inp.selectionEnd||0);
+  var mention='@'+name+' ';
+  // Don't duplicate if already at cursor
+  if(before.endsWith(mention))return;
+  inp.value=before+mention+after;
+  var pos=(before+mention).length;
+  inp.setSelectionRange(pos,pos);
+  inp.focus();
+}
 
 function loadMsgs(){
   if(!curSess)return;
@@ -727,7 +853,7 @@ function send(){
 
     var body={message:msg,agentName:curAgent||curPipe||'Assistant'};
     if(curPipe)body.pipelineName=curPipe;
-    else body.sessionId=curSess;
+    if(curSess)body.sessionId=curSess;
 
     function doPost(){
       api('POST','/api/chat',body).then(function(d){
@@ -783,10 +909,11 @@ function saveSettings(){
 }
 
 function showMemory(){
-  if(!curAgent){alert(T('noSelect'));return}
-  api('GET','/api/memory/'+curAgent).then(function(d){
+  var owner=curAgent||curPipe;
+  if(!owner){alert(T('noSelect'));return}
+  api('GET','/api/memory/'+owner).then(function(d){
     var mems=d.memories||[];
-    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('memoryTitle')+': '+esc(curAgent)+'</h2><div style="max-height:300px;overflow-y:auto">';
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('memoryTitle')+': '+esc(owner)+'</h2><div style="max-height:300px;overflow-y:auto">';
     mems.forEach(function(m){h+='<div class="mem-item"><div class="time">'+(m.createdAt||'')+'</div><div class="text">'+esc(m.content)+'</div></div>'});
     if(mems.length===0)h+='<div class="list-hint">'+T('noMemories')+'</div>';
     h+='</div><div class="btns"><button class="sec" onclick="closeModal()">'+T('close')+'</button></div></div></div>';
@@ -829,29 +956,161 @@ function showAddModal(type){
       document.getElementById('modal').innerHTML=h;
     });
   }else{
-    api('GET','/api/agents').then(function(d){
-      var agents=(d.agents||[]).map(function(a){
-        return '<label class="ag-check"><input type="checkbox" value="'+esc(a.name)+'"> '+esc(a.name)+'</label>';
-      }).join('');
-      var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2>'+T('pipeTitle')+'</h2>';
-      h+='<label>'+T('name')+'</label><input id="pp-n">';
-      h+='<label>'+T('type')+'</label><select id="pp-t"><option value="sequential">'+T('seq')+'</option><option value="loop">'+T('loop')+'</option><option value="broadcast">'+T('broadcast')+'</option><option value="ifelse">'+T('ifelse')+'</option></select>';
-      h+='<label>'+T('desc')+'</label><input id="pp-d">';
-      h+='<label>'+T('agentsCfg')+'</label><div id="pp-a" class="ag-list">'+agents+'</div>';
-      h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createPipe()">'+T('create')+'</button></div></div></div>';
-      document.getElementById('modal').innerHTML=h;
-    });
+    showPipeModal();
   }
 }
 function createAgent(){
   api('POST','/api/agents/custom',{name:$V('ag-n'),systemPrompt:$V('ag-p'),modelName:$V('ag-m')}).then(function(){closeModal();loadAgents()});
 }
+
+// ============ PIPE MODAL STATE ============
+var _pipeType='sequential',_pipeAgents=[],_pipeAllAgents=[];
+function showPipeModal(){
+  api('GET','/api/agents').then(function(d){
+    _pipeAllAgents=(d.agents||[]);_pipeType='sequential';_pipeAgents=[];
+    var h='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal modal-wide"><h2>'+T('pipeTitle')+'</h2>';
+    // Name
+    h+='<label>'+T('name')+'</label><input id="pp-n" placeholder="e.g. my-pipeline">';
+    // Type cards
+    h+='<label>'+T('type')+'</label><div class="pipe-type-grid">';
+    var types=[{v:'sequential',icon:'🔀',n:T('seq'),d:T('pipeTypeSeqDesc'),cls:'seq-col'},{v:'loop',icon:'🔄',n:T('loop'),d:T('pipeTypeLoopDesc'),cls:'loop-col'},{v:'broadcast',icon:'📢',n:T('broadcast'),d:T('pipeTypeBcastDesc'),cls:'bcast-col'},{v:'ifelse',icon:'🔱',n:T('ifelse'),d:T('pipeTypeIfelseDesc'),cls:'ifelse-col'},{v:'groupchat',icon:'👥',n:T('groupchat'),d:T('pipeTypeGcDesc'),cls:'gc-col'}];
+    types.forEach(function(t){
+      h+='<div class="pipe-type-card '+t.cls+(t.v==='sequential'?' selected':'')+'" id="ptc-'+t.v+'" onclick="selectPipeType(\''+t.v+'\')">';
+      h+='<span class="pt-icon">'+t.icon+'</span><div class="pt-name">'+esc(t.n)+'</div><div class="pt-desc">'+esc(t.d)+'</div></div>';
+    });
+    h+='</div>';
+    // Description
+    h+='<label>'+T('desc')+'</label><input id="pp-d" placeholder="'+T('desc')+'...">';
+    // Type-specific config panel
+    h+='<div id="pp-cfg" class="pipe-config-panel"></div>';
+    // Flow preview
+    h+='<label>'+T('flowPreview')+'</label><div class="pipe-flow" id="pp-flow"><span class="flow-empty">'+T('noAgentsAvailable')+'</span></div>';
+    // Agent selection area
+    h+='<label id="pp-agents-label">'+T('agentsOrder')+'</label><div id="pp-agents"></div>';
+    // Buttons
+    h+='<div class="btns"><button class="sec" onclick="closeModal()">'+T('cancel')+'</button><button class="pri" onclick="createPipe()">'+T('create')+'</button></div></div></div>';
+    document.getElementById('modal').innerHTML=h;
+    updatePipeForm();
+  });
+}
+function selectPipeType(type){
+  _pipeType=type;
+  document.querySelectorAll('.pipe-type-card').forEach(function(c){c.classList.remove('selected')});
+  var card=document.getElementById('ptc-'+type);if(card)card.classList.add('selected');
+  updatePipeForm();
+}
+function updatePipeForm(){
+  var cfg=document.getElementById('pp-cfg'),ag=document.getElementById('pp-agents'),
+    label=document.getElementById('pp-agents-label'),flow=document.getElementById('pp-flow');
+  if(!cfg)return;
+  if(_pipeType==='loop'){
+    cfg.innerHTML='<div class="config-row"><div><label>'+T('maxIterations')+'</label><input type="number" id="pp-mi" value="20" min="1" max="100" onchange="renderPipeFlow()"></div><div><label>'+T('exitCondition')+'</label><select id="pp-ec" onchange="onEcChange()"><option value="done">'+T('exitCondDone')+'</option><option value="pass">'+T('exitCondPass')+'</option><option value="custom">'+T('exitCondCustom')+'</option></select><input id="pp-ec-custom" style="display:none;margin-top:4px" placeholder="keyword..." oninput="renderPipeFlow()"></div></div>';
+    label.textContent=T('selectAgent');
+    renderAgentPicker();
+  }else if(_pipeType==='ifelse'){
+    cfg.innerHTML='<label>'+T('conditionVar')+'</label><input id="pp-cv" value="route.condition" oninput="renderPipeFlow()"><div class="config-row"><div><label>'+T('thenAgent')+'</label><select id="pp-then" onchange="renderPipeFlow()"><option value="">-- '+T('selectAgent')+' --</option></select></div><div><label>'+T('elseAgent')+'</label><select id="pp-else" onchange="renderPipeFlow()"><option value="">-- '+T('selectAgent')+' --</option></select></div></div>';
+    _pipeAllAgents.forEach(function(a){document.getElementById('pp-then').insertAdjacentHTML('beforeend','<option value="'+esc(a.name)+'">'+esc(a.name)+'</option>');document.getElementById('pp-else').insertAdjacentHTML('beforeend','<option value="'+esc(a.name)+'">'+esc(a.name)+'</option>')});
+    label.textContent='';ag.innerHTML='';renderPipeFlow();
+  }else if(_pipeType==='broadcast'){
+    cfg.innerHTML='<div class="hint">📢 '+T('pipeTypeBcastDesc')+'</div>';
+    label.textContent=T('selectAgent');renderAgentGrid();
+  }else if(_pipeType==='groupchat'){
+    cfg.innerHTML='<div class="hint">👥 '+T('pipeTypeGcDesc')+'</div>';
+    label.textContent=T('selectAgent');renderAgentGrid();
+  }else{
+    cfg.innerHTML='<div class="hint">🔀 '+T('pipeTypeSeqDesc')+'</div>';
+    label.textContent=T('agentsOrder');renderAgentOrderList();
+  }
+}
+function onEcChange(){document.getElementById('pp-ec-custom').style.display=document.getElementById('pp-ec').value==='custom'?'block':'none';renderPipeFlow()}
+function renderAgentGrid(){
+  var el=document.getElementById('pp-agents');if(!el)return;
+  if(_pipeAllAgents.length===0){el.innerHTML='<div class="list-hint">'+T('noAgentsAvailable')+'</div>';renderPipeFlow();return}
+  var h='<div class="ag-grid">';
+  _pipeAllAgents.forEach(function(a){var checked=_pipeAgents.indexOf(a.name)>=0?' checked':'';h+='<label class="ag-check"><input type="checkbox" value="'+esc(a.name)+'"'+checked+' onchange="togglePipeAgent(\''+esc(a.name)+'\',this.checked)"> <span class="ag-dot" style="background:'+agentColor(a.name)+'"></span> '+esc(a.name)+'</label>'});
+  h+='</div>';el.innerHTML=h;renderPipeFlow();
+}
+function renderAgentPicker(){
+  var el=document.getElementById('pp-agents');if(!el)return;
+  if(_pipeAllAgents.length===0){el.innerHTML='<div class="list-hint">'+T('noAgentsAvailable')+'</div>';renderPipeFlow();return}
+  var h='<select id="pp-sel-agent" onchange="onPickerChange()" style="width:100%;padding:8px;border-radius:8px;background:var(--input);border:1px solid var(--border);color:var(--text);font-size:12px">';
+  h+='<option value="">-- '+T('selectAgent')+' --</option>';
+  _pipeAllAgents.forEach(function(a){var sel=_pipeAgents.length>0&&_pipeAgents[0]===a.name?' selected':'';h+='<option value="'+esc(a.name)+'"'+sel+'>'+esc(a.name)+'</option>'});
+  h+='</select>';el.innerHTML=h;
+  if(_pipeAgents.length===0&&_pipeAllAgents.length>0){_pipeAgents=[_pipeAllAgents[0].name];var s=document.getElementById('pp-sel-agent');if(s)s.value=_pipeAgents[0]}
+  renderPipeFlow();
+}
+function onPickerChange(){_pipeAgents=[document.getElementById('pp-sel-agent').value];renderPipeFlow()}
+function togglePipeAgent(name,checked){if(checked){_pipeAgents.push(name)}else{_pipeAgents=_pipeAgents.filter(function(n){return n!==name})}renderPipeFlow()}
+function renderAgentOrderList(){
+  var el=document.getElementById('pp-agents');if(!el)return;
+  if(_pipeAllAgents.length===0){el.innerHTML='<div class="list-hint">'+T('noAgentsAvailable')+'</div>';renderPipeFlow();return}
+  if(_pipeAgents.length===0){_pipeAgents=_pipeAllAgents.map(function(a){return a.name})}
+  var h='<div class="agent-order-list">';
+  _pipeAgents.forEach(function(name,idx){
+    h+='<div class="agent-order-item"><span class="ao-handle" title="'+T('agentsOrder')+'">⋮⋮</span><span class="ao-idx">'+(idx+1)+'</span><span class="ao-dot" style="background:'+agentColor(name)+'"></span><span class="ao-name">'+esc(name)+'</span><div class="ao-btns">';
+    h+='<button class="ao-btn" onclick="movePipeAgent('+idx+',-1)"'+((idx===0)?' disabled':'')+'>▲</button>';
+    h+='<button class="ao-btn" onclick="movePipeAgent('+idx+',1)"'+((idx===_pipeAgents.length-1)?' disabled':'')+'>▼</button>';
+    h+='<button class="ao-btn ao-rm" onclick="removePipeAgent('+idx+')" title="'+T('delete')+'">✕</button></div></div>';
+  });
+  h+='</div><div class="agent-order-hint">🖱 '+T('agentsOrder')+'</div>';el.innerHTML=h;renderPipeFlow();
+}
+function movePipeAgent(idx,dir){var newIdx=idx+dir;if(newIdx<0||newIdx>=_pipeAgents.length)return;var tmp=_pipeAgents[idx];_pipeAgents[idx]=_pipeAgents[newIdx];_pipeAgents[newIdx]=tmp;renderAgentOrderList()}
+function removePipeAgent(idx){_pipeAgents.splice(idx,1);renderAgentOrderList()}
+function renderPipeFlow(){
+  var el=document.getElementById('pp-flow');if(!el)return;
+  if(_pipeAgents.length===0&&_pipeType!=='ifelse'){el.innerHTML='<span class="flow-empty">'+T('selectAgent')+'</span>';return}
+  var h='';
+  if(_pipeType==='sequential'){
+    _pipeAgents.forEach(function(name,idx){if(idx>0)h+='<span class="flow-arrow">→</span>';h+='<span class="flow-node"><span class="flow-dot" style="background:'+agentColor(name)+'"></span>'+esc(name)+'</span>'});
+  }else if(_pipeType==='loop'){
+    var name=_pipeAgents[0]||'?';
+    h='<span class="flow-node"><span class="flow-dot" style="background:'+agentColor(name)+'"></span>'+esc(name)+'</span><span class="flow-arrow">⟳</span><span class="flow-node"><span class="flow-dot" style="background:'+agentColor(name)+'"></span>'+esc(name)+'</span><span class="flow-loop-label">×'+($V('pp-mi')||20)+'</span>';
+  }else if(_pipeType==='broadcast'){
+    h='<span class="flow-node">📢</span><span class="flow-arrow">→</span>';
+    _pipeAgents.forEach(function(name,idx){if(idx>0)h+='<span class="flow-plus">+</span>';h+='<span class="flow-node"><span class="flow-dot" style="background:'+agentColor(name)+'"></span>'+esc(name)+'</span>'});
+  }else if(_pipeType==='groupchat'){
+    h='<span class="flow-node">👥</span><span class="flow-arrow">⇢</span>';
+    _pipeAgents.forEach(function(name,idx){if(idx>0)h+='<span class="flow-plus">+</span>';h+='<span class="flow-node"><span class="flow-dot" style="background:'+agentColor(name)+'"></span>'+esc(name)+'</span>'});
+    h+='<span class="flow-label" style="font-size:9px;color:var(--accent);margin-left:4px">🔄 共享上下文</span>';
+  }else if(_pipeType==='ifelse'){
+    var cv=$V('pp-cv')||'condition';
+    var tn=document.getElementById('pp-then'),en=document.getElementById('pp-else');
+    var thenName=tn?tn.value:'',elseName=en?en.value:'';
+    h='<span class="flow-node">'+esc(cv)+'</span><span class="flow-arrow">?</span>';
+    h+='<span class="flow-node" style="border-color:var(--green)"><span class="flow-dot" style="background:'+agentColor(thenName||'T')+'"></span>'+(thenName||'Then')+'</span>';
+    h+='<span class="flow-node" style="border-color:var(--accent);margin-left:4px"><span class="flow-dot" style="background:'+agentColor(elseName||'E')+'"></span>'+(elseName||'Else')+'</span>';
+  }
+  el.innerHTML=h;
+}
 function createPipe(){
-  var name=$V('pp-n'),type=$V('pp-t'),desc=$V('pp-d');
-  var checks=document.querySelectorAll('#pp-a input[type=checkbox]:checked');
-  var agents=Array.prototype.slice.call(checks).map(function(c){return c.value});
-  if(agents.length===0){alert('Select at least one agent');return}
-  api('POST','/api/pipelines',{name:name,type:type,description:desc,configJson:JSON.stringify({agents:agents})}).then(function(){closeModal();loadPipes()});
+  var name=$V('pp-n'),type=_pipeType,desc=$V('pp-d');
+  if(!name){alert(T('name')+' '+T('minOneAgent'));return}
+  var config={};
+  if(type==='loop'){
+    if(_pipeAgents.length===0){alert(T('minOneAgent'));return}
+    config.agents=_pipeAgents;
+    config.maxIterations=parseInt($V('pp-mi'))||20;
+    var ec=$V('pp-ec');
+    config.exitCondition=ec==='custom'?($V('pp-ec-custom')||'done'):(ec||'done');
+  }else if(type==='ifelse'){
+    var cv=$V('pp-cv')||'route.condition';
+    var thenVal=$V('pp-then'),elseVal=$V('pp-else');
+    if(!thenVal&&!elseVal){alert(T('minOneAgent'));return}
+    config.agents=[];config.conditionVariable=cv;
+    config.thenAgents=thenVal?[thenVal]:[];
+    config.elseAgents=elseVal?[elseVal]:[];
+  }else if(type==='broadcast'){
+    if(_pipeAgents.length===0){alert(T('minOneAgent'));return}
+    config.agents=_pipeAgents.slice();
+  }else if(type==='groupchat'){
+    if(_pipeAgents.length===0){alert(T('minOneAgent'));return}
+    config.agents=_pipeAgents.slice();
+  }else{
+    if(_pipeAgents.length===0){alert(T('minOneAgent'));return}
+    config.agents=_pipeAgents.slice();
+  }
+  api('POST','/api/pipelines',{name:name,type:type,description:desc,configJson:JSON.stringify(config)}).then(function(){closeModal();loadPipes()});
 }
 
 // ============ CONFIRM ============
