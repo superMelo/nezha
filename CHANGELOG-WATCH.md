@@ -1,9 +1,51 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-13
+**日期**：2026-06-14
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-14）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 214.9K | +0.6K | 活跃 | push 06-11 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 192.8K | +0.8K | 活跃 | push 06-13，桌面端审批UI修复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.9K | 0 | ❌ 停滞 | 最后push 04-15（连续30天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.5K | +0.1K | 活跃 | push 06-13 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)] | 26.9K | +0.1K | 活跃 | push 06-13 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 26.2K | **+1.5K** | 🚀活跃 | push 06-13，MCP输入Schema标准化 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.01K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-12 |
+
+### 重点动态
+
+1. **headroom 26.2K星** — 日增+1.5K持续强劲，`Normalize headroom_stats MCP input schema` MCP接口标准化，`session probes` 评估文档完善。
+2. **hermes-agent 桌面端修复** — `surface off-screen approvals via jump-to-bottom control`。
+3. **autogen 连续30天零更新**（满月），正式标记为死项目。
+4. **LangChain4j v1.16.2 已稳定4天**，无新版本。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 26K+，增长持续强劲**（+1.5K/天），MCP Schema标准化说明生态在成熟。
+2. **hermes-agent +0.8K/天**，周末略降，桌面端UX持续优化。
+3. **autogen 30天整月零更新**，可正式从所有关注列表移除。
+4. **周末整体活跃度降低**，无重大突破。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。最近新增 GroupChatPipeline + CharsetMigration（commit 598619f）。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-13</summary>
 
 ## 🔥 重点仓库状态（2026-06-13）
 
