@@ -1,9 +1,51 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-14
+**日期**：2026-06-15
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-15）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 215.5K | +0.6K | 活跃 | push 06-11 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 193.5K | +0.7K | 活跃 | push 06-14，revert无键并行搜索回退 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 58.9K | 0 | ❌ 停滞 | 最后push 04-15（连续32天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.6K | +0.1K | 活跃 | push 06-13 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27K | +0.1K | 活跃 | push 06-13 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 27.6K | **+1.4K** | 🚀活跃 | push 06-14，Windows hang修复 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.05K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 6.9K | 0 | 缓慢 | push 06-12 |
+
+### 重点动态
+
+1. **headroom 27.6K星** — 日增+1.4K，`Fix/magika new session hangs on windows` 修复Windows下的会话挂起问题，说明该项目开始关注多平台稳定性。
+2. **hermes-agent revert无键fallback** — `revert(web): remove keyless Parallel search fallback`，说明并行搜索功能有回归，回退了。
+3. **ECC 稳定push** — 06-11有CI漂移修复和context-size/compact触发修复。
+4. **autogen 连续32天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 突破27K**，Windows兼容性修复说明用户群在扩大。
+2. **hermes-agent 增速放缓**至+0.7K/天，进入平台期。
+3. **ECC 215K+**，稳居Agent性能优化榜首。
+4. **LangChain4j 无新版本**，v1.16.2已稳定5天。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。最近新增 GroupChatPipeline + CharsetMigration（commit 598619f）。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-14</summary>
 
 ## 🔥 重点仓库状态（2026-06-14）
 
