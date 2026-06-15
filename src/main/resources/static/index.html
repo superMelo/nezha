@@ -714,16 +714,30 @@ function updateModelBar(){
   bar.style.display='flex';
   if(curPipe){ind.innerHTML='<span class="pipe-badge">🔀 '+esc(curPipe)+'</span>'}
   else{ind.innerHTML='<span style="color:var(--text);font-weight:600">🤖 '+esc(curAgent||'')+'</span>'}
-  // Show @mention bar for groupchat pipelines
-  if(curPipe&&_pipeConfigs[curPipe]&&_pipeConfigs[curPipe].type==='groupchat'){
-    var cfg=_pipeConfigs[curPipe];var agents=[];
+  // Show @mention bar for multi-agent pipelines (groupchat, broadcast)
+  function renderMentionBar(){
+    if(!curPipe){mbar.className='mention-bar';return}
+    var cfg=_pipeConfigs[curPipe];
+    if(cfg&&(cfg.type==='groupchat'||cfg.type==='broadcast')){
+      showMentionChips(cfg);
+    }else{
+      // Config not cached yet — fetch from API
+      api('GET','/api/pipelines').then(function(d){(d.pipelines||[]).forEach(function(p){_pipeConfigs[p.name]=p});
+        var c=_pipeConfigs[curPipe];
+        if(c&&(c.type==='groupchat'||c.type==='broadcast'))showMentionChips(c);else mbar.className='mention-bar';
+      });
+    }
+  }
+  function showMentionChips(cfg){
+    var agents=[];
     try{var cj=JSON.parse(cfg.configJson||'{}');agents=cj.agents||[]}catch(e){}
     if(agents.length>0){
       var h='<span class="mention-label">@</span>';
       agents.forEach(function(a){h+='<span class="mention-chip" onclick="insertMention(\''+esc(a)+'\')" title="'+T('atMention')+' '+esc(a)+'"><span class="mc-dot" style="background:'+agentColor(a)+'"></span>'+esc(a)+'</span>'});
       mbar.innerHTML=h;mbar.className='mention-bar active';
     }else{mbar.className='mention-bar'}
-  }else{mbar.className='mention-bar'}
+  }
+  renderMentionBar();
   // Load models for dropdown
   api('GET','/api/models').then(function(d){
     var models=d.models||[];sel.innerHTML='';

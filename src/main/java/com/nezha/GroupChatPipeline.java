@@ -91,8 +91,11 @@ public class GroupChatPipeline extends Pipeline {
                 continue;
             }
 
+            // Limit tool rounds in group chat to avoid repetitive messages
+            agent.setMaxToolRounds(1);
             // Give the agent the FULL shared history
             List<Msg> replies = agent.chat(sharedHistory);
+            agent.setMaxToolRounds(3); // restore default
             allMessages.addAll(replies);
 
             // Append this agent's replies to shared history

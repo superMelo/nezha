@@ -12,6 +12,7 @@ public class BaseAgent {
     private String sysPrompt;
     private String modelName;
     private int memorySize;
+    private int maxToolRounds = 3;  // can be overridden by pipelines
 
     private final ModelFactory modelFactory;
     private final ToolRegistry toolRegistry;
@@ -23,6 +24,9 @@ public class BaseAgent {
         this.modelRouter = modelRouter;
         this.memorySize = 50;
     }
+
+    public int getMaxToolRounds() { return maxToolRounds; }
+    public void setMaxToolRounds(int maxToolRounds) { this.maxToolRounds = Math.max(1, maxToolRounds); }
 
     public String getName() {
         return name;
@@ -92,7 +96,9 @@ public class BaseAgent {
 
         List<Msg> allReplies = new ArrayList<Msg>();
         List<Msg> currentHistory = new ArrayList<Msg>(history);
-        int maxRounds = 5;
+        int maxRounds = this.maxToolRounds;
+        String lastFailedTool = null;
+        int sameToolFailures = 0;
 
         for (int round = 0; round < maxRounds; round++) {
             long startTime = System.currentTimeMillis();
@@ -132,6 +138,31 @@ public class BaseAgent {
                         toolMsg.setAgentName(this.name);
                         currentHistory.add(toolMsg);
                         allReplies.add(toolMsg);
+
+                        // Detect repeated failed tool calls to break early
+                        if (toolResults.contains("Error") || toolResults.contains("error") || toolResults.contains("失败")) {
+                            // Extract tool name from results
+                            String failedTool = toolResults.replaceAll("\\[.*?result\\]:.*", "").trim();
+                            if (failedTool.equals(lastFailedTool)) {
+                                sameToolFailures++;
+                            } else {
+                                lastFailedTool = failedTool;
+                                sameToolFailures = 1;
+                            }
+                            // If same tool fails twice in a row, stop retrying
+                            if (sameToolFailures >= 2) {
+                                Msg stopMsg = new Msg("system", "[System: Tool '" + lastFailedTool + "' failed repeatedly. Stopping tool calls to avoid infinite retry.]");
+                                stopMsg.setAgentName(this.name);
+                                currentHistory.add(stopMsg);
+                                allReplies.add(stopMsg);
+                                break;
+                            }
+                        }
+                    } else {
+                        // No tool results found, break the tool-calling loop
+                        Msg noResultMsg = new Msg("system", "[System: No tool results returned. Continuing conversation.]");
+                        noResultMsg.setAgentName(this.name);
+                        currentHistory.add(noResultMsg);
                     }
                     break;
                 }
