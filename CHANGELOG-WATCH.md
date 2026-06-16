@@ -1,9 +1,51 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-15
+**日期**：2026-06-16
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-16）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 216.2K | +0.7K | 活跃 | push 06-15 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 194.5K | +1K | 活跃 | push 06-16，技能递归删除安全修复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | +0.05K | ❌ 停滞 | 最后push 04-15（连续33天零更新） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.6K | +0.1K | 活跃 | push 06-15 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.1K | +0.1K | 活跃 | push 06-15 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 28.8K | **+1.2K** | 🚀活跃 | push 06-15，tree-sitter线程安全修复 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.05K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7K | +0.05K | 缓慢 | push 06-15 |
+
+### 重点动态
+
+1. **headroom 28.8K星** — push 06-15，`fix(compression): use thread-local tree-sitter parsers in code handler` 修复了代码压缩handler中的线程安全问题（与06-10的fix(transforms)对应），说明该项目在系统性加固并发安全。
+2. **hermes-agent 技能安全修复** — `fix(skills): guard recursive skill delete against tree-escape`，防止递归删除技能时路径逃逸。
+3. **ECC v2.0 稳定** — 06-15有context-size/compact触发修复。
+4. **autogen 连续33天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 稳在28K+**，系统性修复并发安全（transforms + code handler两处），进入生产可用阶段。
+2. **hermes-agent 周一工作日恢复+1K/天**，技能安全修复说明该项目在关注用户生产环境安全问题。
+3. **ECC 216K+**，稳居Agent性能优化赛道第一。
+4. **LangChain4j v1.16.2 已稳定6天**，无新版本，可能正在准备v1.17。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。最近新增 GroupChatPipeline（commit 598619f）。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-15</summary>
 
 ## 🔥 重点仓库状态（2026-06-15）
 
