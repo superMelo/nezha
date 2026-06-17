@@ -1,9 +1,49 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-16
+**日期**：2026-06-17
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-17）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 216.7K | +0.5K | 活跃 | push 06-16 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 195.4K | +0.9K | 活跃 | push 06-17，消息时间戳功能 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | 0 | ❌ 停滞 | 最后push 04-15（34天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.7K | +0.1K | 活跃 | push 06-16 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **30.1K** | **+1.3K** | 🎉 | push 06-16，**v0.26.0 + 30K里程碑** |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.1K | +0.05K | 活跃 | push 06-17 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.3K | +0.05K | 活跃 | v1.16.2（06-10） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7K | +0.05K | 缓慢 | push 06-16 |
+
+### 重点动态
+
+1. **🎉 headroom 突破30K星！** — v0.26.0发布。版本节奏极快：v0.24.0（06-09）→ v0.25.0（06-12）→ v0.26.0（06-16），维持2-3天一版本。
+2. **hermes-agent 消息时间戳** — `feat(gateway): gate message timestamps behind opt-in`，新增可选消息时间戳。
+3. **autogen 连续34天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 30K里程碑+超快迭代**：9天发3版（v0.24→v0.26），并发安全修复基本完成，进入快速功能和修复循环。
+2. **hermes-agent 195K+**，工作日增速+0.9K/天，功能侧重UX（时间戳、安全修复）。
+3. **LangChain4j 停滞6天**无新版本。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-16</summary>
 
 ## 🔥 重点仓库状态（2026-06-16）
 
