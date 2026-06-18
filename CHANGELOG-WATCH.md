@@ -1,9 +1,51 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-17
+**日期**：2026-06-18
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-18）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 217.3K | +0.6K | 活跃 | push 06-17 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 196.2K | +0.8K | 活跃 | push 06-17，xai搜索修复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59K | 0 | ❌ 停滞 | 最后push 04-15（35天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 53.8K | +0.1K | 活跃 | push 06-18 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **31.6K** | **+1.5K** | 🚀 | push 06-17，Dashboard UI修复 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.2K | +0.05K | 活跃 | push 06-18 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.05K | 活跃 | v1.16.2（06-10），已稳定8天 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7K | 0 | 缓慢 | push 06-17 |
+
+### 重点动态
+
+1. **headroom 31.6K** — 日增+1.5K持续强劲，v0.26.0后进入稳定修复期：代理端点修复、Dashboard浅色模式与对齐修复。
+2. **hermes-agent Docker修复** — `fix(docker): supervised gateway uses --replace to take over stale hold`，Docker部署稳定性改进。
+3. **hermes-agent xai搜索修复** — `fix(xai): scope native web_search to swap-only`，xAI模型搜索范围限制。
+4. **autogen 35天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 31.6K**，后v0.26.0进入修复期（Dashboard UI + proxy），增长仍然+1.5K/天。
+2. **hermes-agent 持续优化Docker部署**和模型兼容性（xai搜索修复），196K+。
+3. **LangChain4j v1.16.2 已稳定8天**，可能在准备v1.17大版本。
+4. **ECC 217K+**，稳居Agent性能优化赛道第一。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-17</summary>
 
 ## 🔥 重点仓库状态（2026-06-17）
 
