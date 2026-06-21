@@ -1,9 +1,55 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-18
+**日期**：2026-06-21
 **方式**：GitHub API
 
+> ⚠️ 06-19/06-20 因超时未执行，本次为 3 天合并报告
+
 ---
+
+## 🔥 重点仓库状态（2026-06-21）
+
+| 项目 | ⭐ Stars | 3日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 218.9K | +1.6K | 活跃 | push 06-21 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 198.3K | +2.1K | 活跃 | push 06-21，WhatsApp桥接修复 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **41.9K** | **+10.3K** | 🔥爆发 | push 06-20，Copilot BYOK + Claude Code集成 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.1K | +0.05K | ❌ | 最后push 04-15（37天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54K | +0.2K | 活跃 | push 06-20 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.2K | +0.1K | 活跃 | push 06-20 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.1K | 活跃 | **v1.16.3 发布**（06-18） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | +0.05K | 缓慢 | push 06-19 |
+
+### 🔥 重大动态
+
+1. **🚀 headroom 3天暴涨+10.3K至41.9K！** — 这是该项目的爆发性增长，可能被知名媒体/播客推荐。v0.26.0新增Copilot BYOK（自带密钥），v0.23.0起已支持GitHub Copilot订阅模式。最新commit：`docs(vertex): Claude Code + Vertex via Headroom guide`，说明正在与谷歌云深度集成。
+2. **LangChain4j v1.16.3** — **重要安全修复**：修复SQL注入漏洞（影响mariadb和pgvector模块），强烈建议升级。
+3. **hermes-agent 逼近200K** — WhatsApp桥接修复，Docker部署优化持续。
+4. **ECC 218.9K** — 稳居Agent性能优化赛道第一。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 41.9K 是现象级爆发**：3天+10.3K远超正常增速（平时+1.3K/天），Copilot BYOK + Vertex AI 集成说明其商业模式在成熟。
+2. **LangChain4j v1.16.3 安全修复**：SQL注入漏洞是严重问题，Nezha的MySQL查询也需检查是否有类似风险。
+3. **hermes-agent 将破200K**，WhatsApp集成说明多平台扩展策略。
+4. **autogen 37天零更新**，已无关注价值。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+**安全提示**：LangChain4j v1.16.3修复了SQL注入，Nezha中使用了动态SQL查询（如AgentService、MemoryService等），建议后续检查是否存在类似问题。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-18</summary>
 
 ## 🔥 重点仓库状态（2026-06-18）
 
