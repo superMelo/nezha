@@ -1,11 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-21
+**日期**：2026-06-22
 **方式**：GitHub API
 
-> ⚠️ 06-19/06-20 因超时未执行，本次为 3 天合并报告
+---
+
+## 🔥 重点仓库状态（2026-06-22）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 219.3K | +0.4K | 活跃 | push 06-21 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | **199K** | +0.7K | 🔜200K | push 06-22，即将破200K |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **44.4K** | **+2.5K** | 🔥爆发 | push 06-21，Windows UTF-8修复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.1K | 0 | ❌ | 最后push 04-15（38天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.1K | +0.1K | 活跃 | push 06-20 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.3K | +0.05K | 活跃 | push 06-21 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.05K | 活跃 | v1.16.3（06-18） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | +0.05K | 缓慢 | push 06-19 |
+
+### 重点动态
+
+1. **headroom 44.4K** — 日增+2.5K仍然强劲，v0.26.0后进入稳定修复：`Fix headroom learn crashing/no-op on Windows from missing UTF-8`（Windows中文用户福音！），`fix(e2e): align Codex wrap e2e`。
+2. **hermes-agent 199K** — **明天就破200K**，成为该赛道第三大仓库。
+3. **autogen 连续38天零更新**。
 
 ---
+
+## 📊 趋势分析
+
+1. **headroom 44.4K**，v0.26.0爆发后仍有+2.5K/天，Windows UTF-8修复说明中文用户群被激活。
+2. **hermes-agent 将破200K**，增速稳定在+0.7K/天。
+3. **ECC 219K+**，稳居Agent赛道第一。
+4. **LangChain4j 无新版本**，v1.16.3后4天无新发。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-21</summary>
 
 ## 🔥 重点仓库状态（2026-06-21）
 
