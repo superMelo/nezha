@@ -1,9 +1,52 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-22
+**日期**：2026-06-24
 **方式**：GitHub API
 
+> ⚠️ 06-23 因超时未执行，本次为 2 天合并报告
+
 ---
+
+## 🔥 重点仓库状态（2026-06-24）
+
+| 项目 | ⭐ Stars | 2日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 220.9K | +1.6K | 活跃 | push 06-22 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | **201.5K** | **+2.5K** | 🎉200K | push 06-24，**突破200K里程碑** |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **49.2K** | **+4.8K** | 🔥爆发 | push 06-24，即将破50K |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.2K | +0.1K | ❌ | 最后push 04-15（40天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.3K | +0.2K | 活跃 | push 06-24 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.4K | +0.1K | 活跃 | push 06-24 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.1K | 活跃 | v1.16.3（06-18） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | +0.05K | 缓慢 | push 06-24 |
+
+### 重点动态
+
+1. **🎉 hermes-agent 突破200K星！** — 成为Agent赛道第三大仓库（仅次于ECC 221K、crewAI 54K），2日增+2.5K。新版relay终端4401、浏览器验证修复。
+2. **headroom 49.2K** — 2日+4.8K，v0.26.0爆发后仍保持强劲增长。关键修复：Anthropic读超时、tree-sitter UTF-8字节偏移、类成员容器压缩。**明天破50K。**
+3. **autogen 连续40天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 49.2K→即将50K**：v0.26.0 Copilot BYOK引发连锁爆发，从vp0.23.0（06-04）到50K仅20天。
+2. **hermes-agent 200K**：WhatsApp + Docker + Relay终端扩展策略生效。
+3. **ECC 221K**，稳居Agent赛道第一。
+4. **LangChain4j 停滞6天**无新版本。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-22</summary>
 
 ## 🔥 重点仓库状态（2026-06-22）
 
