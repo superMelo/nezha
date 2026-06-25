@@ -1,11 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-24
+**日期**：2026-06-25
 **方式**：GitHub API
 
-> ⚠️ 06-23 因超时未执行，本次为 2 天合并报告
+---
+
+## 🔥 重点仓库状态（2026-06-25）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 221.2K | +0.3K | 活跃 | push 06-22 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 202.1K | +0.5K | 活跃 | push 06-25，稳定200K+ |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **49.9K** | +0.7K | 🔥 | push 06-24，**明天破50K** |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.2K | 0 | ❌ | 最后push 04-15（41天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.3K | +0.05K | 活跃 | push 06-25 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.4K | +0.1K | 活跃 | push 06-24 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.05K | 活跃 | v1.16.3（06-18） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | 0 | 缓慢 | push 06-24 |
+
+### 重点动态
+
+1. **headroom 49.9K** — 明天破50K。`feat(wrap): add --1m to preserve the 1M context window` 新增1M上下文窗口保留功能；`fix(proxy): keep large compression results on the critical path` 大压缩结果性能优化。
+2. **hermes-agent 202K**，增速放缓至+0.5K/天，进入平台期。
+3. **autogen 连续41天零更新**。
 
 ---
+
+## 📊 趋势分析
+
+1. **headroom 将破50K**，新增1M上下文保留功能说明在LLM长上下文场景中建立壁垒。
+2. **hermes-agent 200K+稳定**，增速放缓。
+3. **ECC 221K**，稳居第一。
+4. **LangChain4j 停滞7天**无新版本。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-24</summary>
 
 ## 🔥 重点仓库状态（2026-06-24）
 
