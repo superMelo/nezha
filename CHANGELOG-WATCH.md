@@ -1,9 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-25
+**日期**：2026-06-26
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-26）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 221.8K | +0.6K | 活跃 | push 06-25 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 203.1K | +1K | 活跃 | push 06-26 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **51K** | **+1.1K** | 🎉50K | push 06-25，**突破50K里程碑** |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.3K | 0 | ❌ | 最后push 04-15（42天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.4K | +0.1K | 活跃 | push 06-26 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.5K | +0.1K | 活跃 | push 06-25 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.05K | 活跃 | v1.16.3（06-18），停滞8天 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | 0 | 缓慢 | push 06-25 |
+
+### 重点动态
+
+1. **🎉 headroom 突破50K！** — v0.26.0 Copilot BYOK后的史诗级增长：06-04的30K→06-26的51K，22天涨21K。`feat(wrap): make tokensave the primary coding-task compressor` 将压缩功能升级为默认，`fix(transforms): gate tool string output from lossy compression` 防止工具输出被有损压缩。
+2. **hermes-agent 203K**，恢复+1K/天增速。
+3. **autogen 连续42天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 22天涨21K**，v0.26.0后的爆发增长未见放缓迹象。tokensave升级为主压缩器说明产品在快速成熟。
+2. **hermes-agent 203K**，稳定+1K/天。
+3. **ECC 222K**，稳居第一。
+4. **LangChain4j 停滞8天**无新版本，可能准备v1.17大版本。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-25</summary>
 
 ## 🔥 重点仓库状态（2026-06-25）
 
