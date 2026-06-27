@@ -1,9 +1,63 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-26
+**日期**：2026-06-27
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-27）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 222.2K | +0.4K | 活跃 | push 06-25 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 203.8K | +0.7K | 活跃 | push 06-27 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **52K** | **+1K** | 🚀 | push 06-27，WebSocket安全加固 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.3K | 0 | ❌ | 最后push 04-15（43天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.4K | +0.1K | 活跃 | push 06-26 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.7K | +0.1K | 活跃 | push 06-27 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | +0.05K | 🆕 | **v1.17.0 发布**（06-26） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | 0 | 缓慢 | push 06-26 |
+
+### 🆕 重点动态
+
+1. **LangChain4j v1.17.0 重磅发布！** 三大新特性：
+   - 🔥 **Debate agentic pattern** — 多Agent辩论模式！多个Agent对同一问题独立推理后辩论，选出最优答案。这是Java生态首个辩论式Agent编排。
+   - **Tool compensating action** — 工具执行失败时自动触发补偿/回滚操作。
+   - **Oracle Database for Chat Memory** — 新增Oracle数据库聊天记忆支持。
+   - **Expose unmapped raw streaming events** — 暴露未映射的原始流事件。
+2. **headroom 52K**，WebSocket origin安全加固，CCR hash路由守卫。
+3. **hermes-agent 203.8K**，稳定+0.7K/天。
+
+---
+
+## 📊 趋势分析
+
+1. **LangChain4j v1.17.0 的 Debate 模式值得关注** — Nezha 目前有 BroadcastPipeline（并行+合并），但 Debate 模式更进一层：多Agent辩论+投票选出最优答案。可作为 Nezha v0.6.0 的新 Pipeline 类型。
+2. **Tool compensating action** 模式也值得引入 — Nezha 的 ToolRegistry 可增加失败回调。
+3. **headroom 52K**，增长稳定在+1K/天。
+4. **autogen 43天死**。
+
+---
+
+## 🔧 待集成清单
+
+| 功能 | 来源 | 优先级 | 状态 |
+|------|------|--------|------|
+| Debate Pipeline（多Agent辩论） | LangChain4j v1.17.0 | 🟡 中 | 建议 Nezha v0.6.0 |
+| Tool 补偿/回滚动作 | LangChain4j v1.17.0 | 🟢 低 | 增强 ToolRegistry |
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-26</summary>
 
 ## 🔥 重点仓库状态（2026-06-26）
 
