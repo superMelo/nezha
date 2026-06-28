@@ -1,9 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-27
+**日期**：2026-06-28
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-28）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 222.6K | +0.4K | 活跃 | push 06-25 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 204.4K | +0.6K | 活跃 | push 06-28 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **52.6K** | +0.6K | 放缓 | push 06-28，安全加固+SBOM |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.3K | 0 | ❌ | 最后push 04-15（44天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.5K | +0.1K | 活跃 | push 06-27 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.8K | +0.1K | 活跃 | push 06-27 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.4K | 持平 | 活跃 | v1.17.0（06-26） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.1K | 0 | 缓慢 | push 06-26 |
+
+### 重点动态
+
+1. **headroom 52.6K** — 周末增速放缓至+0.6K。安全里程碑：`feat(security): stateless guarantee + model pinning` 无状态保证+模型锁定，`fix(deps): remediate dependency CVEs and publish SBOM` 发布软件物料清单。产品进入企业安全合规阶段。
+2. **hermes-agent 204.4K**，周末+0.6K。
+3. **LangChain4j v1.17.0 发布后稳定**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 安全合规化**：SBOM发布+依赖CVE修复+无状态保证，说明在准备企业级客户。
+2. **hermes-agent 204K**，200K后增速健康。
+3. **LangChain4j v1.17.0 Debate模式**值得后续跟进。
+4. **周末整体活跃度低**。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-27</summary>
 
 ## 🔥 重点仓库状态（2026-06-27）
 
