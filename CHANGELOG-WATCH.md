@@ -1,9 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-28
+**日期**：2026-06-29
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-29）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 223.1K | +0.5K | 活跃 | push 06-25 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 205K | +0.6K | 活跃 | push 06-29 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **53.1K** | +0.5K | 稳步 | push 06-28，周一恢复 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.3K | 0 | ❌ | 最后push 04-15（45天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.5K | +0.05K | 活跃 | push 06-28 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.9K | +0.1K | 活跃 | push 06-28 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | +0.05K | 活跃 | v1.17.0（06-26） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.05K | 缓慢 | push 06-26 |
+
+### 重点动态
+
+1. **headroom 53.1K** — 周一恢复+0.5K。`fix: recover persistent proxy feature checks` 代理功能恢复；`fix(bedrock): add boto3 1.41 + CRT for aws login credentials` Bedrock支持增强。
+2. **hermes-agent 205K**，周一恢复+0.6K。
+3. **LangChain4j v1.17.0 稳定中**，无新版本。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 增速稳定在+0.5K/天**，周末后自然恢复。
+2. **hermes-agent 205K+**，200K后增速健康。
+3. **ECC 223K**，稳居第一。
+4. **无重大突破**，赛道平稳。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-28</summary>
 
 ## 🔥 重点仓库状态（2026-06-28）
 
