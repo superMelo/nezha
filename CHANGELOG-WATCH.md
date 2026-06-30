@@ -1,9 +1,50 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-29
+**日期**：2026-06-30
 **方式**：GitHub API
 
 ---
+
+## 🔥 重点仓库状态（2026-06-30）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 223.5K | +0.4K | 活跃 | push 06-29 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 205.7K | +0.7K | 活跃 | push 06-30 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **53.9K** | +0.8K | 稳步 | push 06-29，OpenCode原生路由 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.4K | 0 | ❌ | 最后push 04-15（46天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.6K | +0.1K | 活跃 | push 06-29 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 27.9K | +0.1K | 活跃 | push 06-29 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | 持平 | 活跃 | v1.17.0（06-26） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.05K | 缓慢 | push 06-29 |
+
+### 重点动态
+
+1. **headroom 53.9K** — `fix(opencode): route native providers + load transport plugin` OpenCode 原生提供商路由修复；`chore: release main` 新版本发布。
+2. **hermes-agent 205.7K**，稳定+0.7K。
+3. **LangChain4j v1.17.0 发布后4天无新版**。
+
+---
+
+## 📊 趋势分析
+
+1. **6月总结**：headroom 从约30K飙至53.9K（+80%），hermes从190K到205.7K（+8%），ECC 219K→223.5K（+2%）。
+2. **autogen 46天死**，6月零更新。
+3. **LangChain4j 6月发2版**（v1.16.3 + v1.17.0 Debate模式）。
+4. **赛道已定型**：headroom（编码Agent）、hermes（部署Agent）、ECC（通用Agent）三足鼎立。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-29</summary>
 
 ## 🔥 重点仓库状态（2026-06-29）
 
