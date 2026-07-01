@@ -1,9 +1,53 @@
 # 🌍 开源智能体工具每日扫描报告
 
-**日期**：2026-06-30
+**日期**：2026-07-01
 **方式**：GitHub API
 
+> 🎉 下半场开局！
+
 ---
+
+## 🔥 重点仓库状态（2026-07-01）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 224.1K | +0.6K | 🔥 | push 07-01，**破224K** |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 206.5K | +0.8K | 活跃 | push 07-01 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **54.7K** | +0.8K | 🚀 | push 06-30，force-kompress-all |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.4K | 0 | ❌ | 最后push 04-15（47天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.6K | +0.1K | 活跃 | push 06-30 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28K | +0.1K | 活跃 | push 06-30 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | +0.05K | 🆕 | **v1.17.1 patch**（06-30） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | 0 | 缓慢 | push 06-30 |
+
+### 重点动态
+
+1. **headroom 54.7K** — `feat(proxy): add --force-kompress-all` 全量内容压缩路由，`fix(compression): reject lossy unmarked tool output` 防止工具输出损毁。压缩策略持续演进。
+2. **LangChain4j v1.17.1** — v1.17.0 Debate模式的补丁版，修复edge case。
+3. **ECC 劲增+0.6K** 破224K，可能是v0.9.0前奏。
+4. **hermes 206.5K**，稳定+0.8K。
+5. **autogen 47天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **7月开局**：headroom持续压缩战略（force-kompress-all），LangChain4j快速迭代。
+2. **ECC突然加速** +0.6K（平时+0.3-0.4K），值得关注。
+3. **LangChain4j 5天两版**（1.17.0→1.17.1），迭代加速。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-06-30</summary>
 
 ## 🔥 重点仓库状态（2026-06-30）
 
