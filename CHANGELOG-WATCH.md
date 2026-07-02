@@ -1,3 +1,52 @@
+﻿# 🌍 开源智能体工具每日扫描报告
+
+**日期**：2026-07-02
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-02）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 224.7K | +0.6K | 活跃 | push 07-01 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 207.3K | +0.8K | 活跃 | push 07-02 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | **55.2K** | +0.7K | 稳步 | push 07-01，transformers 5.3 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.4K | 0 | ❌ | 最后push 04-15（48天） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.7K | +0.1K | 活跃 | push 07-01 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.1K | +0.1K | 活跃 | push 07-01 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | 持平 | 稳定 | v1.17.1（06-30） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.05K | 缓慢 | push 07-01 |
+
+### 重点动态
+
+1. **headroom 55.2K** — chore(deps): bump transformers 5.0→5.3 ML依赖升级；ix(install): use Windows-safe PID liveness probe Windows安装健壮性修复。
+2. **hermes-agent 207.3K**，稳定+0.8K。
+3. **ECC 224.7K**，持续+0.6K/天。
+4. **autogen 连续48天零更新**。
+
+---
+
+## 📊 趋势分析
+
+1. **headroom 增速稳定在+0.7K/天**，依赖升级说明在紧跟ML生态（transformers 5.3是最新）。
+2. **hermes-agent 207K+**，200K后增速健康。
+3. **ECC 225K**，稳居第一。
+4. **无重大突破**，赛道平稳。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-01</summary>
+
 # 🌍 开源智能体工具每日扫描报告
 
 **日期**：2026-07-01
@@ -43,6 +92,10 @@
 v0.5.2 稳定，MySQL持久化。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
