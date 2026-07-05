@@ -1,4 +1,63 @@
-﻿# 🌍 开源智能体工具每日扫描报告
+# 🌍 开源智能体工具每日扫描报告
+
+**日期**：2026-07-05
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-05）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 226.0K | +0.3K | 活跃 | push 07-04 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 209.2K | +0.5K | 🔥 | push **今天**，3个会话管理修复 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 56.5K | +0.3K | 稳步 | push 07-03 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.5K | 0 | ❌ | 最后push 04-15（**81天**） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 54.9K | +0.1K | 活跃 | push 07-04 |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.2K | +0.02K | 活跃 | push **今天** |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | 持平 | 稳定 | v1.17.1 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | 持平 | 缓慢 | push 07-03 |
+
+### 重点动态
+
+1. **hermes-agent 209.2K** — 昨天3个重要修复：
+   - ix(gateway): clear last-resolved-model cache on /new — /new命令清模型缓存，避免配置切换后使用旧模型
+   - ix(gateway): attach credential_pool to session /model overrides — 会话model覆盖接入credential_pool，支持计费轮换
+   - ix(gateway): load display config from routed profile — 从profile加载display配置
+   
+2. **ECC 226K**，持续增长。
+
+3. **supermemory 今天推送**（内存/上下文引擎）。
+
+4. **autogen 81天零更新**，正式宣告死亡。
+
+---
+
+## 📊 趋势分析
+
+1. **hermes-agent 会话管理持续演进**，/new清缓存、model override接入credential_pool这些修复对Nezha会话系统有参考价值。
+2. **ECC稳步向227K迈进**，无重大功能更新。
+3. **autogen已死**，81天零更新可从监控列表移除。
+4. **headroom 56.5K**，增速放缓但仍稳定。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+**待集成参考**：
+- hermes /new 清模型缓存机制（会话重置时清理状态）
+- hermes credential_pool 接入（API Key轮换/计费）
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-02</summary>
+
+# 🌍 开源智能体工具每日扫描报告
 
 **日期**：2026-07-02
 **方式**：GitHub API
@@ -92,6 +151,10 @@ v0.5.2 稳定，MySQL持久化。
 v0.5.2 稳定，MySQL持久化。
 
 ---
+
+
+</details>
+
 
 
 </details>
