@@ -1,5 +1,54 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-06
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-06）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 226.3K | +0.3K | 活跃 | push 07-04 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 209.7K | +0.5K | 🔥 | push 今天，持续活跃 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 56.8K | +0.3K | 稳步 | push 07-05 |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.0K | +0.1K | 活跃 | push 07-05 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.5K | +0.02K | ❌ | 最后push 04-15（82天） |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.2K | 持平 | 活跃 | push 07-05 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | 持平 | 稳定 | v1.17.1 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | 持平 | 缓慢 | push 07-05 |
+
+### 重点动态
+
+1. **hermes-agent 209.7K** — 今天继续推送，延续会话管理修复。连续活跃，200K后增速稳健。
+2. **crewAI 55.0K** — 增速恢复，突破55K心理关口。
+3. **headroom 56.8K** — 稳步增长，无大版本更新。
+4. **autogen 82天零更新**，正式宣告死亡。
+
+---
+
+## 📊 趋势分析
+
+1. **hermes-agent 连续2天推送**，200K俱乐部中最活跃。
+2. **crewAI 突破55K**，增速恢复到+0.1K/天。
+3. **ECC 226K+**，稳居第一但增速放缓。
+4. **无重大技术突破**，赛道进入稳定期。
+
+---
+
+## 📋 Nezha 状态
+
+v0.5.2 稳定，MySQL持久化。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-05</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-05
 **方式**：GitHub API
 
@@ -51,6 +100,10 @@ v0.5.2 稳定，MySQL持久化。
 - hermes credential_pool 接入（API Key轮换/计费）
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
