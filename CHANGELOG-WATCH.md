@@ -1,5 +1,69 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-07
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-07）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 226.7K | +0.4K | 活跃 | push 07-06 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 210.4K | +0.7K | 🔥 | push **今天**，model picker 修复 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 57.2K | +0.4K | 🔥 | push **今天** |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.0K | +0.03K | 🔥 | push **今天**，模型目录大重构 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.5K | 持平 | ❌ | 最后push 04-15（**83天**） |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.2K | +0.01K | 🔥 | push **今天** |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | +0.03K | 稳定 | push 07-06 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | 持平 | 缓慢 | push 07-06 |
+
+### 重点动态
+
+1. **四仓库同一天推送（07-07）** — hermes-agent、headroom、crewAI、supermemory 全部今天 push，极其罕见。
+2. **hermes-agent 210.4K** — 今日 5 个 commit，全部围绕 model picker 修复（web/tui 自定义模型探针刷新、-m 全局持久化问题）。
+3. **crewAI 55.0K** — mega-PR #6462：模型向导改为动态拉取最新模型，三级回退（vendor API → curated list → LiteLLM），35 个测试。Claude Opus 4.8 主写。
+4. **headroom 57.2K** — 今天推送，延续 token 压缩战略。
+5. **autogen 83天零更新**，彻底死亡。
+
+### hermes-agent 今日 commit（07-07 UTC 00:37 push）
+
+| SHA | 消息 |
+|-----|------|
+| 8301654 | fix(web): refresh dashboard model picker |
+| 3bee33 | fix(tui): keep bare custom model listing stable |
+| 4b4f058 | fix(tui): probe active custom model provider |
+| 4131ec3 | fix(tui): support model picker refresh |
+| 70c6ae6 | fix(tui): stop hermes --tui -m from persisting the model globally (#59805) |
+
+核心：5 个 fix 全围绕 model picker 自定义模型体验。#59805 是关键 bug：-m CLI 参数意外写入 config.yaml 成为全局默认，已修复为 session 级别。
+
+### crewAI 今日 mega-PR #6462
+
+eat(cli): pull latest LLM models dynamically in the crew wizard
+
+- **问题**：crew wizard 硬编码模型列表，几周就过时
+- **方案**：model_catalog.get_provider_models() 三级回退
+  1. vendor API（openai/anthropic/gemini/groq/cerebras/ollama 有 key 时）
+  2. curated hardcoded list（最新数据：Anthropic Fable 5 / Opus 4.8 / Sonnet 5；OpenAI GPT-5.5；Gemini 3.5 Flash 等）
+  3. LiteLLM feed（无 curated 的供应商）
+- **亮点**：6h 缓存、按日期/版本排名、humanize 标签、负缓存防止重复拉取失败
+- 35 个测试，Claude Opus 4.8 主写
+
+### Nezha 集成参考
+
+- **hermes #59805 修复**：session-scoped 模型切换不写 config.yaml → 值得在 Nezha Pipeline 编排中参考类似隔离机制
+- **crewAI 模型动态目录**：Nezha 的模型选择器也可以考虑 vendor API 动态拉取
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-06</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-06
 **方式**：GitHub API
 
@@ -41,6 +105,10 @@
 v0.5.2 稳定，MySQL持久化。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
