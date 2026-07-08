@@ -1,5 +1,66 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-08
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-08）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 227.1K | +0.4K | 活跃 | push 07-06 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 211.0K | +0.6K | 🔥 | push **今天**，dashboard 多 profile 会话修复 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 57.5K | +0.4K | 🔥 | push **今天**，但仅为文档清理 |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.1K | +0.07K | 稳定 | push 07-07 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.6K | +0.02K | ❌ | 最后push 04-15（**84天**） |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.2K | +0.04K | 稳定 | push 07-07 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.5K | +0.01K | 稳定 | push 07-07 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.01K | 缓慢 | push 07-07 |
+
+### 重点动态
+
+1. **两仓库今天推送** — hermes-agent（00:52）、headroom（00:16）。
+2. **hermes-agent 211.0K** — 今日 3 commit，全部围绕 dashboard 多 profile 会话管理（model profile scoping、WhatsApp pairing、profile-scoped SessionDB resume）。
+3. **headroom 57.5K** — 今日 3 commit **全是文档**（Codex 安装说明、删除已退役 IntelligentContext 文案、修正对比表）。无功能变更，注意官方已确认 **Pipeline 现在只用 live-zone compression**。
+4. **autogen 84 天零更新**，彻底死亡。
+5. **OpenBMB/AgentScope** — 404 不可访问（仓库已移除/重命名），停止追踪。
+
+### hermes-agent 今日 commit（07-08）
+
+| SHA | 消息 |
+|-----|------|
+| 4f620a0 | Add WhatsApp dashboard pairing flow |
+| 6015ee5 | fix: pass profile-scoped SessionDB to _session_latest_descendant in dashboard chat PTY resume |
+| 543f069 | Fix dashboard chat model profile scoping |
+
+**核心趋势**：dashboard 多 profile 会话隔离（model profile scoping / profile-scoped SessionDB）。这与 Nezha 的 pipeline_name 会话编排持久化问题思路一致——**会话应按 profile/pipeline 隔离状态库**，可参考。
+
+### headroom 今日 commit（07-08，文档为主）
+
+| SHA | 消息 |
+|-----|------|
+| 7721b2 | [codex] docs: add Codex install note (#1757) |
+| 9c203dd | [codex] docs: remove retired IntelligentContext copy (#1756) |
+| 031055 | docs(readme): correct lean-ctx comparison row (#1754) |
+
+**重要信号**：#1756 明确「Pipeline now uses live-zone compression only」——IntelligentContext / RollingWindow 已退役。headroom 战略收敛到单一 live-zone 压缩算法。
+
+### Nezha 集成评估
+
+- **无高价值功能需立即集成**：今日更新为文档 + dashboard 会话隔离修复，非可落地的框架级能力。
+- **可参考思路**：hermes 的 profile-scoped SessionDB → 用于修复 Nezha send() 创建 session 未传 pipelineName 的遗留问题（会话编排持久化不完整）。
+- **待处理遗留问题**（非本次触发）：① send() 创建 session 未传 pipelineName；② session_artifact 表需补充 schema；③ 文件上传 UI 完整性待验证。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-07</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-07
 **方式**：GitHub API
 
@@ -56,6 +117,10 @@
 - **crewAI 模型动态目录**：Nezha 的模型选择器也可以考虑 vendor API 动态拉取
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
