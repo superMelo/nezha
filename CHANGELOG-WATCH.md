@@ -1,5 +1,74 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-09
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-09）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 227.4K | +0.4K | 活跃 | push 07-08 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 211.6K | +0.6K | 🔥 | push **今天**，桌面 TS 重构 |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 57.9K | +0.4K | 🔥 | push **今天**，新功能 turn-hook |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.2K | +0.1K | 🔥 | push **今天**，v1.15.2 发布 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.6K | +0.03K | ❌ | 最后push 04-15（**85天**） |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.3K | +0.02K | 稳定 | push 07-07 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.6K | +0.01K | 稳定 | push 07-08 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.001K | 缓慢 | push 07-08 |
+
+### 重点动态
+
+1. **三仓库今天推送** — hermes-agent（00:09）、headroom（00:38）、crewAI（00:25，v1.15.2）。
+2. **headroom 57.9K** — 今日推出**新功能** 	urn-hook 扩展点（#1891）：允许扩展插件观察/重写出站工具消息、并可重驱动单次模型回合。这是 proxy 层中间件机制。
+3. **crewAI 55.2K** — 发布 **v1.15.2**（#6477/#6479），并修复模型目录缓存（#6468）：按精确 API Key 哈希缓存、永缓存本地 provider（Ollama）、TTL 缩短至 5m。
+4. **hermes-agent 211.6K** — 今日 commit 均为桌面端 TypeScript 重构（ts-ify、npm fix），无框架级功能。
+5. **autogen 85 天零更新**，彻底死亡。
+6. **OpenBMB/AgentScope** — 404 不可访问（第3天），停止追踪。
+7. **新信号**：hermes-agent 与 manifest 的 topics 已含 openclaw；manifest 是 hermes 的 LLM 网关/路由伴侣（byok）。
+
+### headroom 今日 commit（07-09，含新功能）
+
+| SHA | 消息 | 类型 |
+|-----|------|------|
+| ec950f7 | feat(proxy): add turn-hook extension point for buffered model turns (#1891) | **新功能** |
+| 3e85eb1 | fix(memory): resolve Trae cwd metadata from user reminders (#1887) | 修复 |
+
+**turn-hook 机制**：TurnHook 协议（on_request / on_response），注册表模式，空注册表时完全 no-op（字节级兼容）。on_response 可调用 call_model 重驱动并返回替换响应——这是 ASGI middleware 做不到的能力。
+
+**对 Nezha 的参考价值**：可在 Nezha 的 Tool 调用框架（ToolDef/ToolRegistry）层设计「模型调用前后钩子」扩展点，但需较大改造，非单 PR 可 drop-in。列入后续参考。
+
+### crewAI 今日 commit（07-09，v1.15.2）
+
+| SHA | 消息 | 类型 |
+|-----|------|------|
+| 289686a | docs: snapshot and changelog for v1.15.2 (#6479) | 文档 |
+| 589baa3 | feat: bump versions to 1.15.2 (#6477) | 发版 |
+| 835b93d | fix(cli): key model-catalog cache by exact API key, shorten TTL, skip Ollama (#6468) | 修复 |
+
+**#6468 缓存修复要点**（Nezha ModelRouter 可借鉴）：
+- 缓存 Key 用 **精确 API Key 的 sha256 摘要**（绝不存明文 Key），切换账号即 miss 重取
+- **本地 provider（Ollama）永不缓存**（随时变更）
+- 动态目录 TTL 从 6h 缩至 **5m**
+
+### Nezha 集成评估
+
+- **无高价值功能需立即集成**：headroom turn-hook 是 proxy 层专有机制、crewAI v1.15.2 是增量优化，均非 Nezha（Java Spring Boot）可 drop-in 的能力。
+- **可借鉴的优化**（非本次实现）：
+  - crewAI 模型目录缓存模式 → 改进 Nezha ModelRouter（哈希 Key、短 TTL、本地 provider 不缓存）
+  - headroom turn-hook 概念 → 未来 Nezha 扩展框架的钩子设计
+- **待处理遗留问题**（非本次触发）：① send() 创建 session 未传 pipelineName；② session_artifact 表需补充 schema；③ 文件上传 UI 完整性待验证。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-08</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-08
 **方式**：GitHub API
 
@@ -53,6 +122,10 @@
 - **待处理遗留问题**（非本次触发）：① send() 创建 session 未传 pipelineName；② session_artifact 表需补充 schema；③ 文件上传 UI 完整性待验证。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
