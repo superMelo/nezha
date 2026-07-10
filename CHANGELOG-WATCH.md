@@ -1,5 +1,106 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-10
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-10）
+
+| 项目 | ⭐ Stars | 日变化 | 状态 | 说明 |
+|------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 227.9K | +0.5K | 活跃 | push 07-09，Devin AI 协助修复 |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 212.2K | +0.6K | 🔥 | push **今天 00:26**，**修复严重数据丢失 bug** |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 58.2K | +0.3K | 🔥 | push **今天 00:51**，修复 UnboundLocalError 500 bug |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.3K | +0.1K | 🔥 | push 07-09，内存写 drain 修复、v1.15.2 后继续活跃 |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.6K | +0.03K | ❌ | 最后push 04-15（**86天**） |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.3K | +0.03K | 稳定 | push 07-09 |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.6K | +0.01K | 🔥 | push **07-09**，Embedding API 重大重构 |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.001K | 🔥 | push 07-09，修复健康检查挂起问题 |
+
+### 重点动态
+
+1. **hermes-agent 突破 212K**，今日推送含 **严重数据丢失修复**（#61145）：自动压缩时 
+ewrite_transcript() 意外删除已归档的历史消息。
+2. **LangChain4j Embedding API 重构**（#5735）：新增请求/响应 API、多模态 embedding（图文混合）、可观测性（Listener）。
+3. **manifest** 修复启动时模型注册表加载阻塞健康检查的 bug（可借鉴 Spring Boot 应用启动优化）。
+4. **autogen 86 天零更新**，正式死亡。
+
+### 🔴 重点：hermes-agent #61145 数据丢失 bug 修复
+
+| SHA | 消息 | 类型 |
+|-----|------|------|
+| 79f1274 | chore: AUTHOR_MAP entry for AlexFucuson9 (PR salvage) | 维护 |
+| 9cbac64 | test(gateway): pin in-place compaction skipping destructive rewrite | 测试 |
+| 549b87c | fix(gateway): prevent hygiene compression from destroying archived transcript (#61145) | **严重修复** |
+
+**Bug 机制**：当自动压缩触发 in-place compaction 时，rchive_and_compact() 已将旧消息软归档（active=0, compacted=1）并存入新 active 消息，但随后 hygiene handler 调用 
+ewrite_transcript() → 
+eplace_messages(active_only=False) 把包括已归档行的所有记录 **DELETE 掉**，静默数据丢失（用户看不到任何提示）。
+
+**修复**：in-place compaction 成功后跳过 
+ewrite_transcript()，只有 legacy session rotation 才调用 rewrite。
+
+**对 Nezha 的参考价值**：
+- 检查 Nezha 的 Auto Memory / Token 压缩逻辑是否存在类似隐患：压缩/归档后是否有可能被二次删除？
+- 当前 Nezha 压缩逻辑是否依赖 ctive_only 参数？需确认归档消息不会被意外清理
+- 列入**高价值待自查项**
+
+### headroom 今日修复（07-10，CI + bugfix）
+
+| SHA | 消息 | 类型 |
+|-----|------|------|
+| 2d41833 | ci: preserve merge labels while state is unknown | CI |
+| 595b709 | ci: keep ready label off changes-requested PRs | CI |
+| 1deb947 | fix(proxy): hoist ccr_workspace_key default so /v1/messages survives CCR-inject off (#1096) | **bugfix** |
+
+**#1096 bug**：当用 --no-ccr-inject-tool 且 ccr_proactive_expansion=True（均默认值）时，代码路径中 ccr_workspace_key 在条件块内赋值但在该块外被引用，导致 UnboundLocalError → FastAPI 500 → Claude Code SDK 重试 10 次 → 用户看到 API Error: 500。修复：将默认值 hoist 到条件块外。**这是 headroom 部署级 bug**，影响使用默认配置的用户。
+
+### LangChain4j Embedding API 重大重构（07-09，#5735）
+
+| SHA | 消息 | 类型 |
+|-----|------|------|
+| 2101288 | EmbeddingModel: request/response API with per-call parameters, multimodal inputs, and observability (#5735) | **重大重构** |
+
+**核心变更**（均为向后兼容 additive）：
+- 新 API：EmbeddingModel.embed(EmbeddingRequest) → EmbeddingResponse，与 ChatModel 请求/响应结构对齐
+- **多模态 embedding**：EmbeddingInput = 有序 Content 列表（text/image），模态自动检测
+- **per-call 参数**：EmbeddingInputType.QUERY / DOCUMENT 区分查询与文档 embedding（对 RAG 效果关键）
+- **可观测性**：EmbeddingModelListener（与 ChatModelListener 同形），inline 触发
+- **严格 opt-in / fail-fast**：请求用了模型不支持的参数/类型 → UnsupportedFeatureException，不静默忽略
+- **支持提供商**：OpenAI、Cohere（多模态）、Voyage（多模态）、Jina（CLIP）、Google Gemini 2（多模态）、Amazon Bedrock Titan
+- LangChain4j 的 **agent** 协作者提交了大量代码（gent@langchain4j.dev）
+
+### crewAI 今日（07-09，多 PR 推进）
+
+- #6497：在 Crew 任务完成事件前 **drain 所有内存写**（包括 per-agent memory、manager_agent memory、asyncio.to_thread），避免 telemetry listener 在内存保存完成前就拆除，导致 span orphaning
+- #6490：支持自定义 OpenAI 兼容 endpoint 和 legacy base URL 环境变量
+
+### manifest 今日（07-09）
+
+- #2465：修复 ProviderModelRegistryService 启动时同步等待全表扫描（超过 4 分钟），导致平台健康检查超时挂起。改为后台分页加载，期间注册表为空（已有空表处理逻辑），合并时原子写入。
+
+### ECC 今日（07-09）
+
+- #2481：Devin AI 协助修复 — pyproject URLs、Tkinter dashboard 优雅错误处理、1.x→2.0 migration guide
+- #2480：reviewer frontmatter retier、data scraper prose
+
+### Nezha 集成评估
+
+- **hermes-agent #61145**：需自查 Nezha Auto Memory 归档逻辑是否存在类似隐患（压缩后消息被二次删除）。高优先级但本次仅为记录，待手动核实。
+- **LangChain4j Embedding API**：对 Java 实现的 Nezha 无直接参考（已有 ModelRouter），暂不实现。
+- **manifest #2465 启动优化**：对 Spring Boot 的 Nezha 有参考价值（启动时异步加载非关键数据），可列入优化清单。
+- **无高价值功能需本次集成** → 未做代码变更 → 无需 mvn clean package 重启。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-09</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-09
 **方式**：GitHub API
 
@@ -61,6 +162,10 @@
 - **待处理遗留问题**（非本次触发）：① send() 创建 session 未传 pipelineName；② session_artifact 表需补充 schema；③ 文件上传 UI 完整性待验证。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
