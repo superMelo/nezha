@@ -1,5 +1,172 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-14
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-14）
+
+| 项目 | ⭐ Stars | 较07-10 | 4天增量 | 状态 | 说明 |
+|------|---------|---------|--------|------|------|
+| **[affaan-m/ECC](https://github.com/affaan-m/ECC)** | 228.3K | +0.4K | +0.4K | 稳定 | 无新 commit |
+| **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** | 212.8K | +0.6K | +0.6K | 活跃 | 36 commits（桌面沙箱、安全暴露、MTP加速） |
+| **[chopratejas/headroom](https://github.com/chopratejas/headroom)** | 58.4K | +0.2K | +0.2K | 🔥 | 16 commits（大量 proxy/CCR 重构） |
+| **[joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)** | 55.3K | +0.0K | +0.0K | 🔥 | 6 commits（token 使用埋点、CLI TUI） |
+| **[microsoft/autogen](https://github.com/microsoft/autogen)** | 59.6K | +0.0K | +0.0K | ❌ | 7月无 commit |
+| **[supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)** | 28.3K | +0.0K | +0.0K | 稳定 | 5 commits（CI 优化） |
+| **[LangChain4j/langchain4j](https://github.com/LangChain4j/langchain4j)** | 12.6K | +0.0K | +0.0K | 稳定 | 2 commits（Guardrail、Agent 异常包装） |
+| **[mnfst/manifest](https://github.com/mnfst/manifest)** | 7.2K | +0.0K | +0.0K | 🔥 | 4 commits（版本发布 + 模型错误修复） |
+
+> Stars 为 GitHub 实时数值；较07-10 列为本次扫描与上次记录之差
+
+---
+
+## 📬 各仓库新增 Commit（2026-07-10 → 2026-07-14）
+
+### NousResearch/hermes-agent（36 commits）⭐ 212,772
+
+> 基线：上次 212.2K → 本次 212,772（+572，增速 ~144⭐/天）
+
+| SHA | 时间 | 类型 | 说明 |
+|-----|------|------|------|
+| `5e84994` | 07-10 22:51 | feat | **isolated sandbox script for local dev**（桌面沙箱隔离脚本） |
+| `b9b463f` | 07-10 14:58 | feat | **expose deterministic tool output risk**（安全：暴露确定性工具输出风险） |
+| `dfdc315` | 07-10 12:25 | fix | **remove unavailable OpenCode Zen free models**（#61163） |
+| `3aaf7e3` | 07-10 10:42 | feat | **TikTok-style vibe hearts particle system**（桌面情感反馈动画） |
+| `fbefb5c` | 07-10 10:42 | refactor | drive vibe heart from core reaction event |
+| `0e2adf9` | 07-10 10:42 | feat | **emit + consume reaction signal**（gateway/cli） |
+| `9b72995` | 07-10 14:28 | fix | **release pool FDs on owning-thread client close**（#61979） |
+| `1a2f3ae` | 07-10 14:47 | fix | tui finalize persist drop conversation_history |
+| `97e9c64` | 07-10 13:02 | fix | preserve resolved fork metadata（runtime） |
+| `623165a` | 07-10 12:39 | fix | **discover MCP tools in slash workers** |
+| `ca65135` | 07-10 12:20 | fix | recover runtime Nous token from shared store |
+| `0e67c72` | 07-10 12:20 | fix | validate and persist shared Nous routing |
+| `03b8a00` | 07-10 12:20 | fix | recompute Nous routing after shared recovery |
+| `8fa0d8b` | 07-10 12:20 | test | assert runtime routing persistence on failure |
+| `8727e67` | 07-10 13:20 | fix | preserve resolved fork metadata |
+| `de33c24` | 07-10 13:44 | fix | **harden extract input and display boundaries** |
+| `7ae9fae` | 07-10 13:44 | fix | handle dict URLs in web_extract |
+| `c2a40b2` | 07-10 13:44 | fix | preserve extract result input order |
+| `e640bb5` | 07-10 13:44 | test | cover model-facing dict URL dispatch |
+| `54e1864` | 07-10 13:44 | fix | unwrap web extract object titles |
+| `97fb9e1` | 07-10 13:58 | fix | classify PTB heartbeat transport errors |
+| `90bd5b0` | 07-10 13:58 | test | mirror PTB errors in heartbeat recovery |
+| `9b72995` | 07-10 14:28 | fix | never stale-remove a one-shot whose run is still alive（cron） |
+| `cd7a8df` | 07-10 14:28 | fix | release pool FDs on owning-thread client close |
+| `35d777d` | 07-10 14:47 | chore | map WilsonKinyua release attribution |
+| `b8880f1` | 07-10 18:06 | fix | type-check electron/ in CI |
+| `db8772a` | 07-10 18:06 | fix | don't emit js files when building desktop |
+| `f7c9feb` | 07-10 20:14 | fix | only show slash popover when / is first char |
+| `fc977f6` | 07-10 21:05 | fix | remove old .js files |
+| `1fa3886` | 07-10 21:09 | chore | remove DEV Shift+H heart preview |
+| `291eae6` | 07-10 21:14 | merge | bb/desktop-vibe-hearts |
+| ...（其余 6 commits） |
+
+**亮点**：
+- 🔴 `5e84994` **isolated sandbox script** — 本地开发用隔离沙箱脚本，提升 dev 安全性
+- 🔴 `dfdc315` 移除不可用的 OpenCode Zen 免费模型（#61163）
+- 🔴 `b9b463f` 安全特性：暴露确定性工具输出风险（#61793）
+- 🟡 MCP 工具发现扩展（`623165a`）
+- 🟡 Nous token 路由恢复链路（3 个相关 fix）
+
+---
+
+### chopratejas/headroom（16 commits）⭐ 58,408
+
+> 基线：上次 58.2K → 本次 58,408（+208，增速 ~52⭐/天）
+
+**核心趋势**：大量 `isolate` 重构——将 proxy/CCR/cache/output 等模块的策略逻辑拆分为独立函数，每个职责单一，减少耦合。
+
+| SHA | 时间 | 类型 | 说明 |
+|-----|------|------|------|
+| `9bacf48` | 07-11 00:28 | refactor | **isolate mixed content parsing**（#1939） |
+| `5a7265d` | 07-11 00:27 | refactor | isolate auth classification policy（#1945） |
+| `b5aa8a3` | 07-11 00:21 | refactor | isolate compression strategy outcomes（#1938） |
+| `41af39d` | 07-10 23:17 | fix | **preserve terminal tool on Codex Responses**（#2000） |
+| `75d7861` | 07-10 23:12 | fix | cache_savings_usd zeros when litellm unavailable（#2005） |
+| `cb38f79` | 07-10 22:41 | refactor | isolate forwarded header policy（#1942） |
+| `0ce09fb` | 07-10 22:39 | refactor | isolate verbosity steering（#1940） |
+| `fd5b9e7` | 07-10 22:36 | refactor | isolate tool call classification（#1937） |
+| `4210d6e` | 07-10 22:35 | refactor | isolate litellm model resolution（#1936） |
+| `1f3696a` | 07-10 22:27 | refactor | isolate body forwarding policy（#1935） |
+| `d2170b1` | 07-10 18:15 | fix | parse fenced JSON even with prose preamble（#1988） |
+| `5e14b8c` | 07-10 15:47 | fix | **don't clobber memories sharing a first line**（#1976） |
+| `4cb33cd` | 07-10 15:45 | fix | strip inbound Content-Encoding on messages forward（#1970） |
+| `10e4829` | 07-10 15:38 | fix | **shorter fold pointer + MIN_LINES=3, dedup Anthropic list**（#1932） |
+| `7dbb9c3` | 07-10 13:44 | chore | **extract agent-evals into standalone headroom-bench repo**（#1967） |
+| `88e41b6` | 07-10 13:43 | chore | extract request log redaction policy（#1968） |
+
+**亮点**：
+- 🔴 `5e14b8c` **记忆防覆盖**（#1976）：不再用第一行作为 key 覆盖已有记忆，避免不同会话同一主题记忆互相覆盖
+- 🔴 `10e4829` dedup 优化（#1932）：折叠指针更短 + 最小行数=3
+- 🟡 `41af39d` Codex Responses 终端工具保留（#2000）
+- 🟢 `7dbb9c3` 将 benchmark 工具拆出独立仓库 `headroom-bench`
+
+---
+
+### joaomdmoura/crewAI（6 commits）⭐ 55,316
+
+| SHA | 时间 | 类型 | 说明 |
+|-----|------|------|------|
+| `4fdb7f2` | 07-11 00:37 | fix! | **make tool-result caching opt-in**（#6509，breaking change） |
+| `bfa652a` | 07-10 23:33 | fix | stop rewriting authored tool description at construction（#6508） |
+| `a8b3ecb` | 07-10 23:29 | fix | expose token usage under both names on results（#6507） |
+| `a8b3ecb` | 07-10 21:17 | fix | report per-call usage metrics on kickoff results（#6506） |
+| `7967b19` | 07-10 18:44 | fix | stop replaying previous turn's intent when route_turn() falsy |
+| `85c467d` | 07-10 14:42 | feat | **run declarative flows on TUI (headless terminal)**（#6484） |
+
+**亮点**：
+- 🔴 `4fdb7f2` **工具结果缓存改为 opt-in**（#6509）：之前默认开启，改为需显式启用（可能是性能/一致性原因）
+- 🟡 Token 使用量埋点完善（#6506/6507）：kickoff 结果中报告 per-call 用量
+
+---
+
+### supermemoryai/supermemory（5 commits）⭐ 28,311
+
+全为 CI 优化，无功能 commit。
+
+---
+
+### LangChain4j/langchain4j（2 commits）⭐ 12,573
+
+| SHA | 时间 | 说明 |
+|-----|------|------|
+| `f16130b` | 07-10 21:04 | **add PromptInjectionGuardrail**（#5619） |
+| `f7ace00` | 07-10 14:22 | Surface async agent failures as AgentInvocationException（#5746） |
+
+**亮点**：`PromptInjectionGuardrail` — 提示注入防护栅栏，对 LLM 应用安全有直接价值。
+
+---
+
+### mnfst/manifest（4 commits）⭐ 7,234
+
+主要是版本发布 + 模型错误信息优化，无重大功能。
+
+---
+
+## 🔴 Nezha 集成评估
+
+| 仓库 | 集成价值 | 评估 |
+|------|---------|------|
+| hermes-agent `5e84994` | 高 | 隔离沙箱脚本对安全敏感场景有参考价值，但需针对 Java 重写 |
+| hermes-agent `b9b463f` | 高 | 确定性工具输出风险暴露机制，可用于 Nezha 工具审计日志 |
+| headroom `5e14b8c` | 🔥高 | **记忆第一行防覆盖**（#1976）：检查 Nezha Memory 是否有同样问题 |
+| crewAI `4fdb7f2` | 中 | 工具缓存改为 opt-in，Nezha 可考虑默认关闭工具缓存降低复杂性 |
+| LangChain4j `f16130b` | 中 | PromptInjectionGuardrail，Java 实现可引入 Nezha 工具层 |
+| 无需本次集成 | — | 最高价值的 #1976 仅是配置级变更，无代码变更需求 |
+
+**待自查**：Nezha Memory 是否存在"同名主题记忆互相覆盖"隐患（与 headroom #1976 同类问题）。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-10</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-10
 **方式**：GitHub API
 
@@ -93,6 +260,10 @@ ewrite_transcript()，只有 legacy session rotation 才调用 rewrite。
 - **无高价值功能需本次集成** → 未做代码变更 → 无需 mvn clean package 重启。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
