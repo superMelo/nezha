@@ -1,5 +1,43 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-15
+**方式**：GitHub API
+
+---
+
+## 🔥 重点仓库状态（2026-07-15）
+
+| 项目 | ⭐ Stars | 较07-14 | 新commits | 状态 | 说明 |
+|------|---------|---------|-----------|------|------|
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 213,302 | +530 | 0 | 静默 |
+| [headroom](https://github.com/chopratejas/headroom) | 58,575 | +167 | 0 | 静默 |
+| [ECC](https://github.com/affaan-m/ECC) | 228,614 | +338 | 0 | 静默 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,366 | +50 | 0 | 静默 |
+| [autogen](https://github.com/microsoft/autogen) | 59,665 | +20 | 0 | 静默 |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,322 | +11 | 0 | 静默 |
+| [LangChain4j](https://github.com/LangChain4j/langchain4j) | 12,574 | +1 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,240 | +6 | 0 | 静默 |
+
+> 所有 repo 自 07-14 以来无新 commit，可能为周末或 GitHub API 数据缓存延迟
+> Stars 为 GitHub 实时数值，较 07-14 列为增量
+
+## 📬 各仓库新增 Commit
+
+**2026-07-14 → 2026-07-15**：无新 commit（静默期）
+
+## Nezha 集成评估
+
+无新高价值 commit → 无代码变更需求 → 无需 `mvn clean package` 重启服务。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-14</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-14
 **方式**：GitHub API
 
@@ -159,6 +197,10 @@
 **待自查**：Nezha Memory 是否存在"同名主题记忆互相覆盖"隐患（与 headroom #1976 同类问题）。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
