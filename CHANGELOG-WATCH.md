@@ -1,5 +1,139 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-13
+**方式**：GitHub API（拉取 2026-07-10 以来所有 commit）
+
+---
+
+## 🔥 重点仓库状态（2026-07-13）
+
+| 项目 | ⭐ Stars | 较07-10 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 228,953 | +677 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 213,739 | +967 | 169 | 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 58,744 | +336 | 86 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,394 | +78 | 7 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 59,681 | +36 | 0 | 静默 |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,341 | +30 | 23 | 活跃 |
+| [LangChain4j](https://github.com/LangChain4j/langchain4j) | 12,581 | +8 | 2 | 稳定 |
+| [manifest](https://github.com/mnfst/manifest) | 7,246 | +12 | 19 | 活跃 |
+
+---
+
+## 📬 各仓库新增 Commit（2026-07-10 → 2026-07-13，3天）
+
+### NousResearch/hermes-agent（169 commits）⭐ 213,739
+
+> Stars：212,772 → 213,739（+967）
+
+**主题**：CRON gateway deadlock 修复、context budget 强制、Fireworks AI provider、model picker 重构、workspace session grouping、smart approvals 升级。
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `7c19eb8` | 2026-07-13 | docs(dashboard): align approval mode guidance |
+| `da6d616` | 2026-07-13 | fix(dashboard): correct approvals.mode select options |
+| `0c8bcd3` | 2026-07-12 | fix(approval): allow verifier temp cleanup |
+| `51382ac` | 2026-07-12 | fix(skills): bind bundles to exact files and origins |
+| `c36f6b7` | 2026-07-12 | fix(skills): install referenced bundle files with scan provenance |
+| `b482964` | 2026-07-12 | Merge pull request #63091 from NousResearch/bb/salvage-48591-workspace-binding |
+| `0c4aed2` | 2026-07-12 | feat(cli): sessions list --workspace filter + Workspace column |
+| `602fe1c` | 2026-07-12 | feat(sessions): workspace_key grouping helper + tests |
+| `7c14d2a` | 2026-07-12 | Merge pull request #63086 from NousResearch/bb/salvage-59241-workspace-status |
+| `e0a650f` | 2026-07-12 | refactor(desktop): text-only workspace status menu + attribution |
+| `5fc08c0` | 2026-07-12 | feat(desktop): add workspace path status action |
+| `59686df` | 2026-07-12 | Merge pull request #63081 from NousResearch/bb/salvage-45744-workspace-target |
+
+**核心亮点**：
+- 🔴 `#62151` **CRON LLM calls inline**：修复 gateway deadlock，cron 调度中 LLM 调用必须同步执行避免死锁
+- 🔴 **Context budget 强制**（4个 fix）：`@` 引用展开长期 bug（AttributeError）、context ref scope 错误、budget 未被尊重
+- 🔴 **Fireworks AI as preferred provider**：新增 Fireworks AI 集成
+- 🔴 **`/model` picker 重构**：credential availability 集中化、provider boundary 强制、unauthenticated pool 不再误判为已认证
+- 🟡 **Sessions workspace grouping**：按 workspace_key 分组，CLI `sessions list --workspace` 过滤
+- 🟡 **Smart approvals 默认化**（`#62661`）
+- 🟡 **Reasoning effort levels**：新增 max 和 ultra 两个级别（`#62650`）
+
+---
+
+### chopratejas/headroom（86 commits）⭐ 58,744
+
+> Stars：58,408 → 58,744（+336）
+
+**主题**：大规模 proxy 政策解耦（30+ isolate/extracted policies）、provider simulator、semantic cache 语义 key、MCP 检索增强。
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `d0ecc9a` | 2026-07-12 | fix(memory): track MCP retrieval access (#2065) |
+| `112d95b` | 2026-07-12 | feat(proxy): report new-content-relative input savings rate in /stats (#2058) |
+| `e164f4f` | 2026-07-12 | style(proxy): format anthropic compression lambda |
+| `38306a3` | 2026-07-12 | fix(proxy/gemini): thread savings-profile kwargs into apply() (#1994) |
+| `2f53a18` | 2026-07-12 | refactor(proxy): isolate semantic cache key policy (#1964) |
+| `2c9eb7c` | 2026-07-11 | feat(simulators): add provider simulator service (#2014) |
+| `7f7af66` | 2026-07-11 | feat(observability): add gen_ai.request.model to the compression span (#1667) |
+| `ad9d086` | 2026-07-11 | feat(codex): keep wrap routing session-scoped (#1507) |
+| `0750bbf` | 2026-07-11 | fix(update): prevent _core.pyd corruption on Windows when proxy is running (#158 |
+| `2b09ece` | 2026-07-11 | refactor(proxy): isolate image compression policy (#1958) |
+
+**核心亮点**：
+- 🔴 **Provider simulator service**（`#2014`）：新增 provider 模拟服务，支持离线测试
+- 🔴 **semantic cache by context hash**（`#2022`）：语义缓存 key 从 query text 改为 context hash，更准确
+- 🔴 **MCP retrieval access tracking**（`#2065`）：跟踪 MCP 工具检索访问
+- 🟡 **30+ proxy 政策解耦**：output/memory/ccr/cache/rate-limit 各模块策略独立提取，耦合大幅降低
+- 🟢 **Windows wheel build**（`#1086`）：新增 win_amd64 CI 构建
+
+---
+
+### supermemoryai/supermemory（23 commits）⭐ 28,341
+
+> Stars：28,311 → 28,341（+30）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `2cebe81` | 2026-07-11 | fix(web): bypass auth proxy for local dev (#1213) |
+| `19d7f12` | 2026-07-11 | fix(web): use backend URL fallback for direct fetches (#1212) |
+| `e5e4e49` | 2026-07-11 | fix(tools): coerce limit/offset in ai-sdk schemas (#1202) |
+| `5567e82` | 2026-07-11 | docs(self-hosting): configurable embeddings for Supermemory local (#1210) |
+| `453185a` | 2026-07-11 | ci: add concurrency groups to workflows (#1221) |
+
+**亮点**：`listMemories` MCP 工具（#1183）——枚举存储的记忆内容，直接对标 Nezha Auto Memory。
+
+---
+
+### mnfst/manifest（19 commits）⭐ 7,246
+
+> Stars：7,234 → 7,246（+12）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `2d243fd` | 2026-07-12 | Version Packages (#2483) |
+| `2751786` | 2026-07-12 | fix: UI polish — modal z-index, sidebar hover, playground focus, model picker na |
+| `eea0f7d` | 2026-07-12 | Merge pull request #2482 from guillaumegay13/fix/harness-sidebar-instant |
+| `970ed63` | 2026-07-12 | fix: refresh harness sidebar after creation |
+| `71a3170` | 2026-07-12 | Merge pull request #2480 from guillaumegay13/fix/minimax-subscription-compat |
+
+**无重大功能变更**，主要是 model list 同步（GPT-5.6 family、Claude Sonnet 5）和 UI polish。
+
+---
+
+## 🔴 Nezha 集成评估
+
+| 仓库 | 集成价值 | 评估 |
+|------|---------|------|
+| hermes-agent `#62151` | 🔥极高 | **Gateway CRON deadlock** — CRON LLM calls 必须同步，Nezha Spring Boot @Scheduled 需自查是否存在同类问题 |
+| hermes-agent context budget | 高 | `@` 引用展开 AttributeError，Nezha 消息注入 `@` 语法是否有此 bug？ |
+| headroom `#2022` | 高 | **语义缓存 key = context hash** vs query text，Nezha Memory 检索可借鉴 |
+| supermemory `listMemories` | 中 | MCP 工具枚举记忆，Nezha Memory 可考虑暴露 list API |
+| hermes-agent model picker 重构 | 中 | credential pool boundary，Nezha 多模型切换认证可借鉴 |
+| 无需本次集成 | — | 高价值项均需架构级改造，留待手动评估 |
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-14</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-15
 **方式**：GitHub API
 
@@ -30,6 +164,10 @@
 无新高价值 commit → 无代码变更需求 → 无需 `mvn clean package` 重启服务。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
