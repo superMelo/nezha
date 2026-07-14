@@ -1,5 +1,92 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-14
+**方式**：GitHub API（拉取 2026-07-13 以来所有 commit）
+
+---
+
+## 🔥 重点仓库状态（2026-07-14）
+
+| 项目 | ⭐ Stars | 较07-13 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 229,269 | +316 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 214,275 | +536 | 125 | 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 58,968 | +224 | 57 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,461 | +67 | 1 | 稳定 |
+| [autogen](https://github.com/microsoft/autogen) | 59,713 | +32 | 0 | 静默 |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,362 | +21 | 0 | 静默 |
+| [LangChain4j](https://github.com/LangChain4j/langchain4j) | 12,590 | +9 | 3 | 稳定 |
+| [manifest](https://github.com/mnfst/manifest) | 7,252 | +6 | 6 | 活跃 |
+
+---
+
+## 📬 各仓库新增 Commit（2026-07-13 → 2026-07-14）
+
+### NousResearch/hermes-agent（125 commits）⭐ 214,275
+
+> Stars：213,739 → 214,275（+536）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `19641fa` | 2026-07-14 | fix(desktop): render reasoning text in the Thinking widget (#63999) |
+| `2ccfdb2` | 2026-07-13 | fix(agent): exempt parseable vLLM/LM Studio output-cap errors from compression-d |
+| `127f6e1` | 2026-07-13 | fix: exempt output-cap errors from compression-disabled guard |
+| `7ef9345` | 2026-07-13 | test: add output-cap retry with compression disabled + fix request-pressure test |
+| `7577834` | 2026-07-13 | fix(ci): fail closed when workspace matrix discovery produces empty list |
+| `a6857fa` | 2026-07-13 | test(desktop): fix remaining act() warnings in gateway-connecting-overlay |
+| `c3aa81b` | 2026-07-13 | feat(ci): load npm workspaces from package.json |
+| `c44de99` | 2026-07-13 | test(approval): pin blocking E2E flow to manual mode |
+| `6ce160a` | 2026-07-13 | Revert "fix(tests): force manual approval mode in E2E blocking tests" |
+| `af7dcea` | 2026-07-13 | fix(context): persist fallback compaction breaker |
+
+**亮点**：Thinking widget 渲染 reasoning 文本（#63999）、Windows Git Bash coreutils PATH 修复、vLLM/LM Studio output-cap errors 豁免压缩。
+
+---
+
+### chopratejas/headroom（57 commits）⭐ 58,968
+
+> Stars：58,744 → 58,968（+224）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `52a024d` | 2026-07-13 | fix(proxy): strip [1m] model suffix before upstream forwarding (#2027) |
+| `35701ce` | 2026-07-13 | fix(shared_context): don't evict an unrelated entry on an update at capacity (#2 |
+| `ecdcf13` | 2026-07-13 | fix(compress): don't mutate the caller's CompressConfig via kwargs (#2134) |
+| `af7385a` | 2026-07-13 | fix(paths): reject '.', '..', and NUL as plugin names (#2132) |
+| `3c1a5cd` | 2026-07-13 | fix(backends/litellm): drop oversized tool names before Bedrock Converse (#2129) |
+| `2976d49` | 2026-07-13 | fix(proxy): preserve sub-path in X-Headroom-Base-Url custom upstream (#2037) (#2 |
+| `09d1ef4` | 2026-07-13 | fix(proxy): compress Hermes scoped coding-agent passthrough (#1815) |
+| `8870b69` | 2026-07-13 | fix(deps): bump pillow to 12.3.0 and click to 8.4.2 (#2097) |
+
+**亮点**：shared_context eviction 修复（容量满时误驱逐无关条目）、CompressConfig kwargs 副作用修复、plugin 名称 NUL 字符拒绝。
+
+---
+
+### LangChain4j（3 commits）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `378b6dd` | 07-13 | fix: preserve precision of long/BigInteger/BigDecimal tool arguments（#5755）|
+| `3b94250` | 07-13 | Add `MistralAiBatchChatModel` for Mistral Batch API（#5750）|
+| `8cce321` | 07-13 | Skills: Declare shell tool timeout_seconds as integer |
+
+**亮点**：`MistralAiBatchChatModel`——支持 Mistral Batch API，异步批处理 LLM 调用。
+
+---
+
+## Nezha 集成评估
+
+无新高价值 commit → 无代码变更需求 → 无需 `mvn clean package` 重启服务。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-13</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-13
 **方式**：GitHub API（拉取 2026-07-10 以来所有 commit）
 
@@ -126,6 +213,10 @@
 | 无需本次集成 | — | 高价值项均需架构级改造，留待手动评估 |
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
