@@ -1,5 +1,146 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-15
+**方式**：GitHub API（拉取 2026-07-14 以来所有 commit）
+
+---
+
+## 🔥 重点仓库状态（2026-07-15）
+
+| 项目 | ⭐ Stars | 较07-14 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 229,730 | +461 | 1 | 稳定 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 214,894 | +619 | 88 | 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 59,171 | +203 | 74 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,534 | +73 | 5 | 稳定 |
+| [autogen](https://github.com/microsoft/autogen) | 59,735 | +22 | 0 | 静默 |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,381 | +19 | 1 | 稳定 |
+| [LangChain4j](https://github.com/LangChain4j/langchain4j) | 12,599 | +9 | 3 | 稳定 |
+| [manifest](https://github.com/mnfst/manifest) | 7,258 | +6 | 8 | 活跃 |
+
+---
+
+## 📬 各仓库新增 Commit（2026-07-14 → 2026-07-15）
+
+### NousResearch/hermes-agent（88 commits）⭐ 214,894
+
+> Stars：214,275 → 214,894（+619）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `6997dc8` | 2026-07-15 | Merge pull request #64679 from NousResearch/bb/fix-clarify-tool-overflow |
+| `601c1f1` | 2026-07-15 | fix(desktop): keep clarify prompts out of tool overflow |
+| `9884b4f` | 2026-07-14 | fix(cron/chronos): cache PyJWKClient across fires to stop JWKS fetch storm (#64641) |
+| `df5700e` | 2026-07-14 | feat(auxiliary): per-task reasoning_effort for auxiliary models (#64597) |
+| `d9cdb81` | 2026-07-14 | feat(config): support per-model reasoning_effort overrides |
+| `c084085` | 2026-07-14 | test: remove flaky test_crashed_runner_produces_error_completion (#64431) |
+| `2d0f218` | 2026-07-14 | fix(desktop): clear stale compaction status across session switches (#64127) |
+| `cd53718` | 2026-07-14 | fix(cron): prevent long-running scheduled scripts from running twice |
+
+**核心亮点**：
+- 🔴 `#64628` **JWKS fetch storm fix**：cron/chronos 调度中 `PyJWKClient` 跨执行缓存，避免每次触发都重新获取 JWKS 公钥导致请求风暴
+- 🟡 `#64597` **per-task reasoning_effort for auxiliary models**：辅助模型支持独立设置推理 effort 级别（main/auxiliary 模型不同推理策略）
+- 🟡 MCP ResourceLink 修复：Materialize ResourceLink/EmbeddedResource/Audio 块而非丢弃
+
+---
+
+### chopratejas/headroom（74 commits）⭐ 59,171
+
+> Stars：58,968 → 59,171（+203）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `2a954b6` | 2026-07-14 | feat(wrap): add ZCode desktop app support (#1845) |
+| `36577d9` | 2026-07-14 | fix(search_compressor): don't let a date in a path hijack the line-number parse (#208 |
+| `6bdc8c4` | 2026-07-14 | docs(metrics): ship an importable Grafana dashboard (#2168) |
+| `021a762` | 2026-07-14 | feat(compress): expose frozen_message_count in library-mode compress() (#2178) |
+| `a61f534` | 2026-07-14 | fix(ccr): store pre-protection original, not tag placeholder, in CCR (#1208) |
+| `a069979` | 2026-07-14 | fix(content_router): pin FREEZE_BLOCK_DECISION verdict to stop cache-write churn (#16 |
+| `896454e` | 2026-07-14 | feat(install): add apply flag parity, --env passthrough, and EIO retry (#2152) |
+| `8f867e4` | 2026-07-14 | fix(install): guard non-dict health config in 'install status' (#2150) |
+
+**核心亮点**：
+- 🔴 `#2168` **Grafana dashboard**：新增可导入 Grafana dashboard（可观测性增强）
+- 🔴 `#2178` **frozen_message_count**：library-mode `compress()` 暴露冻结消息计数
+- 🔴 `#2198` **FREEZE_BLOCK_DECISION verdict pinning**：冻结块决策 verdict 固定到，防止缓存写入抖动
+- 🟢 ZCode desktop app 支持（`#1845`）
+
+---
+
+### joaomdmoura/crewAI（5 commits）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `a194f38` | 07-14 | **feat: wire execution-boundary interception points**（#6517）|
+| `7d21283` | 07-14 | **feat: add generic interception-hook dispatcher**（#6516）|
+| `0e5d0ec` | 07-14 | **feat: add step interception points and rework execution hooks docs**（#6522）|
+| `6452608` | 07-14 | **fix: after_llm_call hooks no longer break native tool execution**（#6531）|
+| `5f4ac9f` | 07-14 | chore: resolve pip-audit failures |
+
+**亮点**：`#6517` — execution-boundary interception points，Agent 执行过程中在关键节点（step 开始/结束、LLM调用前后）插入拦截钩子，可用于监控、日志、自适应策略调整。与 Nezha Pipeline 的 `beforeStep/afterStep` 设计思路高度契合。
+
+---
+
+### LangChain4j/langchain4j（3 commits）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `b9e3f27` | 07-14 | **Introduce Belief-Desire-Intention (BDI) agentic pattern**（#5730）|
+| `6e6cf9f` | 07-14 | Allow to declaratively define beforeCall method on agentic patterns（#5741）|
+| `41f9a38` | 07-14 | Fix race condition in AgentMonitor with parallel sub-agents（#5755）|
+
+**🔴 重大**：**BDI (Belief-Desire-Intention) agentic pattern** 引入！BDI 是经典的多智能体哲学架构：
+- **Belief**：Agent 当前对世界的认知（动态更新）
+- **Desire**：Agent 的目标/意图（静态或动态设定）
+- **Intention**：当前选定的行动计划（基于 Belief 做决策）
+
+这对 Nezha Pipeline 的条件路由（IfElsePipeline）和 MemoryService 有直接参考价值。
+
+---
+
+### supermemoryai/supermemory（1 commit）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `ef0026a` | 07-14 | **feat(brain): Company Brain Models settings tab**（#1292）|
+
+企业版"Company Brain"模型配置 Tab，支持企业级记忆管理。
+
+---
+
+### mnfst/manifest（8 commits）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `6519ea5` | 07-14 | **feat: add opt-in Sentry error monitoring** |
+| `6f1345c` | 07-14 | fix: send auth type to Auto-fix |
+| `2cdaee6` | 07-14 | fix: skip disconnected automatic routes |
+| `89c1757` | 07-14 | fix: forward xAI reasoning effort |
+
+Sentry 监控加入，可作为 Nezha 异常监控的参考方案。
+
+---
+
+## 🔴 Nezha 集成评估
+
+| 仓库 | 功能 | 集成价值 | 评估 |
+|------|------|---------|------|
+| LangChain4j `#5730` | **BDI agentic pattern** | 🔥高 | Belief-Desire-Intention 架构，适合增强 Pipeline 决策层；需架构改造，建议 v0.6.0 |
+| crewAI `#6517` | **Execution interception hooks** | 🔥高 | step 级别拦截点，与 Nezha Pipeline beforeStep/afterStep 高度契合；可直接增强 IfElsePipeline |
+| hermes-agent `#64628` | **JWKS fetch storm fix** | 中 | cron 调度 HTTP client 缓存模式，Nezha 用外部 cron 但模式可借鉴；参考性 |
+| headroom `#2168` | **Grafana dashboard** | 中 | Nezha 可引入 Prometheus metrics + Grafana 可视化；v0.6.0 增强 |
+| manifest | Sentry monitoring | 低 | Nezha GlobalExceptionHandler 已覆盖；可选增强 |
+| supermemory | Company Brain settings | 低 | 企业版功能，Nezha 暂无需求 |
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-14</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-14
 **方式**：GitHub API（拉取 2026-07-13 以来所有 commit）
 
@@ -79,6 +220,10 @@
 无新高价值 commit → 无代码变更需求 → 无需 `mvn clean package` 重启服务。
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
@@ -787,7 +932,7 @@ ewrite_transcript()，只有 legacy session rotation 才调用 rewrite。
 
 ## 📋 Nezha 状态
 
-v0.5.2 稳定，MySQL持久化。
+v0.5.3 稳定，MySQL持久化。
 
 ---
 
