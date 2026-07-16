@@ -1,5 +1,115 @@
 # 🌍 开源智能体工具每日扫描报告
 
+**日期**：2026-07-16
+**方式**：GitHub API（拉取 2026-07-15 以来所有 commit）
+
+---
+
+## 🔥 重点仓库状态（2026-07-16）
+
+| 项目 | ⭐ Stars | 较07-15 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 230,128 | +398 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 215,463 | +569 | 155 | 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 59,364 | +193 | 65 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,589 | +55 | 1 | 稳定 |
+| [autogen](https://github.com/microsoft/autogen) | 59,757 | +22 | 0 | 静默 |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,393 | +12 | 0 | 静默 |
+| [LangChain4j](https://github.com/LangChain4j/langchain4j) | 12,604 | +5 | 3 | 稳定 |
+| [manifest](https://github.com/mnfst/manifest) | 7,264 | +6 | 1 | 稳定 |
+
+---
+
+## 📬 各仓库新增 Commit（2026-07-15 → 2026-07-16）
+
+### NousResearch/hermes-agent（155 commits）⭐ 215,463
+
+> Stars：214,894 → 215,463（+569）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `3f2a389` | 2026-07-15 | fix(auth): apply newer hosted bootstrap session (#64612) |
+| `5fc2d9e` | 2026-07-15 | docs(auth): scrub Fly.io host detail from quarantine-log comment (#60145) |
+| `0c1adb4` | 2026-07-15 | fix(ci): handle merge race in js-autofix poll loop (#65231) |
+| `dbf86b9` | 2026-07-15 | test: port macOS entitlements test from Python to vitest |
+| `09f8a82` | 2026-07-15 | test: port workspace-level JS tests to a new js-tests workspace package |
+| `2f3007f` | 2026-07-15 | test: port JS/package.json invariant tests from Python to vitest |
+| `f8abc52` | 2026-07-15 | docs: add JS test placement rule to AGENTS.md |
+| `56ab995` | 2026-07-15 | fix(dashboard): add MCP auth to profile builder (#65163) |
+
+**核心亮点**：
+- 🔴 `#64612` **auth bootstrap session**：应用更新的 hosted bootstrap session（认证引导会话）
+- 🟡 `js-autofix` CI 重构：PR 代替直接 push、merge race 修复、vitest 迁移
+- 🟡 macOS entitlements 测试从 Python 迁移到 vitest
+
+---
+
+### chopratejas/headroom（65 commits）⭐ 59,364
+
+> Stars：59,171 → 59,364（+193）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `eac4965` | 2026-07-15 | feat(wrap): add `headroom wrap kimi` for Kimi CLI (#1426) |
+| `46d4378` | 2026-07-15 | feat(evals): weekly HotpotQA answer-recall report on the prose path (#1188) |
+| `63f74aa` | 2026-07-15 | fix: replace computer_call_output with apply_patch_call_output in output_shaper (#225 |
+| `81d40a6` | 2026-07-15 | fix(proxy): record Prometheus metrics for POST /v1/compress (#2247) |
+| `412db40` | 2026-07-15 | fix(code): pin tree-sitter-language-pack <1.0.0 in [code] extra (#1219) |
+| `420dc90` | 2026-07-15 | feat(grok-build): add Grok Build wrap command and MCP integration (#1629) |
+| `ecf086f` | 2026-07-15 | docs(compose): document the memory-stack docker-compose services (#1242) |
+| `e8bff1c` | 2026-07-15 | feat: add CrewAI and AutoGen tool compression integrations (#1384) |
+
+**核心亮点**：
+- 🔴 `#2247` **Prometheus metrics for POST /v1/compress**：压缩端点 Prometheus 指标，可观测性增强
+- 🔴 `#1426` **headroom wrap kimi**：新增 Kimi CLI 包装支持
+- 🔴 `#1629` **Grok Build wrap command + MCP integration**：Grok Build 包装命令 + MCP 集成
+- 🟡 `#1188` **HotpotQA answer-recall eval report**：weekly 答案召回评测报告
+- 🟢 `#1242` **memory-stack docker-compose docs**：记忆栈 Docker Compose 服务文档
+
+---
+
+### joaomdmoura/crewAI（1 commit）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `da9902d` | 07-15 | **docs: group execution hooks and document all hook contexts**（#6548）|
+
+执行钩子文档化，与昨日 #6517 step interception 形成完整文档。
+
+---
+
+### LangChain4j/langchain4j（3 commits）
+
+| SHA | 日期 | 说明 |
+|-----|------|------|
+| `b3da4a1` | 07-15 | Migrate Nomic, Jina, OVH AI, Judge0 to HttpClient API |
+| `e15a3f8` | 07-15 | Migrate Tavily, SearchApi web search to HttpClient API |
+| `e851426` | 07-15 | Add jsonSchema() to Byte/Short/BigInteger/BigDecimal output parsers |
+
+**亮点**：Retrofit/OkHttp → HttpClient API 大迁移，代码现代化。
+
+---
+
+## Nezha 集成评估
+
+| 仓库 | 功能 | 集成价值 | 评估 |
+|------|------|---------|------|
+| headroom `#2247` | **Prometheus /v1/compress metrics** | 中 | Nezha CompressService 可借鉴，但需引入 Prometheus 依赖，建议 v0.6.0 |
+| headroom `#1426`/`#1629` | **CLI wrap 支持（Kimi/Grok）** | 低 | Nezha 无相应 CLI 集成需求 |
+| hermes-agent `#64612` | **auth bootstrap session** | 低 | 认证引导会话机制，Nezha 用外部 cron 无需 |
+| crewAI `#6548` | **execution hooks 文档** | 参考 | 与昨日 #6517 配套，Pipeline 设计参考 |
+
+**结论**：无高价值功能需立即集成落地。headroom 的 Prometheus 压缩指标是 v0.6.0 可观测性增强候选。
+
+---
+
+## 📜 历史扫描
+
+<details>
+<summary>2026-07-15</summary>
+
+# 🌍 开源智能体工具每日扫描报告
+
 **日期**：2026-07-15
 **方式**：GitHub API（拉取 2026-07-14 以来所有 commit）
 
@@ -133,6 +243,10 @@ Sentry 监控加入，可作为 Nezha 异常监控的参考方案。
 | supermemory | Company Brain settings | 低 | 企业版功能，Nezha 暂无需求 |
 
 ---
+
+
+</details>
+
 
 ## 📜 历史扫描
 
