@@ -2244,3 +2244,48 @@ MySQL 8.4 持久化已完成，功能稳定。
 - 🟡 模型路由 → ❌ 待实现
 
 </details>
+
+---
+
+**日期**：2026-07-18
+**方式**：GitHub API（拉取 2026-07-16 以来所有 commit）
+
+---
+
+## 🏆 重点仓库状态（2026-07-18）
+
+| 项目 | ⭐ Stars | 较07-16 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 230,677 | +549 | - | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 216,464 | +1,001 | - | 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 59,693 | +329 | - | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,704 | +115 | - | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 59,800 | +43 | 0 | 💀 死亡（93天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,446 | +53 | - | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,630 | +26 | - | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,270 | +6 | - | 静默 |
+
+---
+
+## 📝 各仓库新增 Commit（2026-07-16 → 2026-07-18）
+
+### NousResearch/hermes-agent（- commits）⭐ 216,464
+
+> Stars：215,463 → 216,464（+1,001，2天）
+
+**未克隆仓库，无法获取 commit 明细。**下次需克隆仓库：
+\\\ash
+git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
+\\\
+
+---
+
+### chopratejas/headroom（- commits）⭐ 59,693
+
+> Stars：59,364 → 59,693（+329，2天）
+
+**未克隆仓库，无法获取 commit 明细。**
+
+---
+
+**行动项**：修复每日扫描流程：hermes-agent、headroom 等大仓库克隆太慢，改用 GitHub API commits?since= 参数直接获取指定时间之后的 commit SHA 列表，避免克隆。
