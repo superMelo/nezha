@@ -2289,3 +2289,39 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 ---
 
 **行动项**：修复每日扫描流程：hermes-agent、headroom 等大仓库克隆太慢，改用 GitHub API commits?since= 参数直接获取指定时间之后的 commit SHA 列表，避免克隆。
+
+---
+
+**日期**：2026-07-19（晚间扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-19 晚间）
+
+| 项目 | ⭐ Stars | 较昨日 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 230,946 | +269 | - | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 216,854 | +390 | - | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 59,844 | +151 | - | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,750 | +46 | - | 🔥 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 59,809 | +9 | 0 | 💀 死亡（94天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,464 | +18 | - | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,635 | +5 | - | 🔥 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,275 | +5 | - | 静默 |
+
+---
+
+## 📈 赛道格局分析（2026-07-19）
+
+**三足鼎立**：
+- 🥇 **ECC** 230.9K（Claude Code 增强框架，181技能+47Agent）
+- 🥈 **hermes-agent** 216.8K（自进化 Agent，NousResearch 出品）
+- 🥉 **autogen** 59.8K → **已死亡**（94天零更新）
+
+**增长最快**（今日）：
+1. hermes-agent +390 stars
+2. ECC +269 stars
+3. headroom +151 stars
+
+**AI 编程 Agent 赛道**：ECC（通用增强）、hermes-agent（自进化）、headroom（上下文压缩）三强领跑。autogen 彻底出局。
