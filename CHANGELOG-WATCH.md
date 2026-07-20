@@ -2325,3 +2325,32 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 3. headroom +151 stars
 
 **AI 编程 Agent 赛道**：ECC（通用增强）、hermes-agent（自进化）、headroom（上下文压缩）三强领跑。autogen 彻底出局。
+
+---
+
+**日期**：2026-07-20（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-20）
+
+| 项目 | ⭐ Stars | 较07-18晚 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 231,240 | +294 | 有 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 217,251 | +397 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 60,370 | +526 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,795 | +45 | 0 | 静默 |
+| [autogen](https://github.com/microsoft/autogen) | 59,821 | +12 | 0 | 💀 死亡（95天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,486 | +22 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,638 | +3 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,278 | +3 | 0 | 静默 |
+
+---
+
+## 📈 今日亮点（2026-07-20）
+
+**headroom 大爆发**：+526 stars（单日），从 59.8K 突破 60K 大关。
+主要推动力：上下文压缩赛道持续火热，Copilot BYOK 趋势延续。
+
+**autogen 确认死亡**：95天零更新，59.8K stars 成为历史遗迹。
