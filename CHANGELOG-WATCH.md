@@ -2354,3 +2354,18 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 主要推动力：上下文压缩赛道持续火热，Copilot BYOK 趋势延续。
 
 **autogen 确认死亡**：95天零更新，59.8K stars 成为历史遗迹。
+
+**hermes-agent v0.18.x 新动态（v0.11.0 以来约 1,720 commits）**：
+- v0.18.2 (07-08): WhatsApp Baileys 依赖修复
+- v0.17.0 (06-19): ~1,475 commits，~800 PRs 合并，300+ issues 关闭
+- v0.16.0 (06-05): ~874 commits，542 PRs 合并
+
+**headroom v0.32.0 新动态（v0.27.0 以来）**：
+- v0.32.0 (07-17): CI 发布流程改进
+- v0.31.0 (07-09): Dashboard 价格显示修复，Codex WebSocket 修复
+- v0.30.0 (07-03): Agent savings personas（coding + general）
+- v0.29.0 (07-03): OpenCode 路由修复
+- v0.28.0 (06-29): --disable-kompress-fallback 标志
+
+> Nezha 是 Java 项目，无法直接集成 hermes/headroom Python 功能。
+> 核心概念可借鉴：agent savings 指标、Coding Persona 分流、context 路由策略。
