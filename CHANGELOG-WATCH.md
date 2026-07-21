@@ -2369,3 +2369,40 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 
 > Nezha 是 Java 项目，无法直接集成 hermes/headroom Python 功能。
 > 核心概念可借鉴：agent savings 指标、Coding Persona 分流、context 路由策略。
+
+---
+
+**日期**：2026-07-19（⚠️ 本次 cron 扫描因 GitHub API 速率限制失败）
+**方式**：GitHub REST API（失败）
+**说明**：API 返回 404（rate limit 耗尽），下次扫描前需等待重置或添加 GitHub Token
+
+> 最近可用数据（07-19）：
+> - ECC: 231,240 stars
+> - hermes-agent: 217,251 stars  
+> - headroom: 60,370 stars（突破 60K）
+> - crewAI: 55,795 stars
+> - autogen: 59,821 stars（💀 死亡 96天）
+> - supermemory: 28,486 stars
+> - LangChain4j: 12,638 stars
+> - manifest: 7,278 stars
+
+---
+
+**日期**：2026-07-21（⚠️ GitHub API 速率限制，本次扫描失败）
+**方式**：GitHub REST API → 404（rate limit 耗尽）
+**上次成功数据**：2026-07-20
+
+> 上次成功数据（2026-07-20）：
+> - ECC: 231,240 stars, last SHA 754b8dd (2026-07-19)
+> - hermes-agent: 217,251 stars, last SHA 04113b5 (2026-07-20)
+> - headroom: 60,370 stars, last SHA fd0e1a8 (2026-07-19)
+> - crewAI: 55,795 stars, last SHA 69c0308 (2026-07-17)
+> - autogen: 59,821 stars (💀 死亡 95天, 2026-04-06)
+> - supermemory: 28,486 stars, last SHA 566be20 (2026-07-18)
+> - LangChain4j: 12,638 stars, last SHA a39f132 (2026-07-17)
+> - manifest: 7,278 stars, last SHA 189a6eb (2026-07-17)
+
+**建议**：给 cron job 添加 GitHub Personal Access Token 以避免 rate limit：
+1. 在 https://github.com/settings/tokens 生成 token（需 repo 权限）
+2. 在 cron message 中加上 --header "Authorization: token {TOKEN}"
+3. 或在 nezha/.env 中配置 GITHUB_TOKEN
