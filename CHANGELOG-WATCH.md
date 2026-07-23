@@ -2406,3 +2406,56 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 1. 在 https://github.com/settings/tokens 生成 token（需 repo 权限）
 2. 在 cron message 中加上 --header "Authorization: token {TOKEN}"
 3. 或在 nezha/.env 中配置 GITHUB_TOKEN
+
+---
+
+**日期**：2026-07-23（cron 扫描，07-22+07-23 合并）
+**方式**：GitHub REST API（rate limit 已重置）
+
+---
+
+## 🏆 重点仓库状态（2026-07-23）
+
+| 项目 | ⭐ Stars | 较07-20 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 232,232 | +992 | 有 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 218,975 | +1,724 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 61,245 | +875 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 55,973 | +178 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 59,903 | +82 | 0 | 💀 死亡（107天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,542 | +56 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,666 | +28 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,301 | +23 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新：hermes-agent v0.19.0 "The Quicksilver Release"
+
+**发布时间**：2026-07-20
+**里程碑**：v0.18.0 (07-01) → v0.19.0 (07-20)，仅 19 天
+
+**更新规模**（v0.18.0 以来）：
+- ~2,245 commits
+- ~1,065 merged PRs
+- ~2,465 files changed
+- ~300,000 insertions, ~36,000 deletions
+- ~3,300 issues closed
+- 450+ community contributors
+
+> "The Quicksilver Release" —— 命名暗示性能/速度大幅提升。
+
+**v0.18.x 历史版本**：
+- v0.18.2 (07-08): WhatsApp Baileys 依赖修复
+- v0.18.1 (07-08): ~660 PRs 合并补丁
+- v0.18.0 (07-01): ~1,720 commits，949 issues closed
+
+---
+
+## 📈 赛道格局（2026-07-23）
+
+**三足鼎立**：
+- 🥇 **ECC** 232.2K（+992/2d）
+- 🥈 **hermes-agent** 219K（+1,724/2d，v0.19.0 发布！）
+- 🥉 **headroom** 61.2K（+875/2d，持续爆发）
+
+**autogen 正式死亡**：107 天零更新（最后 commit 2026-04-06），最后 release python-v0.7.5 (2025-09-30)。
