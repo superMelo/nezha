@@ -2459,3 +2459,36 @@ git clone --depth=1 https://github.com/NousResearch/hermes-agent.git
 - 🥉 **headroom** 61.2K（+875/2d，持续爆发）
 
 **autogen 正式死亡**：107 天零更新（最后 commit 2026-04-06），最后 release python-v0.7.5 (2025-09-30)。
+
+---
+
+**日期**：2026-07-24（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-24）
+
+| 项目 | ⭐ Stars | 较07-23 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 232,584 | +352 | 有 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 219,521 | +546 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 61,768 | +523 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,038 | +65 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 59,923 | +20 | 0 | 💀 死亡（108天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,564 | +22 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,674 | +8 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,305 | +4 | 有 | 静默 |
+
+---
+
+## 📈 趋势分析（2026-07-24）
+
+**hermes-agent 增速**：+546 stars/天，保持强劲势头。
+v0.19.0 (07-20) 后持续发力，预计下次 release 规模更大。
+
+**headroom 持续爆发**：+523 stars/天（连续多日），61.7K 逼近 62K 大关。
+
+**ECC 稳中有升**：+352 stars/天，232.5K 遥遥领先。
+
+**autogen 死亡确认**：108天零更新，正式成为历史遗迹。
