@@ -2492,3 +2492,58 @@ v0.19.0 (07-20) 后持续发力，预计下次 release 规模更大。
 **ECC 稳中有升**：+352 stars/天，232.5K 遥遥领先。
 
 **autogen 死亡确认**：108天零更新，正式成为历史遗迹。
+
+---
+
+**日期**：2026-07-27（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-27）
+
+| 项目 | ⭐ Stars | 较07-24 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 233,697 | +1,113 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 220,986 | +1,465 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 62,621 | +853 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,186 | +148 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,008 | +85 | 0 | 💀 死亡（111天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,638 | +74 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,696 | +22 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,315 | +10 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### LangChain4j v1.18.0（07-17）
+- **BDI (Belief-Desire-Intention) agentic pattern** — 信念-欲望-意图模式，经典 agent 设计范式
+- **Crash-resilient Human-in-the-Loop** — 崩溃可恢复的人类介入挂起与恢复
+- **OpenAI TTS** — 文字转语音支持
+- **MistralAiBatchChatModel** — Mistral 批处理 API
+
+### crewAI v1.15.7（07-26）
+- 修复 GPT-5.6 tools + reasoning_effort 40 的兼容问题
+- 修复 registry skills 解析路径
+
+### ECC v2.0.0 Control Pane（06-10）
+- 本地 
+ode scripts/control-pane.js 启动可视化控制台
+- 会话管理 + 指标面板 + 工作项看板
+- Operator column：知识召回、连接器、可执行 agent 操作
+- **与 Nezha Web UI 方向高度重合**，可借鉴其设计
+
+### hermes-agent 近期修复（07-24~27）
+- ix(weixin): 修复 TCPConnector keepalive 防止 CLOSE_WAIT 泄漏
+- ix(gateway): 改进平台重连 watcher 任务级别监控
+
+---
+
+## 📈 趋势（07-24→27，3天）
+
+**hermes-agent 爆发**：+1,465 stars/3d（约 488/天），逼近 ECC 差距缩小至 12.7K
+**ECC 加速**：+1,113/3d（371/天），Control Pane 拉动增长
+**headroom 持续爆发**：+853/3d（284/天），62K 指日可待
+
+**三足鼎立新格局**：ECC 233.7K | hermes 221K | headroom 62.6K
