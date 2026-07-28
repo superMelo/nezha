@@ -2547,3 +2547,61 @@ ode scripts/control-pane.js 启动可视化控制台
 **headroom 持续爆发**：+853/3d（284/天），62K 指日可待
 
 **三足鼎立新格局**：ECC 233.7K | hermes 221K | headroom 62.6K
+
+---
+
+**日期**：2026-07-28（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-28）
+
+| 项目 | ⭐ Stars | 较07-27 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 234,181 | +484 | 有 | 🔥 **v2.1.0发布** |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 221,422 | +436 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 62,796 | +175 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,236 | +50 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,036 | +28 | 0 | 💀 死亡（112天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,656 | +18 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,706 | +10 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,318 | +3 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### ECC v2.1.0 "Plan Canvas + Kimi + Self-Hosted"（07-27）
+
+**Plan Canvas**：plan review 可视化
+- /plan 确认从 terminal 壁文转为 loopback-only 浏览器画布
+- 点击/选择文本附加编号注解，侧边栏聊天讨论，批准或请求修改
+- 引用截图：ecc-plan-canvas-demo.gif
+
+**Kimi Code**：新增 Moonshot AI (Kimi) 作为 install target
+**Self-Hosted GPU**：验证 It? GPU 路径，ECC + 开源模型成为一等公民
+**Sponsor**：Moonshot AI、It?、Atlas Cloud
+
+### headroom 近期：Rust 移植压缩器（07-27~28）
+- eat(rust): port CodeCompressor AST compressor to Rust (#1154)
+- eat(rust): port Kompress ML prose compressor to Rust (#1153)
+- **意义**：Kompress 是 headroom 的 ML prose 压缩核心，移植 Rust 后性能/可移植性将大幅提升
+- ci: require ONNX Runtime >= 1.24
+
+### hermes-agent 近期（07-27~28）
+- ix(desktop): layout-aware keybinds 修复（键盘布局感知快捷键）
+
+---
+
+## 📈 趋势（07-27→28，1天）
+
+**三强格局**：ECC 234.1K | hermes 221.4K | headroom 62.8K
+ECC 微弱领先但增速相近，差距仅 12.8K。
+
+**headroom 降速**：+175（vs 前几天的 +500~+850），可能进入平台期。
+
+**待集成清单**（nezha）：
+1. 🔴 **Plan Canvas 可视化 plan review** → 借鉴 ECC 设计，Nezha 可做"Artifact plan preview"
+2. 🟡 **Rust Kompress** → 关注正式 release 后集成
+3. 🟢 **Layout-aware keybinds** → 纯前端，无关
