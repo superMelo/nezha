@@ -2605,3 +2605,50 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 1. 🔴 **Plan Canvas 可视化 plan review** → 借鉴 ECC 设计，Nezha 可做"Artifact plan preview"
 2. 🟡 **Rust Kompress** → 关注正式 release 后集成
 3. 🟢 **Layout-aware keybinds** → 纯前端，无关
+
+---
+
+**日期**：2026-07-29（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-29）
+
+| 项目 | ⭐ Stars | 较07-28 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 234,815 | +634 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 221,905 | +483 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 62,961 | +165 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,287 | +51 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,065 | +29 | 0 | 💀 死亡（113天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,672 | +16 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,716 | +10 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,331 | +13 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（07-28~29）
+- ci: pin uv version in setup-uv to eliminate per-job manifest fetch — CI 提速
+- ix(buzz): scoped identity lock, negative name caching, sidebar registration — 多会话身份隔离修复
+- Merge: terminal-clipboard / composer-strip-align — 终端剪贴板、Composer 对齐优化
+
+### headroom（07-28~29）
+- eat(router): route embedded & nested JSON through the compressor dispatch (#2623) — 嵌套 JSON 也压缩了
+- eat: expose configured OTEL meters to integrations (#2519) — 可观测性提升
+
+### supermemory：Company Brain 推广
+- eat(web): surface Company Brain to personal-brain users (#1370) — 企业脑知识库向个人用户开放
+- ix(web): select the correct Company Brain workspace (#1372) — workspace 选择修复
+- Render Nova connector setup cards (#1071) — Nova 连接器 UI
+
+---
+
+## 📈 趋势（07-28→29，1天）
+
+**三强格局**：ECC 234.8K | hermes 221.9K | headroom 63.0K
+**ECC 增速爆发**：+634/天（v2.1.0 Plan Canvas 拉动效应）
+**hermes 稳中有进**：+483/天，多项实用修复
+**headroom 增速趋稳**：+165/天（vs 前天的 +175）
