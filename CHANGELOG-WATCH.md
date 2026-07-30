@@ -2652,3 +2652,51 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **ECC 增速爆发**：+634/天（v2.1.0 Plan Canvas 拉动效应）
 **hermes 稳中有进**：+483/天，多项实用修复
 **headroom 增速趋稳**：+165/天（vs 前天的 +175）
+
+---
+
+**日期**：2026-07-30（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-30）
+
+| 项目 | ⭐ Stars | 较07-29 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 235,577 | +762 | 有 | 🔥 爆发 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 222,348 | +443 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 63,218 | +257 | 有 | 🚀 **v0.33.0** |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,340 | +53 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,082 | +17 | 0 | 💀 死亡（114天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,683 | +11 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,732 | +16 | 有 | 🔄 v1.18.1 |
+| [manifest](https://github.com/mnfst/manifest) | 7,338 | +7 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### headroom v0.33.0（07-30）
+- **lossless grep search fold**：共享目录前缀折叠，提升 grep 搜索可读性
+- **metrics: per-extension token savings**：每个扩展的 token 节省指标（可观测性增强）
+- **opencode: ship transport plugin in pip installs**：pip 安装时自带 OpenCode transport 插件
+
+### hermes-agent 近期（07-29~30）
+- ix(gateway): relay TTS attachments + semantic auto-thread rename on the title turn — TTS 附件转发 + 语义化线程自动重命名
+- ix(state): time-based write-lock patience so busy sibling processes can't destroy turns — 更好的并发保护
+- ix(telegram): batch near-limit command chunks — Telegram 命令分块修复
+
+### ECC 近期（07-29~30）
+- ix(opencode): don't crash the whole session when plugins/lib is missing — 兼容性增强
+- ix(hooks,lib): fix hook detection and parsing edge cases — Hook 解析稳定性
+- ix(docs): restore main CI — CI 流程修复
+
+---
+
+## 📈 趋势（07-29→30，1天）
+
+**三强**：ECC 235.6K | hermes 222.3K | headroom 63.2K
+**ECC 爆发**：+762/天，v2.1.0 Plan Canvas 持续拉动
+**hermes 稳定**：+443/天，保持强劲
+**headroom 回升**：+257/天（v0.33.0 发布刺激）
