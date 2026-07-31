@@ -2700,3 +2700,55 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **ECC 爆发**：+762/天，v2.1.0 Plan Canvas 持续拉动
 **hermes 稳定**：+443/天，保持强劲
 **headroom 回升**：+257/天（v0.33.0 发布刺激）
+
+---
+
+**日期**：2026-07-31（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-07-31）
+
+| 项目 | ⭐ Stars | 较07-30 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 236,225 | +648 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 222,883 | +535 | 有 | 🔥 **v0.19.1** |
+| [headroom](https://github.com/chopratejas/headroom) | 63,420 | +202 | 0 | 静默 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,400 | +60 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,119 | +37 | 0 | 💀 死亡（115天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,699 | +16 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,747 | +15 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,341 | +3 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### hermes-agent v0.19.1 / v2026.7.30（07-30）
+> Patch release，合并 v0.19.0 以来 ~1,000+ PRs
+
+**10 天内规模**：2,789 commits · 4,748 files changed · 442,000 insertions · 392,300 deletions
+**主要工作**：
+- Bug-fix 和 salvage waves：gateway、voice subsystem、desktop app、installer
+- 平台功能：Buzz/Nostr channel、FLUX3 视频生成与交付、Telegram 媒体可靠性、voice-mode 回归修复
+- v0.20.0 将发布完整 release notes（含贡献者credit）
+
+### supermemory：MCP Revamp 完成（#1380，07-31 合并）
+- MCP 协议全面重构
+- Slack workspace reassignment consent flow
+- SpaceState durable object 注册
+
+### crewAI：Skill 使用事件追踪（07-31）
+- eat(tracing): collect skill usage events (#6727) — 技能调用可观测性
+
+---
+
+## 📈 趋势（07-30→31，1天）
+
+**三强**：ECC 236.2K | hermes 222.9K | headroom 63.4K
+**hermes 爆发**：+535/天，v0.19.1 合并 2,789 commits 刺激关注
+**ECC 稳增**：+648/天，持续增长
+**headroom 趋稳**：+202/天
+
+**里程碑预告**：hermes v0.20.0 完整 release notes 即将发布
