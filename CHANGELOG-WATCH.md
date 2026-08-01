@@ -2752,3 +2752,47 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **headroom 趋稳**：+202/天
 
 **里程碑预告**：hermes v0.20.0 完整 release notes 即将发布
+
+---
+
+**日期**：2026-08-01（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-01）
+
+| 项目 | ⭐ Stars | 较07-31 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 236,644 | +419 | 0 | 静默（周末） |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 223,423 | +540 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 63,574 | +154 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,437 | +37 | 有 | 🔄 v1.15.10 |
+| [autogen](https://github.com/microsoft/autogen) | 60,134 | +15 | 0 | 💀 死亡（116天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,715 | +16 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,757 | +10 | 0 | 静默（周末） |
+| [manifest](https://github.com/mnfst/manifest) | 7,351 | +10 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent 近期（07-31~08-01）
+- ix(kanban): key the worker-session retag per board, not per database — Kanban 看板 worker session 重命名按 board 而非 database 隔离
+- ix(gateway): relay semantic thread rename — register eagerly, poll send-result feedback at first — 语义化线程重命名提前注册 + 反馈轮询
+
+### headroom 近期（07-31~08-01）
+- **feat(code): add PHP support to CodeAwareCompressor** — 代码感知压缩器新增 PHP 语言支持
+- eat(compress): reach the lossless provider seam on general path — 无损压缩扩展到通用路径
+- efactor: remove the dead headroom/prediction module — 移除已废弃的 prediction 模块
+
+### crewAI v1.15.10（08-01）
+- 新增 IBM Db2 搜索工具（eat(crewai-tools): add IBM Db2 search tool）
+
+---
+
+## 📈 趋势（07-31→08-01，1天）
+
+**三强**：ECC 236.6K | hermes 223.4K | headroom 63.6K
+**增速放缓**：周末效应，各项目增速均有下降
+**hermes 领先**：+540/天，保持最快增长
