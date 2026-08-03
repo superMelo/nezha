@@ -2796,3 +2796,57 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 236.6K | hermes 223.4K | headroom 63.6K
 **增速放缓**：周末效应，各项目增速均有下降
 **hermes 领先**：+540/天，保持最快增长
+
+---
+
+**日期**：2026-08-03（cron 扫描，周末后首个工作日）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-03）
+
+| 项目 | ⭐ Stars | 较08-01 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 237,077 | +433 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 224,330 | +907 | 有 | 🔥 爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 64,080 | +506 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,520 | +83 | 0 | 静默 |
+| [autogen](https://github.com/microsoft/autogen) | 60,171 | +37 | 0 | 💀 死亡（118天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,745 | +30 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,761 | +4 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,384 | +33 | 0 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent 爆发（08-01~08-03）
+- **eat(skills): add fact-checking mode to grounded-citations** — 事实核查模式集成到 grounded-citations skill！
+  - 引用证据 + 自动化事实核查双模式
+  - **🔴 高价值**：可借鉴引入 Nezha Skill 系统
+- ix(skills): match evidence quotes through markdown markup — Markdown 格式引用解析修复
+
+### headroom 爆发（08-01~08-03）
+- ix(proxy): route Codex Live voice through a dedicated /v1/live transport — Codex Live 语音专用传输路径
+- ix(proxy/debug): reconcile Kompress warmup state — Kompress ML 压缩器热启动状态修复
+- ix(ccr): stop persisting retrieval markers as original content — retrieval marker 不再污染原始内容
+
+### ECC（08-01~08-03）
+- ix(commands): generate discoverable learned skills — 从学习工作流自动生成可发现技能
+- ix(aura): reject history-free agents by default — 无历史 agent 默认拒绝（安全增强）
+
+### supermemory（08-01~08-03）
+- Company Brain 推广持续：试用可见性 + 设置时间线 + Skills 设置界面
+
+---
+
+## 📈 趋势（08-01→08-03，2天）
+
+**三强**：ECC 237.1K | hermes 224.3K | headroom 64.1K
+**hermes 爆发**：+907 stars/2d（~454/天），fact-checking skill 引爆关注
+**headroom 反弹**：+506/2d（~253/天），Codex Live 语音功能拉动
+
+**待集成清单**：
+1. 🔴 **hermes fact-checking mode** → Nezha Skill 系统可借鉴引用+核查双模式
+2. 🟡 **ECC discoverable learned skills** → 从使用日志自动生成技能
