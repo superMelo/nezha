@@ -2850,3 +2850,85 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **待集成清单**：
 1. 🔴 **hermes fact-checking mode** → Nezha Skill 系统可借鉴引用+核查双模式
 2. 🟡 **ECC discoverable learned skills** → 从使用日志自动生成技能
+
+---
+
+**日期**：2026-08-04（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-04）
+
+| 项目 | ⭐ Stars | 较08-03 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 237,334 | +257 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 224,901 | +571 | 有 | 🔥 **v0.20.0** |
+| [headroom](https://github.com/chopratejas/headroom) | 64,357 | +277 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,584 | +64 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,201 | +30 | 0 | 💀 死亡（119天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,763 | +18 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,771 | +10 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,392 | +8 | 有 | 静默 |
+
+---
+
+## 🚀 史诗级更新：hermes-agent v0.20.0 "The Herald Release"（08-03）
+
+> "The Herald Release" —— Hermes 是众神的信使，现在他**说话**、**传递消息给其他 agent**、**向你的系统推送事件**、**引用可验证来源**。
+
+**规模**（自 v0.19.0 以来，约 14 天）：
+- **3,650 commits** · 1,400 merged PRs · 5,200 files changed
+- **559,000 insertions** · 405,000 deletions
+- **~1,200 issues closed**
+- **647 contributors**
+
+### 核心亮点
+
+#### 🎙️ 语音与对话
+- **实时对话语音**：流式 TTS + barg-in 打断（CLI/desktop/gateway 全平台）
+- **唤醒词**：设备端 wake word 检测（"hey Hermes"），免手动语音控制
+- **全平台语音**：WhatsApp/Feishu/DingTalk/LINE/QQ/Photon/Weixin 自动语音应答
+
+#### 🔍 研究与引用
+- **Grounded Citations + Fact-Checking Mode**：每个引用匹配实际页面文本，可验证来源 + 事实核查模式
+- **🔴 高价值**：Nezha 可借鉴引用+核查双模式 Skill
+
+#### 🌐 Agent-to-Agent
+- **A2A v1.0 协议插件**：标准化 multi-agent 通信协议（closes #514）
+
+#### 🔔 Outbound Webhooks
+- **签名事件推送**：Hermes 主动推送签名生命周期事件到你的 HTTP endpoint（CI/自动化/仪表盘）
+
+#### 🖥️ Desktop 平台化
+- **Artifacts**：版本化卡片 + 沙箱实时预览
+- **Plugin SDK**：Kanban 作为首发插件
+- **Quick-Entry Window**：全局热键快速输入
+
+#### ⚡ CLI Power Commands
+- ! shell mode、/init AGENTS.md 生成、/diff、/context、/focus
+- hermes import-agent：一键从 Claude Code / Codex CLI 迁移
+
+#### 🛠️ 工具自修复
+- 工具调用自恢复：truncated output 自动溢出到文件、patch 检测已应用编辑、搜索零匹配时探测近匹配
+- 迭代限制 90 → 500
+
+#### 🗜️ 压缩与性能
+- **Proactive tool-result pruning** + per-turn micro-compaction
+- **N-user tail guarantee**：最近 N 条用户消息永不压缩
+- **Cold-start ~14s → ~1.8s**
+- **54× faster config reads**
+
+---
+
+## 🔍 headroom 动态（08-03~04）
+- ix(proxy): stop toggling headroom_retrieve in the Anthropic tools array — Anthropic tools 兼容修复
+- ix(deps): bump aiohttp and cryptography to clear the CVEs blocking 0.34.0 — 安全更新
+- ix(compress): resolve the /v1/compress tokenizer per model — 压缩 tokenizer 按模型解析
+
+---
+
+## 📈 趋势（08-03→08-04，1天）
+
+**三强**：ECC 237.3K | hermes 224.9K | headroom 64.4K
+**hermes v0.20.0 发布**：史诗级更新引爆关注，预计后续几天 star 持续暴涨
