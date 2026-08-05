@@ -2932,3 +2932,55 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 
 **三强**：ECC 237.3K | hermes 224.9K | headroom 64.4K
 **hermes v0.20.0 发布**：史诗级更新引爆关注，预计后续几天 star 持续暴涨
+
+---
+
+**日期**：2026-08-05（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-05）
+
+| 项目 | ⭐ Stars | 较08-04 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 237,706 | +372 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 225,506 | +605 | 有 | 🔥 爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 64,776 | +419 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,622 | +38 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,222 | +21 | 0 | 💀 死亡（120天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,778 | +15 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,788 | +17 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,398 | +6 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent 近期（08-04~05）
+- ix(git): kill the whole probe process tree on timeout — git probe 超时修复（安全）
+- ci: test updating from sampled release tags — CI 自动测试版本升级路径
+- eat(dev-sandbox): support fake installer / fake main / git clones — 开发者沙箱增强
+
+### ECC 近期（08-04~05）
+- ix(continuous-learning): /evolve never produces skill or agent candidates — **/evolve 技能/Agent 生成 bug 修复**
+  - 之前 /evolve 从不产出候选，现在修复了
+  - **🔴 高价值**：Nezha Pipeline 编排可借鉴 /evolve 进化机制
+- ix(install): exclude ECC skills from antigravity install target — 安装排除 ECC skills
+- ix(hooks): catch the bypass short flag anywhere in a cluster — Hook 解析边缘情况修复
+
+### headroom 近期（08-04~05）
+- **chore(docs): one documentation site, not two** — 文档合并（放弃 Vercel 部署）
+- ix(telemetry): stop mixing tokenizer scales in RequestOutcome — 可观测性数据质量修复
+- efactor(pricing): make LiteLLM the source of truth — 定价数据源重构
+
+---
+
+## 📈 趋势（08-04→05，1天）
+
+**三强**：ECC 237.7K | hermes 225.5K | headroom 64.8K
+**hermes 持续爆发**：+605/天，v0.20.0 效应持续（已连续 2 天 +600+）
+**headroom 反弹**：+419/天，docs 合并 + telemetry 修复
+**ECC 稳增**：+372/天，/evolve bug 修复利好社区
+
+**里程碑**：hermes-agent star 突破 225K 大关
