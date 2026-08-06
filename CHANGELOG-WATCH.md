@@ -2984,3 +2984,64 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **ECC 稳增**：+372/天，/evolve bug 修复利好社区
 
 **里程碑**：hermes-agent star 突破 225K 大关
+
+---
+
+**日期**：2026-08-06（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-06）
+
+| 项目 | ⭐ Stars | 较08-05 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 238,021 | +315 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 226,074 | +568 | 有 | 🔥 爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,047 | +271 | 有 | 🚀 **v0.34.0** |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,659 | +37 | 有 | 🔄 v1.15.12 |
+| [autogen](https://github.com/microsoft/autogen) | 60,254 | +32 | 0 | 💀 死亡（121天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,787 | +9 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,795 | +7 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,403 | +5 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### headroom v0.34.0（08-05）
+
+**⭐ Claude Code in VS Code** — 重大突破！
+- headroom 不再只是 CLI 工具，现在支持 VS Code 内 Claude Code 集成
+- IDE 内享受 headroom 压缩 + 上下文管理能力
+- **🔴 高价值**：Nezha Desktop UI 方向可参考此集成模式
+
+**compress 升级**：
+- rozen_message_count 参数化（/v1/compress API 支持配置）
+- 无损压缩扩展到通用路径 + marker-free output
+
+**copilot: VS Code 模型透明代理**：
+- headroom proxy VS Code 内模型请求
+- IDE 内全链路可观测
+
+**其他修复**：Kompress 热启动、retrieval marker 污染、LiteLLM 定价数据源
+
+### ECC 近期（08-05~06）
+- Add bounded harness evaluation and rollback loop (#2686) — 有界 harness 评估 + 回滚循环
+- eat: add retention feedback loop and honest support matrix (#2681) — 保留反馈 + 诚实支持矩阵
+
+### hermes-agent 近期（08-05~06）
+- ix(gemini): interpose placeholder model turn between tool result and user text — Gemini tool call 修复
+- ix(gemini): prevent user message merge into adjacent function response — Gemini 消息合并修复
+- perf(tests): cut test_hermes_state.py 52s → 10s — 测试提速 5×
+
+---
+
+## 📈 趋势（08-05→06，1天）
+
+**三强**：ECC 238.0K | hermes 226.1K | headroom 65.0K
+**hermes 持续爆发**：+568/天，连续 3 天 +560+（v0.20.0 效应持续）
+**headroom 加速**：+271/天（v0.34.0 Claude Code in VS Code 引爆关注）
+**ECC 稳增**：+315/天
+
+**里程碑**：headroom 突破 65K 大关！
