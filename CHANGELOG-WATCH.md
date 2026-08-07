@@ -3045,3 +3045,52 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **ECC 稳增**：+315/天
 
 **里程碑**：headroom 突破 65K 大关！
+
+---
+
+**日期**：2026-08-07（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-07）
+
+| 项目 | ⭐ Stars | 较08-06 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 238,312 | +291 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 226,598 | +524 | 有 | 🔥 活跃 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,241 | +194 | 有 | 🔥 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,707 | +48 | 0 | 静默 |
+| [autogen](https://github.com/microsoft/autogen) | 60,274 | +20 | 0 | 💀 死亡（122天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,798 | +11 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,805 | +10 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,407 | +4 | 0 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### headroom：27% hot-path 延迟降低！（08-06~07）
+- **perf: cut hot-path latency 27%** (#2838) — token-count memo + startup preloads + JSON scan memo
+- **ix(deps): bump h2 to 4.4.1 for CVE-2026-71554** — 安全更新
+- **eat(beacon): allowlist the routing summary key** — beacon 路由增强
+
+### hermes-agent 近期（08-06~07）
+- ix(delegation): bind steering to session generation — delegation steering 绑定到会话生成
+- ix(delegation): surface a child's undelivered steer — 子 agent steer 丢失修复
+
+### ECC 近期（08-06~07）
+- **eat(skills): add secure terminal opener** — 安全终端开启技能
+- ix(skills): default GAN harness models to sonnet — 默认模型修正
+
+### LangChain4j 近期（08-07）
+- Complete A2A response future exceptionally on interrupted task states — A2A 协议支持持续完善
+
+---
+
+## 📈 趋势（08-06→07，1天）
+
+**三强**：ECC 238.3K | hermes 226.6K | headroom 65.2K
+**hermes 持续爆发**：连续 4 天 +500+（v0.20.0 效应持续）
+**headroom 持续活跃**：+194/天，27% 延迟降低引持续关注
+**增速排名**（今日）：hermes > ECC > headroom > crewAI > LangChain4j
