@@ -3094,3 +3094,49 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **hermes 持续爆发**：连续 4 天 +500+（v0.20.0 效应持续）
 **headroom 持续活跃**：+194/天，27% 延迟降低引持续关注
 **增速排名**（今日）：hermes > ECC > headroom > crewAI > LangChain4j
+
+---
+
+**日期**：2026-08-08（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-08）
+
+| 项目 | ⭐ Stars | 较08-07 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 238,582 | +270 | 有 | 活跃（周末） |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 227,092 | +494 | 有 | 🔥 持续爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,402 | +161 | 有 | 活跃（周末） |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,757 | +50 | 有 | 活跃（周末） |
+| [autogen](https://github.com/microsoft/autogen) | 60,299 | +25 | 0 | 💀 死亡（123天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,811 | +13 | 有 | 静默（周末） |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,813 | +8 | 0 | 静默（周末） |
+| [manifest](https://github.com/mnfst/manifest) | 7,413 | +6 | 有 | 静默（周末） |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-07~08，周末爆发）
+- ix: relax start_new_session assertion for systemd scope path — systemd 集成修复
+- ix: defer O(n) fallback_data construction to failure path — 性能优化
+- ix(terminal): harden scope fallback and memory override — 终端作用域修复
+- **连续 5 天 +490+**，v0.20.0 Herald 效应仍在持续
+
+### headroom（08-07~08，周末活跃）
+- **ix(memory): bound the TrafficLearner pending-pattern accumulator (memory leak)** — 内存泄漏修复！
+  - TrafficLearner 待处理模式累积器无限增长 → 已修复
+  - **🟡 中价值**：Nezha Memory 模块可借鉴边界控制
+
+### ECC（08-07~08，周末活跃）
+- It? skill 生命周期硬化，It? 推理服务契约正式化
+
+---
+
+## 📈 趋势（08-07→08，1天）
+
+**三强**：ECC 238.6K | hermes 227.1K | headroom 65.4K
+**hermes 连续爆发**：连续 5 天 +490+（总计 +2,766 since v0.20.0）
+**里程碑**：hermes-agent star 突破 227K 大关
