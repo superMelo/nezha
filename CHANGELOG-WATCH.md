@@ -3140,3 +3140,49 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 238.6K | hermes 227.1K | headroom 65.4K
 **hermes 连续爆发**：连续 5 天 +490+（总计 +2,766 since v0.20.0）
 **里程碑**：hermes-agent star 突破 227K 大关
+
+---
+
+**日期**：2026-08-09（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-09）
+
+| 项目 | ⭐ Stars | 较08-08 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 238,816 | +234 | 有 | 活跃（周末） |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 227,534 | +442 | 有 | 🔥 连续6天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,534 | +132 | 有 | 活跃（周末） |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,811 | +54 | 有 | 活跃（周末） |
+| [autogen](https://github.com/microsoft/autogen) | 60,318 | +19 | 0 | 💀 死亡（124天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,819 | +8 | 0 | 静默（周末） |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,818 | +5 | 0 | 静默（周末） |
+| [manifest](https://github.com/mnfst/manifest) | 7,414 | +1 | 有 | 静默（周末） |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-08~09，周末持续）
+- **ix(compression): charge stale thinking to the tail budget only on the newest assistant turn** — 压缩预算优化
+- **eat(desktop): support multiple cron delivery targets** — Desktop 多 cron 投递目标
+- ix(state,cli,tui-gateway): keep reasoning fields intact across forks and branches — reasoning 字段完整性修复
+
+### headroom（08-08~09，周末活跃）
+- **perf(subscription): skip transcripts older than the window in compute_window_tokens** — token 计算优化（跳过窗口外）
+- ix(anthropic): strip first-party tool search on custom upstreams — 自定义上游工具搜索修复
+- ix(onnx): stop ONNX thread pools from spinning idle cores — ONNX 空闲核心修复
+
+### ECC（08-08~09）
+- ix(memory-vault): compare dev only when both stats report one — memory-vault 统计修复
+
+---
+
+## 📈 趋势（08-08→09，1天）
+
+**三强**：ECC 238.8K | hermes 227.5K | headroom 65.5K
+**hermes 连续爆发**：连续 **6 天** +440+（总计 +3,208 since v0.20.0）
+**周末效应**：增速放缓但仍然活跃
+**里程碑**：hermes 突破 227.5K
