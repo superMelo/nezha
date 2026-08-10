@@ -3186,3 +3186,50 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **hermes 连续爆发**：连续 **6 天** +440+（总计 +3,208 since v0.20.0）
 **周末效应**：增速放缓但仍然活跃
 **里程碑**：hermes 突破 227.5K
+
+---
+
+**日期**：2026-08-10（cron 扫描，工作日）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-10）
+
+| 项目 | ⭐ Stars | 较08-09 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 239,028 | +212 | 有 | 活跃（工作日） |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 227,942 | +408 | 有 | 🔥 连续7天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,654 | +120 | 有 | 活跃（工作日） |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,867 | +56 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,331 | +13 | 0 | 💀 死亡（125天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,832 | +13 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,824 | +6 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,415 | +1 | 0 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-09~10，连续第7天爆发）
+- ix(desktop): make un-highlighted code readable while streaming in light theme — 浅色主题流式代码可读性修复
+- ix(desktop-ssh): stop resolving exec-wrappers to python in locateHermes — SSH exec-wrapper 解析修复
+- 	est(desktop-ssh): cover wrapper preservation and explicit-path passthrough — SSH 测试覆盖
+
+### ECC（08-09~10）
+- ix(plan-canvas): deliver browser chat to the agent every time — browser chat 可靠投递修复
+- ix: complete Discord delivery receipts reliably — Discord 投递回执可靠性修复
+- ix: deliver announcements through a scoped Discord webhook — Discord 公告作用域修复
+
+### headroom（08-09~10）
+- **perf(proxy): bound upstream calls and hot-path costs** (#2852) — 上游调用与热路径成本边界
+- **eat(beacon): hourly R2 compaction, per-strategy savings, and a stack that reports** — R2 压缩每小时执行 + 分策略节省统计
+
+---
+
+## 📈 趋势（08-09→10，1天）
+
+**三强**：ECC 239.0K | hermes 227.9K | headroom 65.7K
+**hermes 连续爆发**：连续 **7 天** +400+（总计 +3,616 since v0.20.0）
+**ECC 稳增**：+212/天，Discord 投递可靠性持续改进
+**里程碑**：ECC 突破 239K 大关
