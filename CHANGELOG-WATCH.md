@@ -3233,3 +3233,50 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **hermes 连续爆发**：连续 **7 天** +400+（总计 +3,616 since v0.20.0）
 **ECC 稳增**：+212/天，Discord 投递可靠性持续改进
 **里程碑**：ECC 突破 239K 大关
+
+---
+
+**日期**：2026-08-11（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-11）
+
+| 项目 | ⭐ Stars | 较08-10 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 239,248 | +220 | 有 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 228,468 | +526 | 有 | 🔥 连续8天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,822 | +168 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,911 | +44 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,353 | +22 | 0 | 💀 死亡（126天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,847 | +15 | 0 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,837 | +13 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,421 | +6 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-10~11，连续第8天）
+- **ix(dashboard): raise fd soft limit + replace iterdir with scandir to stop fd leak** (#81547) — 修复 Dashboard 文件描述符泄漏！
+  - 用 scandir 替换 iterdir 解决 fd 泄漏
+  - **🟡 中价值**：Nezha 可借鉴 resource leak 检查
+- ix(desktop-ssh): raise remote backend file limit — SSH 远程后端文件限制提升
+- ix: guard has_env profile probe with _safe — 环境变量探测安全修复
+
+### ECC（08-10~11）
+- **Add living-docs-governance skill** (#2277) — 生命周期文档治理技能
+  - 维护阶段项目文档系统
+  - **🟡 中价值**：Nezha Persona/Documentation 可借鉴
+
+### headroom（08-10~11）
+- 依赖批量更新：hf-hub 0.4.3→0.5.0、ytesize 1.3.3→2.4.2、usqlite 0.32.1→0.40.1
+
+---
+
+## 📈 趋势（08-10→11，1天）
+
+**三强**：ECC 239.2K | hermes 228.5K | headroom 65.8K
+**hermes 连续爆发**：连续 **8 天** +520+（总计 +4,145 since v0.20.0）
+**里程碑**：hermes 逼近 229K 大关
