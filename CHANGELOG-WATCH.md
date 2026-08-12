@@ -3280,3 +3280,48 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 239.2K | hermes 228.5K | headroom 65.8K
 **hermes 连续爆发**：连续 **8 天** +520+（总计 +4,145 since v0.20.0）
 **里程碑**：hermes 逼近 229K 大关
+
+---
+
+**日期**：2026-08-12（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-12）
+
+| 项目 | ⭐ Stars | 较08-11 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 239,486 | +238 | 有 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 229,034 | +566 | 有 | 🔥 连续9天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 65,975 | +153 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 56,955 | +44 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,367 | +14 | 0 | 💀 死亡（127天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,864 | +17 | 0 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,843 | +6 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,429 | +8 | 0 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-11~12，连续第9天）
+- **eat(relay): ambient token endpoint mode for gateway.idp.token_url** — Relay ambient token 端点模式
+- **eat(browser): auto-install the Browser Use CLI instead of silently downgrading** — Browser Use CLI 自动安装
+- ix(relay): stop sibling gateways answering another instance's button press — Relay 隔离修复
+
+### ECC（08-11~12）
+- **eat: add council-multi-model skill** (#2281) — 异构 Codex 多模型议会技能
+  - 多模型 Claude 5 家族异构评审
+  - **🔴 高价值**：Nezha Pipeline 多 Agent 评审机制可借鉴
+
+### headroom 活跃
+- 持续稳定维护
+
+---
+
+## 📈 趋势（08-11→12，1天）
+
+**三强**：ECC 239.5K | hermes 229.0K | headroom 66.0K
+**hermes 连续爆发**：连续 **9 天** +560+（总计 +4,711 since v0.20.0）
+**里程碑**：hermes-agent **突破 229K 大关**！
