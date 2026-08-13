@@ -3325,3 +3325,48 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 239.5K | hermes 229.0K | headroom 66.0K
 **hermes 连续爆发**：连续 **9 天** +560+（总计 +4,711 since v0.20.0）
 **里程碑**：hermes-agent **突破 229K 大关**！
+
+---
+
+**日期**：2026-08-13（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-13）
+
+| 项目 | ⭐ Stars | 较08-12 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 239,759 | +273 | 有 | 🔥 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 229,582 | +548 | 有 | 🔥 连续10天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 66,096 | +121 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,000 | +45 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,388 | +21 | 0 | 💀 死亡（128天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,880 | +16 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,852 | +9 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,432 | +3 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-12~13，连续第10天）
+- **eat(plugins): capability declarations + install/update consent flow** (#64228) — Plugin 系统重大升级！
+  - 能力声明 + 安装/更新同意流程
+  - Plugin 生态走向成熟
+
+### ECC（08-12~13）
+- **eat: thin Pi adapter mounting ECC's canonical skills and commands** — Pi 适配器挂载 ECC 规范技能
+- ix(continuous-learning-v2): warn when the observer never survives a hook invocation — 观察者存活警告
+- ix(skill-evolution): wire Skill PostToolUse tracker — 技能健康度真实运行追踪
+
+### headroom（08-12~13）
+- 依赖批量更新（22 个包）+ cache ordering 修复
+
+---
+
+## 📈 趋势（08-12→13，1天）
+
+**三强**：ECC 239.8K | hermes 229.6K | headroom 66.1K
+**hermes 连续爆发**：连续 **10 天** +540+（总计 +5,259 since v0.20.0）
+**里程碑**：crewAI 突破 57K 大关！
