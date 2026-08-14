@@ -3370,3 +3370,57 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 239.8K | hermes 229.6K | headroom 66.1K
 **hermes 连续爆发**：连续 **10 天** +540+（总计 +5,259 since v0.20.0）
 **里程碑**：crewAI 突破 57K 大关！
+
+---
+
+**日期**：2026-08-14（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-14）
+
+| 项目 | ⭐ Stars | 较08-13 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 239,980 | +221 | 有 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 230,138 | +556 | 有 | 🚀 **v0.20.1** |
+| [headroom](https://github.com/chopratejas/headroom) | 66,233 | +137 | 有 | 🚀 **v0.35.0** |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,052 | +52 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,409 | +21 | 0 | 💀 死亡（129天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,906 | +26 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,865 | +13 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,437 | +5 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### hermes-agent v0.20.1（08-13）— Patch Release
+> "This tag rolls up the ~656 PRs merged since v0.20.0 into a stable tagged release."
+
+**自 v0.20.0 以来**：
+- **1,444 commits** across **~656 merged PRs**
+- **2,172 files** changed（+233,872 / -75,244）
+- **~481 issues** closed
+- 覆盖：desktop app、gateway platforms、installers、tool system、provider catalogs
+
+**里程碑**：hermes-agent **突破 230K 大关**！
+
+### headroom v0.35.0（08-13）
+- Bedrock SSE ping 修复
+- LiteLLM async hook 修复
+- Hermes tool_call bridge 解包修复
+- SQLite TTL boundary 精确保留
+- 依赖更新：next.js 16.3.0、postcss 8.5.25
+
+### ECC 近期（08-13~14）
+- ix(install): arm rollback before legacy sync — 安装回滚保护
+- ix(security): reject Windows reparse digests — Windows 安全修复
+
+---
+
+## 📈 趋势（08-13→14，1天）
+
+**三强**：ECC 240.0K | hermes 230.1K | headroom 66.2K
+**hermes 连续爆发**：连续 **11 天** +550+（总计 +5,815 since v0.20.0）
+**里程碑**：hermes-agent **突破 230K 大关**！
