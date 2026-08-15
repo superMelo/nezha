@@ -3424,3 +3424,47 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 240.0K | hermes 230.1K | headroom 66.2K
 **hermes 连续爆发**：连续 **11 天** +550+（总计 +5,815 since v0.20.0）
 **里程碑**：hermes-agent **突破 230K 大关**！
+
+---
+
+**日期**：2026-08-15（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-15）
+
+| 项目 | ⭐ Stars | 较08-14 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 240,160 | +180 | 0 | 🏆 **突破240K** |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 230,647 | +509 | 有 | 🔥 连续12天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 66,374 | +141 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,081 | +29 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,424 | +15 | 0 | 💀 死亡（130天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,913 | +7 | 有 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,869 | +4 | 有 | 🚀 **v1.19.0** |
+| [manifest](https://github.com/mnfst/manifest) | 7,443 | +6 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### LangChain4j v1.19.0（08-14）
+- **MCP client according to 2026-07-28** — MCP 协议最新版本支持！
+- **Add tool actions compensation at agentic system level** — Agent 级工具补偿机制
+  - **🔴 高价值**：Nezha Pipeline 工具补偿可借鉴
+- **Add AnthropicBatchChatModel** — Anthropic Message Batches API 支持
+- watsonx.ai Model Gateway 支持
+- google-genai thinking 支持
+
+### hermes-agent（08-14~15）
+- **eat(desktop): per-profile scope selector in the Capabilities view** — Desktop Profile 作用域选择器
+- ix(desktop): context gauge reads the session it is on, not the last turn — Context gauge 会话定位修复
+
+---
+
+## 📈 趋势（08-14→15，1天）
+
+**三强**：ECC 240.2K | hermes 230.6K | headroom 66.4K
+**hermes 连续爆发**：连续 **12 天** +500+（总计 +6,324 since v0.20.0）
+**里程碑**：ECC **突破 240K 大关**！
