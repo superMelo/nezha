@@ -3468,3 +3468,53 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 240.2K | hermes 230.6K | headroom 66.4K
 **hermes 连续爆发**：连续 **12 天** +500+（总计 +6,324 since v0.20.0）
 **里程碑**：ECC **突破 240K 大关**！
+
+---
+
+**日期**：2026-08-16（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-16）
+
+| 项目 | ⭐ Stars | 较08-15 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 240,302 | +142 | 有 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 231,087 | +440 | 有 | 🔥 连续13天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 66,454 | +80 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,127 | +46 | 0 | 静默 |
+| [autogen](https://github.com/microsoft/autogen) | 60,437 | +13 | 0 | 💀 死亡（131天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,926 | +13 | 有 | 🚀 **server-v0.0.7** |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,873 | +4 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,446 | +3 | 0 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### supermemory server-v0.0.7（08-15）
+- **supermemory lite** — 自托管版许可 10,000 文档上限
+- **New local console** — Memory tab：实时计数、最近文档/记忆、容器标签、交互式记忆图谱
+- **~3s boot** — 嵌入模型后台延迟加载
+- **supermemory-server doctor** — 一键诊断（存储/keys/嵌入/原生运行时/端口/工作流引擎）
+- **Native embeddings restored** — ONNX 原生运行时内置（~12x faster）
+
+### hermes-agent（08-15~16）
+- **eat(desktop): Skills tab hub browser + full-skill detail pane** — Desktop Skills Hub 浏览器！
+- **eat(desktop): Capabilities-wide profile scoping + one-click hub installs** — 一键安装 Hub 技能
+- ix(computer-use): diagnose empty window discovery; fail fast on dead-daemon CLI fallback
+
+### ECC（08-15~16）
+- docs(antigravity): clarify npm 2.2 release boundary — 文档边界澄清
+
+### headroom
+- ix(proxy): keep prefixed core tools resident — 核心 tools 常驻修复
+
+---
+
+## 📈 趋势（08-15→16，1天）
+
+**三强**：ECC 240.3K | hermes 231.1K | headroom 66.5K
+**hermes 连续爆发**：连续 **13 天** +440+（总计 +6,764 since v0.20.0）
+**里程碑**：hermes 逼近 231K
