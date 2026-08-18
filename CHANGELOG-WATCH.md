@@ -3518,3 +3518,61 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 240.3K | hermes 231.1K | headroom 66.5K
 **hermes 连续爆发**：连续 **13 天** +440+（总计 +6,764 since v0.20.0）
 **里程碑**：hermes 逼近 231K
+
+---
+
+**日期**：2026-08-18（cron 扫描，API 超时后重试成功）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-18）
+
+| 项目 | ⭐ Stars | 较08-16 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 240,710 | +408 | 有 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 232,042 | +955 | 有 | 🚀 **v0.20.3** |
+| [headroom](https://github.com/chopratejas/headroom) | 66,680 | +226 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,218 | +91 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,475 | +38 | 0 | 💀 死亡（133天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,937 | +11 | 0 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,885 | +12 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,453 | +7 | 0 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### hermes-agent v0.20.3（08-17）
+> Patch release: ~125 PRs merged since v0.20.2
+
+**核心特性**：
+- **MCP 2.x SDK migration + 2026-07-28 stateless protocol** — MCP 协议升级！
+- **Bot Mode (hermes-bots) plugin** — 内置 Bot 模式插件 + teammate protocol
+- **CommandCode provider plugin** — 新插件
+- **PYTHONHOME/PYTHONPATH isolation** — Python 运行时隔离加固
+- **Cua Driver 0.20 runtime contracts** — Computer use 运行时契约
+- **Cron scheduler self-heal** — EMFILE recovery + stale-claim reconciliation + wedged-job re-arm
+- **Desktop remote-gateway headers + connection self-healing** — 连接自愈
+
+### hermes 近期 commits（08-16~18）
+- eat(bot-mode): hide bots from the roster via right-click — Bot 隐藏/显示
+- eat(cron): configurable media-send timeout — Cron media-send 超时可配置
+- ix(desktop): Bots pane is a Sessions-zone tab again
+
+### headroom（08-16~18）
+- ix(ccr): relay a successful upstream turn when post-processing fails — 上游 turn 中继修复
+- ix(proxy/anthropic): don't replay recorded prefix over live history — Anthropic 前缀重放修复
+- ix(ccr): only buffer a stream when a marker is actually redeemable
+
+### ECC（08-16~18）
+- 	est(release): verify packed Ito distribution — 发布测试验证
+- 	est: fix Nasiko Windows status expectation — Windows CI 修复
+
+---
+
+## 📈 趋势（08-16→18，2天）
+
+**三强**：ECC 240.7K | hermes 232.0K | headroom 66.7K
+**hermes 爆发**：2天 +955 stars，突破 232K
+**里程碑**：hermes-agent **突破 232K 大关**！
