@@ -3576,3 +3576,49 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 240.7K | hermes 232.0K | headroom 66.7K
 **hermes 爆发**：2天 +955 stars，突破 232K
 **里程碑**：hermes-agent **突破 232K 大关**！
+
+---
+
+**日期**：2026-08-19（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-19）
+
+| 项目 | ⭐ Stars | 较08-18 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 240,966 | +256 | 0 | 活跃 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 232,562 | +520 | 有 | 🚀 **v0.20.4** |
+| [headroom](https://github.com/chopratejas/headroom) | 66,796 | +116 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,276 | +58 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,502 | +27 | 0 | 💀 死亡（134天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,951 | +14 | 有 | 🚀 **server-v0.0.8** |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,899 | +14 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,455 | +2 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### hermes-agent v0.20.4（08-18）
+> Patch release: ~74 PRs since v0.20.3
+
+**核心特性**：
+- **Desktop glass/translucency surface** — 磨砂玻璃效果 + macOS 预选
+- **Tabbed SESSIONS|BOTS sidebar** — Tab 式侧边栏
+- **Bot Mode group-chat fixes** — 长运行成员 turn + Markdown 渲染 + 跨机路由
+- **NVIDIA SkillEvaluator Tier 1 advisory scanning** — 技能安装时安全扫描
+- **Cron media-send hardening** — 媒体发送加固
+
+### supermemory server-v0.0.8（08-17）
+- **紧急补丁**：修复 0.0.7 从 rc 升级时静默擦除搜索向量 bug
+- **自动修复**：启动时检测损坏行并后台重新嵌入
+- 测试矩阵加入真实向量 fixture 验证
+
+---
+
+## 📈 趋势（08-18→19，1天）
+
+**三强**：ECC 241.0K | hermes 232.6K | headroom 66.8K
+**hermes 连续爆发**：连续 **15 天** +500+
