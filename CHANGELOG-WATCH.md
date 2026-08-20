@@ -3622,3 +3622,48 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 
 **三强**：ECC 241.0K | hermes 232.6K | headroom 66.8K
 **hermes 连续爆发**：连续 **15 天** +500+
+
+---
+
+**日期**：2026-08-20（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-20）
+
+| 项目 | ⭐ Stars | 较08-19 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 241,194 | +228 | 有 | 🏆 **突破241K** |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 233,061 | +499 | 有 | 🔥 连续16天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 66,906 | +110 | 有 | 活跃 |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,338 | +62 | 有 | 🏆 突破57K |
+| [autogen](https://github.com/microsoft/autogen) | 60,525 | +23 | 0 | 💀 死亡（135天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,965 | +14 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,911 | +12 | 0 | 静默 |
+| [manifest](https://github.com/mnfst/manifest) | 7,460 | +5 | 有 | 静默 |
+
+---
+
+## 🔍 重点动态
+
+### hermes-agent（08-19~20）
+- Desktop 多项修复：session RPC 调用形状、Bot Chat 导航、workspace 保持
+
+### ECC（08-19~20）
+- **ix(skills): harden TasteForge multimodal contract** — TasteForge 多模态技能
+  - 多模态 agent 技能框架
+  - **🟡 中价值**：Nezha Skill 系统可借鉴
+
+### headroom（08-19~20）
+- ix(deps): clear the two Rust advisories and make cargo audit blocking — 安全告警清理
+- ix(proxy): stop a lone surrogate turning a thinking body into a 500 — 代理 thinking body 修复
+- 	est(proxy): pin down what Anthropic's thinking signature actually covers
+
+---
+
+## 📈 趋势（08-19→20，1天）
+
+**三强**：ECC 241.2K | hermes 233.1K | headroom 66.9K
+**hermes 连续爆发**：连续 **16 天** +490+（总计 +8,238 since v0.20.0）
+**里程碑**：ECC **突破 241K**，crewAI **突破 57K**！
