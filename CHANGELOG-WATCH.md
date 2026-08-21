@@ -3667,3 +3667,46 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 241.2K | hermes 233.1K | headroom 66.9K
 **hermes 连续爆发**：连续 **16 天** +490+（总计 +8,238 since v0.20.0）
 **里程碑**：ECC **突破 241K**，crewAI **突破 57K**！
+
+---
+
+**日期**：2026-08-21（cron 扫描）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-21）
+
+| 项目 | ⭐ Stars | 较08-20 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 241,472 | +278 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 233,553 | +492 | 有 | 🔥 连续17天爆发 |
+| [headroom](https://github.com/chopratejas/headroom) | 67,017 | +111 | 有 | 🚀 **v0.36.1** |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,396 | +58 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,545 | +20 | 0 | 💀 死亡（136天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,973 | +8 | 有 | 活跃 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,920 | +9 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,464 | +4 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### headroom v0.36.1（08-21）
+- **security: address u9up assessment findings (WEB-01–07)** — 安全评估修复！
+- **proxy: return 502, not 200, when upstream connect retries are exhausted** — 上游重试耗尽返回正确码
+- **docker: give :latest exactly one writer** — Docker 多 writer 竞态修复
+- **metrics: attribute tool-schema savings per model** — 按模型统计 tool-schema 节省
+
+### hermes-agent（08-20~21）
+- **ix(scale-to-zero): cron-bugfix #91022** — Cron 相关 scale-to-zero 修复
+- **chore(gateway): drop the default scale-to-zero idle timeout to 2 minutes** — Gateway 缩零超时缩短
+- ix(flaps-socket-group-access) — socket 组访问修复
+
+---
+
+## 📈 趋势（08-20→21，1天）
+
+**三强**：ECC 241.5K | hermes 233.6K | headroom 67.0K
+**hermes 连续爆发**：连续 **17 天** +490+（总计 +8,730 since v0.20.0）
+**里程碑**：headroom **突破 67K 大关**
