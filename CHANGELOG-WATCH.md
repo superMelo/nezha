@@ -3710,3 +3710,50 @@ ECC 微弱领先但增速相近，差距仅 12.8K。
 **三强**：ECC 241.5K | hermes 233.6K | headroom 67.0K
 **hermes 连续爆发**：连续 **17 天** +490+（总计 +8,730 since v0.20.0）
 **里程碑**：headroom **突破 67K 大关**
+
+---
+
+**日期**：2026-08-22（cron 扫描，周末）
+**方式**：GitHub REST API
+
+---
+
+## 🏆 重点仓库状态（2026-08-22）
+
+| 项目 | ⭐ Stars | 较08-21 | 新commits | 状态 |
+|------|---------|---------|-----------|------|
+| [ECC](https://github.com/affaan-m/ECC) | 241,799 | +327 | 0 | 静默 |
+| [hermes-agent](https://github.com/NousResearch/hermes-agent) | 233,999 | +446 | 有 | 🚀 **v0.20.5** |
+| [headroom](https://github.com/chopratejas/headroom) | 67,122 | +105 | 有 | 🚀 **v0.36.3** |
+| [crewAI](https://github.com/joaomdmoura/crewAI) | 57,437 | +41 | 有 | 活跃 |
+| [autogen](https://github.com/microsoft/autogen) | 60,565 | +20 | 0 | 💀 死亡（137天） |
+| [supermemory](https://github.com/supermemoryai/supermemory) | 28,992 | +19 | 0 | 静默 |
+| [LangChain4j](https://github.com/langchain4j/langchain4j) | 12,924 | +4 | 有 | 活跃 |
+| [manifest](https://github.com/mnfst/manifest) | 7,466 | +2 | 有 | 静默 |
+
+---
+
+## 🚀 重磅更新
+
+### hermes-agent v0.20.5（08-21）
+> Patch release: ~323 PRs since v0.20.4
+
+**核心特性**：
+- **Bot Mode group-room threads** — 群聊线程支持
+- **Foldable conversation summaries** — 可折叠对话摘要！
+- **PDF/file attachments with drag & drop** — 附件拖拽上传！
+- **Keyless web tier** — 5家供应商自由轮换 + 无 key 搜索
+- **CLI polish** — fuzzy /model picker、Ctrl+P 命令面板、richer /status
+- **hermes worktree list/prune** — 工作树管理
+- **Multi-question clarify** — 多问题澄清
+
+### headroom v0.36.3（08-21）
+- ix(proxy/responses): lift Codex >= 0.149.0 additional_tools into top-level tools — Codex 工具提升修复
+
+---
+
+## 📈 趋势（08-21→22，1天）
+
+**三强**：ECC 241.8K | hermes 234.0K | headroom 67.1K
+**hermes 连续爆发**：连续 **18 天** +440+
+**里程碑**：hermes **突破 234K 大关**！
